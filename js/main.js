@@ -8,6 +8,7 @@ window.addEventListener("load", initApp);
 
 function initApp() {
     console.log("JavaScript is live! 🎉");
+    document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#login-form").addEventListener("submit", loginClicked);
 }
 

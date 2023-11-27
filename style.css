@@ -82,3 +82,8 @@ body {
   #logout-btn:hover {
     background-color: #43597a;
   }
+
+  /* hidden class */
+  .hidden {
+    display: none;
+  }
