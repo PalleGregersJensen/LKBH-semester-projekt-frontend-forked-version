@@ -16,22 +16,55 @@
     <body>
         <header>
             <!--Tilføj hidden-class til button-->
-            <button id="logout-btn" type="button">Log ud</button>
+            <button id="logout-btn" class="hidden" type="button">Log ud</button>
             <img id="header-logo"src="Dokumentation/img/LKbh - logo.jpg" alt="">
         </header>
 
-    <div>
-        <!-----------login dialog ------------->
-        <form id="login-form" action="" method="dialog">
-            <p id="text-login-som">Log ind</p>
-            <label id="label-login" for="username">Brugernavn: </label>
-            <input id="username" type="text" value="" required />
-            <label id="label-login" for="password">Kodeord: </label>
-            <input id="password" type="password" value="" required />
-            
-          <button id="logon-btn" type="button">Log på</button>
-        </form>
-    </div>
+        <div>
+            <!-----------login dialog ------------->
+            <form id="login-form" class="hidden" action="" method="dialog">
+                <p id="text-login-som">Log ind</p>
+                <label id="label-login" for="username">Brugernavn: </label>
+                <input id="username" type="text" value="" required />
+                <label id="label-login" for="password">Kodeord: </label>
+                <input id="password" type="password" value="" required />
+                
+              <button id="logon-btn" type="button">Log på</button>
+            </form>
+        </div>
+        <div class="navbar-container">
+            <a href="#mypage" class="view-link navbar-content">Min Side</a>
+            <a href="#shifts" class="view-link navbar-content">Vagter</a>
+            <a href="#schema" class="view-link navbar-content">Skema</a>
+        </div>
+
+      <section id="mypage" class="view-content">
+        <div class="forside-text">
+          <h1>Min Side</h1>
+          <br>
+          <h3>Personlige Oplysninger:</h2>
+            <!-- <form id="substituteDataForm" method="dialog">
+                <th></th>
+            </form> -->
+          <h3>Login Oplysninger:</h3>  
+        </div>
+      </section>
+
+      <section id="shifts" class="view-content">
+        <div class="forside-text">
+          <h2>Om Delfinen</h2>
+          <p>Vi er en super cool svømmeklub, der får dig til at svømme som en delfin</p>
+        </div>
+      </section>
+
+      <section id="schema" class="view-content">
+        <div class="forside-text">
+          <h2>Kontakt</h2>
+          <p>Stillehavsvej 123</p>
+          <p>2000, Frederiksberg</p>
+          <p>Tlf: +45 98765432</p>
+        </div>
+      </section>
 
         <script type="module" src="./js/main.js"></script>
     </body>
