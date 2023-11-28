@@ -113,24 +113,32 @@ input {
 
 
 /* CSS code for the active link */
-.active {
+/* .active {
   font-weight: bolder;
   display: block;
-}
+} */
 
 /* hidden */
 .hidden {
   display: none;
 }
 
-.view-content {
+/* .view-content {
   margin-top: 5%;
   margin-left: 20%;
-}
+} */
 
 /* Add the hidden class to initially hide sections */
-.view-content:not(.active) {
+/* .view-content:not(.active) {
   display: none;
+} */
+
+.view-content{
+  display: none;
+}
+
+.view-content.active{
+  display: block;
 }
 
 /* CSS for substitute table */
