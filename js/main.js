@@ -1,5 +1,12 @@
 "use strict";
 
+const endpoint = "http://localhost:3333";
+
+
+// ===== IMPORTS ===== \\
+import { loginClicked } from "./login.js";
+import { initViews } from "./view-router.js";
+
 import { initViews } from "./view-router.js";
 import { getShiftData, getSubstitutesData } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
@@ -18,6 +25,9 @@ let shifts = [];
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
+    document.querySelector("#logout-btn").classList.add("hidden");
+    document.querySelector("#login-form").addEventListener("submit", loginClicked);
+
     initTabs();
     initViews();
     substitutes = await getSubstitutesData();
@@ -67,3 +77,5 @@ async function initApp() {
 
 
 
+
+export { endpoint, initApp };

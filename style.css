@@ -20,41 +20,42 @@ body {
     background-color: white;
     padding: 5px;
     width: 100%;
-  }
-  
-  #login-form {
+}
+
+#login-form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
-    margin-left: 42%; 
-    margin-top: 10%; }
-  
-  #text-login-som {
+    margin-left: 42%;
+    margin-top: 10%;
+}
+
+#text-login-som {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  
-  #label-login {
+}
+
+#label-login {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
     color: #333;
-  }
-  
-  input {
+}
+
+input {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  #logon-btn {
+}
+
+#logon-btn {
     background-color: rgb(155, 24, 24);
     color: #fff;
     padding: 10px 20px;
@@ -62,13 +63,13 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-  }
+}
 
-  #logon-btn:hover {
+#logon-btn:hover {
     background-color: #43597a;
-  }
+}
 
-  #logout-btn {
+#logout-btn {
     background-color: rgb(155, 24, 24);
     color: #fff;
     padding: 10px 20px;
@@ -79,8 +80,8 @@ body {
     position: absolute;
     top: 3px;
     right: 3px;
-  }
-  #logout-btn:hover {
+}
+#logout-btn:hover {
     background-color: #43597a;
   }
 
