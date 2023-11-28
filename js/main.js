@@ -6,8 +6,6 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked } from "./login.js";
 import { initViews } from "./view-router.js";
-
-import { initViews } from "./view-router.js";
 import { getShiftData, getSubstitutesData } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";

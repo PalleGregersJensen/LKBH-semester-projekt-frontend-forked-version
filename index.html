@@ -20,7 +20,7 @@
             <img id="header-logo"src="Dokumentation/img/LKbh - logo.jpg" alt="">
         </header>
 
-        <nav>
+        <nav class="hidden">
             <a href="#login-page" class="view-link">Login-page</a>
             <a href="#admin-page" class="view-link">Admin-page</a>
             <a href="#substitute-page" class="view-link">Substitute-page</a>
@@ -30,7 +30,7 @@
             <section id="login-page" class="view-content">
                     <div>
                         <!-----------login dialog ------------->
-                        <form id="login-form" class="hidden" action="" method="dialog">
+                        <form id="login-form" class="active" action="" method="dialog">
                             <p id="text-login-som">Log ind</p>
                             <label id="label-login" for="username">Brugernavn: </label>
                             <input id="username" type="text" value="" required />
@@ -41,7 +41,7 @@
                         </form>
                     <p id="username-logged-in"></p>
                     </div>
-        <div class="navbar-container">
+        <div class="navbar-container hidden">
             <a href="#mypage" class="view-link navbar-content">Min Side</a>
             <a href="#shifts" class="view-link navbar-content">Vagter</a>
             <a href="#schema" class="view-link navbar-content">Skema</a>
