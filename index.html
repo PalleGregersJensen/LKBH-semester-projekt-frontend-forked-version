@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
         <!-- Links -->
-        <link rel="icon" href="#" />
+        <link rel="icon" href="Dokumentation/img/favicon-16x16.png" />
 
         <!-- Styles -->
         <link rel="stylesheet" href="style.css" />
@@ -17,22 +17,39 @@
         <header>
             <!--Tilføj hidden-class til button-->
             <button id="logout-btn" type="button">Log ud</button>
-            <p id="username-logged-in"></p>
-            <img id="header-logo"src="Dokumentation/Img/LKbh - logo.jpg" alt="">
+            <img id="header-logo"src="Dokumentation/img/LKbh - logo.jpg" alt="">
         </header>
 
-    <div>
-        <!-----------login dialog ------------->
-        <form id="login-form" action="" method="dialog">
-            <p id="text-login-som">Log ind</p>
-            <label id="label-login" for="username">Brugernavn: </label>
-            <input id="username" type="text" value="" required />
-            <label id="label-login" for="password">Kodeord: </label>
-            <input id="password" type="password" value="" required />
-            
-          <button id="logon-btn" type="submit">Log på</button>
-        </form>
-    </div>
+        <nav>
+            <a href="#login-page" class="view-link">Login-page</a>
+            <a href="#admin-page" class="view-link">Admin-page</a>
+            <a href="#substitute-page" class="view-link">Substitute-page</a>
+        </nav>
+        <main>
+            <!-- Login section -->
+            <section id="login-page" class="view-content">
+                <div>
+                    <!-----------login dialog ------------->
+                    <form id="login-form" action="" method="dialog">
+                        <p id="text-login-som">Log ind</p>
+                        <label id="label-login" for="username">Brugernavn: </label>
+                        <input id="username" type="text" value="" required />
+                        <label id="label-login" for="password">Kodeord: </label>
+                        <input id="password" type="password" value="" required />
+
+                        <button id="logon-btn" type="button">Log på</button>
+                    </form>
+                </div>
+            </section>
+            <!-- admin section -->
+            <section id="admin-page" class="view-content">
+                <p>admin page struktur</p>
+            </section>
+            <!-- Vikar section -->
+            <section id="substitute-page" class="view-content">
+                <p>vikar page struktur</p>
+            </section>
+        </main>
 
         <script type="module" src="./js/main.js"></script>
     </body>
