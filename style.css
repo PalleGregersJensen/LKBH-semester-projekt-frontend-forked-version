@@ -196,3 +196,18 @@ h1 {
 #tabs div table {
   width: 100%;
 }
+
+#shiftinterestbutton {
+  background-color: rgb(155, 24, 24);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  top: 3px;
+  right: 3px;
+}
+#shiftinterestbutton:hover {
+  background-color: #43597a;
+}

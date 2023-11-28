@@ -6,6 +6,7 @@ import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./shiftrenderer.js";
+import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 
 window.addEventListener("load", initApp);
 
@@ -21,11 +22,13 @@ async function initApp() {
     initViews();
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
+
     console.log(substitutes);
     console.log(shifts);
     // Create an instance of Renderers
     const substituteRenderer = new Substituterenderer();
     const MyShiftsrenderer = new MyShiftsRenderer();
+    const availableShiftsRenderer = new AvailableShiftsRenderer();
 
     const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === 1);
     console.log(specificSubstitute);
@@ -35,6 +38,11 @@ async function initApp() {
     const shiftsOfSpecificEmployee = shifts.filter((shift) =>shift.EmployeeID === 1);
     const myShifts = new ListRenderer(shiftsOfSpecificEmployee, "#myShifts", MyShiftsrenderer);
     myShifts.render();
+
+    const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
+    console.log(displayAvailableShifts);
+    const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
+    availableShiftsSubstitutes.render();
 }
 
 
