@@ -1,18 +1,43 @@
 "use strict";
 
 import { initViews } from "./view-router.js";
-
+import { getShiftData, getSubstitutesData } from "./rest-service.js";
+import { Substituterenderer } from "./substituterenderer.js";
+import { ListRenderer } from "./listrenderer.js";
+import { initTabs } from "./tabs.js";
+import { MyShiftsRenderer } from "./shiftrenderer.js";
 
 window.addEventListener("load", initApp);
 
-//Tilføjer midlertidige globale variabler
-const username = 1234;
-const password = 1234;
 
-function initApp() {
+//Definer globale variabler
+
+let substitutes = [];
+let shifts = [];
+
+async function initApp() {
     console.log("JavaScript is live! 🎉");
+    initTabs();
     initViews();
+    substitutes = await getSubstitutesData();
+    shifts = await getShiftData();
+    console.log(substitutes);
+    console.log(shifts);
+    // Create an instance of Renderers
+    const substituteRenderer = new Substituterenderer();
+    const MyShiftsrenderer = new MyShiftsRenderer();
+
+    const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === 1);
+    console.log(specificSubstitute);
+    const substitute = new ListRenderer(specificSubstitute, ".forside-text", substituteRenderer);
+    substitute.render();
+
+    const shiftsOfSpecificEmployee = shifts.filter((shift) =>shift.EmployeeID === 1);
+    const myShifts = new ListRenderer(shiftsOfSpecificEmployee, "#myShifts", MyShiftsrenderer);
+    myShifts.render();
 }
+
+
 
 // function validateLogin() {
 //     // Get values from the form

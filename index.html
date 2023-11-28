@@ -40,25 +40,48 @@
 
       <section id="mypage" class="view-content">
         <div class="forside-text">
-          <h1>Min Side</h1>
-          <br>
-          <h3>Personlige Oplysninger:</h2>
-            <!-- <form id="substituteDataForm" method="dialog">
-                <th></th>
-            </form> -->
-          <h3>Login Oplysninger:</h3>  
         </div>
       </section>
 
       <section id="shifts" class="view-content">
-        <div class="forside-text">
-          <h2>Om Delfinen</h2>
-          <p>Vi er en super cool svømmeklub, der får dig til at svømme som en delfin</p>
+        <div class="shifts-tables">
+            <div id="tabs">
+                <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
+                <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
+                <div id="myShifts-tab" class="hidden">
+                  <table >
+                    <thead id="table-headers">
+                      <tr>
+                        <th id="shift-date">Dato</th>
+                        <th id="shift-time">Tidspunkt</th>
+                        <th id="shift-hours">Antal Timer</th>
+                      </tr>
+                    </thead>
+                    <tbody id="myShifts" ></tbody>
+                  </table>
+                </div>
+            
+                <div id="availableShifts-tab" class="hidden">
+                  <table id="availableShifts">
+                    <thead>
+                      <tr>
+                        <th id="shift-date">Dato</th>
+                        <th id="shift-time">Tidspunkt</th>
+                        <th id="shift-button">Byd på vagter</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+            
+            
+              </div>
+            
         </div>
       </section>
 
       <section id="schema" class="view-content">
-        <div class="forside-text">
+        <div class="schema-data">
           <h2>Kontakt</h2>
           <p>Stillehavsvej 123</p>
           <p>2000, Frederiksberg</p>
