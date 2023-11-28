@@ -56,7 +56,7 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
             console.log(data);
             return data;
         } else {
-            console.log("Login fejlede")
+            console.log("Login fejlede");
         }
     } catch (error) {
         console.error("An error occurred:", error);
