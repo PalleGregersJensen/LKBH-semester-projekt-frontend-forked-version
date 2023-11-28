@@ -21,14 +21,6 @@ body {
     display: block;
 }
 
-.view-link {
-  color: #ff1717;
-}
-
-.view-link.active {
-  color: #333;
-}
-
 header {
     text-align: center;
     background-color: white;
