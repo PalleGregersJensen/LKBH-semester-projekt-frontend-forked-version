@@ -48,4 +48,17 @@ function hideAllViews() {
     // document.querySelectorAll(".view-link").forEach((link) => link.classList.remove("active"));
 }
 
-export { initViews, viewChange };
+function logOutView() {
+    console.log("logging out");
+
+    let hashLink = "#login-page";
+
+    hideAllViews();
+    document.querySelector(hashLink).classList.add("active");
+    document.querySelector("#login-form").reset(); //flyttes et led op
+    document.querySelector("#logout-btn").classList.remove("active");
+    document.querySelector("#username-logged-in").textContent = "";
+    setActiveLink(hashLink);
+}
+
+export { initViews, viewChange, logOutView };

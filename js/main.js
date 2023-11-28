@@ -5,7 +5,7 @@ const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
 import { loginClicked } from "./login.js";
-import { initViews } from "./view-router.js";
+import { initViews, logOutView } from "./view-router.js";
 import { getShiftData, getSubstitutesData } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
@@ -25,6 +25,7 @@ async function initApp() {
     console.log("JavaScript is live! 🎉");
     document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#login-form").addEventListener("submit", loginClicked);
+    document.querySelector("#logout-btn").addEventListener("click", logOutView)
 
     initTabs();
     initViews();
