@@ -66,10 +66,12 @@ function logOutView() {
     hideAllViews();
     document.querySelector(hashLink).classList.add("active");
     document.querySelector("#login-form").reset(); //flyttes et led op
-    document.querySelector("#logout-btn").classList.remove("active");
+    document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#username-logged-in").textContent = "";
     document.querySelector(".substitute-view").classList.remove("active");
     setActiveLink(hashLink);
+
+
 }
 
 export { initViews, viewChange, logOutView };

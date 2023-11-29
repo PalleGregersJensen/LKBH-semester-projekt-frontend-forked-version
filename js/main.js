@@ -30,6 +30,7 @@ async function initApp() {
         event.preventDefault();
         employee = await loginClicked();
         console.log(employee);
+        document.querySelector("#logout-btn").classList.add(".active");
         
             // Get the EmployeeID of the logged-in user
             const loggedInEmployeeID = employee.EmployeeID;
