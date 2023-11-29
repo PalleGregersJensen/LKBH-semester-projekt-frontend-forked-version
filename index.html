@@ -15,7 +15,6 @@
     </head>
     <body>
         <header>
-            <!--Tilføj hidden-class til button-->
             <button id="logout-btn" class="hidden" type="button">Log ud</button>
             <img id="header-logo"src="Dokumentation/img/LKbh - logo.jpg" alt="">
             <p id="username-logged-in"></p>
@@ -41,19 +40,29 @@
                             <button id="logon-btn" type="submit">Log på</button>
                         </form>
                     </div>
-        <div class="navbar-container hidden">
-            <a href="#mypage" class="view-link navbar-content">Min Side</a>
-            <a href="#shifts" class="view-link navbar-content">Vagter</a>
-            <a href="#schema" class="view-link navbar-content">Skema</a>
-        </div>
+            </section>
 
-      <section id="mypage" class="view-content">
-        <div class="forside-text">
-        </div>
-      </section>
+        <!-- admin section -->
+        <section id="admin-page" class="view-content">
+            <p>admin page struktur</p>
+        </section>
+        <!-- Vikar section -->
+        <section id="substitute-page" class="substitute-view">
+                      <!--Navbar for vikarer-->
+                      <div class="navbar-container">
+                        <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
+                        <a href="#shifts" class="view-link navbar-content">Vagter</a>
+                        <a href="#schema" class="view-link navbar-content">Skema</a>
+                      </div>          
+        </section>
 
-      <section id="shifts" class="view-content">
-        <div class="shifts-tables">
+        <section id="mypage" class="view-content">
+          <div class="forside-text">
+          </div>
+        </section>
+
+        <section id="shifts" class="view-content">
+          <div class="shifts-tables">
             <div id="tabs">
                 <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
                 <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
@@ -69,7 +78,7 @@
                     <tbody id="myShifts" ></tbody>
                   </table>
                 </div>
-            
+          
                 <div id="availableShifts-tab" class="hidden">
                   <table >
                     <thead id="table-headers">
@@ -82,32 +91,23 @@
                     <tbody id="availableShifts"></tbody>
                   </table>
                 </div>
-            
-            
-              </div>
-            </section>
-            
+        
+        
+            </div>
+        
           </div>
         </section>
-        <!-- admin section -->
-        <section id="admin-page" class="view-content">
-            <p>admin page struktur</p>
-        </section>
-        <!-- Vikar section -->
-        <section id="substitute-page" class="view-content">
-            <p>vikar page struktur</p>
+
+        <section id="schema" class="view-content">
+          <div class="schema-data">
+            <h2>Kontakt</h2>
+            <p>Stillehavsvej 123</p>
+            <p>2000, Frederiksberg</p>
+            <p>Tlf: +45 98765432</p>
+          </div>
         </section>
         
       </main>
-
-      <section id="schema" class="view-content">
-        <div class="schema-data">
-          <h2>Kontakt</h2>
-          <p>Stillehavsvej 123</p>
-          <p>2000, Frederiksberg</p>
-          <p>Tlf: +45 98765432</p>
-        </div>
-      </section>
 
         <script type="module" src="./js/main.js"></script>
     </body>

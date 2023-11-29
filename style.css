@@ -88,7 +88,7 @@ input {
   /* CSS code for navbar */
   .navbar-container {
     position: fixed;
-    top: 50;
+    top: 22.5%;
     left: 0;
     height: 100vh;
     background-color: rgb(155, 24, 24);    display: flex;
@@ -133,6 +133,12 @@ input {
   display: none;
 }
 
+.substitute-view:not(.active){
+    display: none;
+  }
+
+
+
 /* .view-content{
   display: none;
 }
@@ -146,6 +152,7 @@ input {
   width: 80%;
   border-collapse: collapse;
   margin-top: 10px;
+  background-color: white;
 }
 
 .substitute-table td {
@@ -214,7 +221,7 @@ h1 {
 
 #tabs div {
   padding: 1em;
-  background-color: #666;
+  background-color: white;
   grid-area: 2 / 1 / 2 / 3 ;
   border: 1px solid black;
   border-top: none;
@@ -237,4 +244,15 @@ h1 {
 }
 #shiftinterestbutton:hover {
   background-color: #43597a;
+}
+
+#myShifts-tab, #availableShifts{
+  background-color: white;
+  border: 1px solid black;
+
+}
+
+td {
+  border: 1px solid black;
+
 }
