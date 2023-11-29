@@ -19,11 +19,11 @@ function viewChange(user) {
         if (user.IsAdmin) {
             hashLink = "#admin-page";
             // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
-            document.querySelector("#logout-btn").classList.add("active");
+            document.querySelector("#logout-btn").classList.remove("hidden");
         } else {
             hashLink = "#substitute-page";
             // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
-            document.querySelector("#logout-btn").classList.add("active");
+            document.querySelector("#logout-btn").classList.remove("hidden");
         }
     }
 
@@ -64,8 +64,8 @@ function logOutView() {
 
     hideAllViews();
     document.querySelector(hashLink).classList.add("active");
-    document.querySelector("#login-form").reset(); //flyttes et led op
-    document.querySelector("#logout-btn").classList.remove("active");
+    document.querySelector("#login-form").reset();
+    document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#username-logged-in").textContent = "";
     document.querySelector(".substitute-view").classList.remove("active");
     document.querySelector(".view-content-admin").classList.remove("active");
