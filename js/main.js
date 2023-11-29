@@ -20,7 +20,7 @@ window.addEventListener("load", initApp);
 
 let substitutes = [];
 let shifts = [];
-let employeeData = [];
+let employee = null;
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
@@ -28,8 +28,8 @@ async function initApp() {
     document.querySelector("#logout-btn").addEventListener("click", logOutView)
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
-        employeeData = await loginClicked();
-        console.log(employeeData);
+        employee = await loginClicked();
+        console.log(employee);
     });
 
     initTabs();
@@ -40,7 +40,7 @@ async function initApp() {
     console.log(substitutes);
     console.log(shifts);
     // Get the EmployeeID of the logged-in user
-    const loggedInEmployeeID = employeeData.success ? employeeData.employee.EmployeeID : null;
+    const loggedInEmployeeID = employee.EmployeeID;
     console.log(loggedInEmployeeID);
             // Create an instance of Renderers
     const substituteRenderer = new Substituterenderer();

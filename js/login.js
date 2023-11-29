@@ -30,7 +30,7 @@ async function loginClicked() {
     setLoginUsername();
 
     viewChange(employee);
-    return employeeData
+    return employee
 }
 
 // Post response to backend to see, if entered username and password is correct
