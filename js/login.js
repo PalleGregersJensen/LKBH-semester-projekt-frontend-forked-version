@@ -30,6 +30,7 @@ async function loginClicked() {
     setLoginUsername();
 
     viewChange(employee);
+    return employeeData
 }
 
 // Post response to backend to see, if entered username and password is correct
@@ -71,4 +72,4 @@ function setLoginUsername() {
     document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
 }
 
-export { loginClicked };
+export { loginClicked};

@@ -8,7 +8,7 @@ export class AvailableShiftsRenderer {
           <td>${formattedDate}</td>
           <td>${convertedShiftStart} - ${convertedShiftEnd}</td>
            <td> <button id= "shiftinterestbutton">Byd på vagt</button> </td>       </tr>`;
-  
+
       return html;
     }
   }
