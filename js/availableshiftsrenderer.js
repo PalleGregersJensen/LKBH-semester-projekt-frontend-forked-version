@@ -30,4 +30,4 @@ function convertTo24HourFormat(dateTimeString) {
   
   // Example usage:
   const formattedDate = formatShiftDate("2023-12-06T23:00:00.000Z");
-  console.log(formattedDate);  // This should output something like "Tir. d. 06/12-2023"
+  // console.log(formattedDate);  // This should output something like "Tir. d. 06/12-2023"
