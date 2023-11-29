@@ -119,16 +119,24 @@
                     <input type="mail" name="mail" id="form-create-new-substitute-mail" />
                     <label for="form-create-new-substitute-number">Telefonnummner</label>
                     <input type="number" name="phone-number" id="form-create-new-substitute-number" />
-                    <label for="">Skal bruger have administratorrettigheder?</label> <br />
-                    <label for="form-create-new-substitute-is-admin">Ja</label>
-                    <input type="radio" name="admin-status" id="form-create-new-substitute-is-admin" value="is-admin" />
-                    <label for="form-create-new-substitute-is-not-admin">Nej</label>
-                    <input
-                        type="radio"
-                        name="admin-status"
-                        id="form-create-new-substitute-is-not-admin"
-                        value="is-not-admin"
-                    />
+                    <fieldset>
+                        <legend>Skal bruger have administratorrettigheder?</legend>
+                        <br />
+                        <label for="form-create-new-substitute-is-admin">Ja</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-admin"
+                            value="is-admin"
+                        />
+                        <label for="form-create-new-substitute-is-not-admin">Nej</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-not-admin"
+                            value="is-not-admin"
+                        />
+                    </fieldset>
                     <label for="form-create-new-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-create-new-substitute-username" />
                     <label for="form-create-new-substitute-password">Password</label>
@@ -154,21 +162,24 @@
                     <input type="mail" name="mail" id="form-admin-update-substitute-mail" />
                     <label for="form-admin-update-substitute-number">Telefonnummner</label>
                     <input type="number" name="phone-number" id="form-admin-update-substitute-number" />
-                    <label for="">Skal bruger have administratorrettigheder?</label> <br />
-                    <label for="form-admin-update-substitute-is-admin">Ja</label>
-                    <input
-                        type="radio"
-                        name="admin-status"
-                        id="form-admin-update-substitute-is-admin"
-                        value="is-admin"
-                    />
-                    <label for="form-admin-update-substitute-is-not-admin">Nej</label>
-                    <input
-                        type="radio"
-                        name="admin-status"
-                        id="form-admin-update-substitute-is-not-admin"
-                        value="is-not-admin"
-                    />
+                    <fieldset>
+                        <legend>Skal bruger have administratorrettigheder?</legend>
+                        <br />
+                        <label for="form-admin-update-substitute-is-admin">Ja</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-admin-update-substitute-is-admin"
+                            value="is-admin"
+                        />
+                        <label for="form-admin-update-substitute-is-not-admin">Nej</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-admin-update-substitute-is-not-admin"
+                            value="is-not-admin"
+                        />
+                    </fieldset>
                     <label for="form-admin-update-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-admin-update-substitute-username" />
                     <label for="form-admin-update-substitute-password">Password</label>
@@ -225,7 +236,9 @@
                     <label for="form-substitue-update-own-number">Opdater telefonnummer:</label>
                     <input type="number" name="update-own-number" id="form-substitue-update-own-number" />
                     <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">Cancel</button>
+                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">
+                        Cancel
+                    </button>
                 </form>
             </fieldset>
         </dialog>
