@@ -104,6 +104,97 @@
             </section>
         </main>
 
+        <!-- create new substitue for admin -->
+        <dialog id="dialog-create-new-substitute">
+            <label for="">Opret ny medarbejder</label>
+            <form id="form-create-new-substitute" action="" method="dialog">
+                <label for="form-create-new-substitute-firstname">Fornavn</label>
+                <input type="text" name="firstname" id="form-create-new-substitute-firstname" />
+                <label for="form-create-new-substitute-lastname"> Efternavn</label>
+                <input type="text" name="lastname" id="form-create-new-substitute-lastname" />
+                <label for="form-create-new-substitute-date-of-birth">Fødselsdato</label>
+                <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" />
+                <label for="form-create-new-substitute-mail">E-mail</label>
+                <input type="mail" name="mail" id="form-create-new-substitute-mail" />
+                <label for="form-create-new-substitute-number">Telefonnummner</label>
+                <input type="number" name="phone-number" id="form-create-new-substitute-number" />
+                <label for="">Skal bruger have administratorrettigheder?</label> <br />
+                <label for="form-create-new-substitute-is-admin">Ja?</label>
+                <input type="radio" name="admin-status" id="form-create-new-substitute-is-admin" value="is-admin" />
+                <label for="form-create-new-substitute-is-not-admin">Nej?</label>
+                <input
+                    type="radio"
+                    name="admin-status"
+                    id="form-create-new-substitute-is-not-admin"
+                    value="is-not-admin"
+                />
+                <label for="form-create-new-substitute-username">Brugernavn</label>
+                <input type="text" name="username" id="form-create-new-substitute-username" />
+                <label for="form-create-new-substitute-password">Password</label>
+                <input type="text" name="password" id="form-create-new-substitute-password" />
+            </form>
+        </dialog>
+
+                <!-- update substitue for admin -->
+        <dialog id="dialog-admin-update-substitute">
+            <label for="">Opdater medarbejders oplysninger</label>
+            <form id="form-admin-update-substitute" action="" method="dialog">
+                <label for="form-admin-update-substitute-firstname">Fornavn</label>
+                <input type="text" name="firstname" id="form-admin-update-substitute-firstname" />
+                <label for="form-admin-update-substitute-lastname"> Efternavn</label>
+                <input type="text" name="lastname" id="form-admin-update-substitute-lastname" />
+                <label for="form-admin-update-substitute-date-of-birth">Fødselsdato</label>
+                <input type="date" name="date-of-birth" id="form-admin-update-substitute-date-of-birth" />
+                <label for="form-admin-update-substitute-mail">E-mail</label>
+                <input type="mail" name="mail" id="form-admin-update-substitute-mail" />
+                <label for="form-admin-update-substitute-number">Telefonnummner</label>
+                <input type="number" name="phone-number" id="form-admin-update-substitute-number" />
+                <label for="">Skal bruger have administratorrettigheder?</label> <br />
+                <label for="form-admin-update-substitute-is-admin">Ja?</label>
+                <input type="radio" name="admin-status" id="form-admin-update-substitute-is-admin" value="is-admin" />
+                <label for="form-admin-update-substitute-is-not-admin">Nej?</label>
+                <input
+                    type="radio"
+                    name="admin-status"
+                    id="form-admin-update-substitute-is-not-admin"
+                    value="is-not-admin"
+                />
+                <label for="form-admin-update-substitute-username">Brugernavn</label>
+                <input type="text" name="username" id="form-admin-update-substitute-username" />
+                <label for="form-admin-update-substitute-password">Password</label>
+                <input type="text" name="password" id="form-admin-update-substitute-password" />
+            </form>
+        </dialog>
+
+        <!-- create new shift for admin -->
+        <dialog id="dialog-create-new-shift">
+            <label for="">Opret ny ledig vagt</label>
+            <form id="form-create-new-shift" action="" method="dialog">
+                <label for="form-create-new-shift-date">Dato</label>
+                <input type="date" name="shift-date" id="form-create-new-shift-date" />
+                <label for="form-create-new-shift-start">Vagt starter</label>
+                <input type="time" name="shift-start" id="form-create-new-shift-start" />
+                <label for="form-create-new-shift-end">Vagt slutter</label>
+                <input type="time" name="shift-end" id="form-create-new-shift-end" />
+            </form>
+        </dialog>
+
+
+                <!-- update shift for admin -->
+        <dialog id="dialog-admin-update-shift">
+            <label for="">Rediger ledig vagt</label>
+            <form id="form-admin-update-shift" action="" method="dialog">
+                <label for="form-admin-update-shift-date">Dato</label>
+                <input type="date" name="shift-date" id="form-admin-update-shift-date" />
+                <label for="form-admin-update-shift-start">Vagt starter</label>
+                <input type="time" name="shift-start" id="form-admin-update-shift-start" />
+                <label for="form-admin-update-shift-end">Vagt slutter</label>
+                <input type="time" name="shift-end" id="form-admin-update-shift-end" />
+            </form>
+        </dialog>
+
+        
+
         <script type="module" src="./js/main.js"></script>
     </body>
 </html>
