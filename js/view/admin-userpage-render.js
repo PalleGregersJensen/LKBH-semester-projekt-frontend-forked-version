@@ -1,5 +1,0 @@
-class adminUserPageRenderer{
-    render(user) {
-
-    }
-}

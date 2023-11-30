@@ -10,7 +10,7 @@ import { getShiftData, getSubstitutesData } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
-import { MyShiftsRenderer } from "./shiftrenderer.js";
+import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 
 window.addEventListener("load", initApp);
@@ -28,7 +28,7 @@ async function initApp() {
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         let employee = await loginClicked();
-        console.log(employee);
+        // console.log(employee);
         
             // Get the EmployeeID of the logged-in user
             const loggedInEmployeeID = employee.EmployeeID;

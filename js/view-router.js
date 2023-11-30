@@ -9,7 +9,7 @@ function initViews(user) {
 }
 
 function viewChange(user) {
-    console.log("Changing view", user);
+    // console.log("Changing view", user);
 
     // Get the current hashLink
     let hashLink = window.location.hash || "#login-page";
