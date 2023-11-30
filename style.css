@@ -231,7 +231,7 @@ h1 {
   width: 100%;
 }
 
-#shiftinterestbutton {
+.shift-interest-button {
   background-color: rgb(155, 24, 24);
   color: #fff;
   padding: 10px 20px;
@@ -242,7 +242,7 @@ h1 {
   top: 3px;
   right: 3px;
 }
-#shiftinterestbutton:hover {
+.shift-interest-button:hover {
   background-color: #43597a;
 }
 
@@ -256,3 +256,41 @@ td {
   border: 1px solid black;
 
 }
+
+#shiftInterest-dialog {
+  width: 400px; /* Set a width for your dialog */
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white; /* Set your desired background color */
+  padding: 20px;
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}
+
+#confirmInterestText {
+  margin-bottom: 20px;
+}
+
+#confirmInterest-btn,
+#denyInterest-btn {
+  background-color: rgb(155, 24, 24);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  top: 3px;
+  right: 3px;
+  width: 175px;
+}
+
+
+#confirmInterest-btn:hover,
+#denyInterest-btn:hover {
+  background-color: #43597a;
+}
+

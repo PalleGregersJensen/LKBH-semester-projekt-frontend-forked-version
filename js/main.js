@@ -53,10 +53,10 @@ async function initApp() {
             substitute.render();
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
-            console.log(displayAvailableShifts);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
-        
+            availableShiftsRenderer.attachEventListener();
+                    
     });
 
     initTabs();

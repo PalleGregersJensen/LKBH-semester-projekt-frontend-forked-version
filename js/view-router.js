@@ -13,7 +13,6 @@ function viewChange(user) {
 
     // Get the current hashLink
     let hashLink = window.location.hash || "#login-page";
-
     if (user) {
         // Check user role and set hashLink accordingly
         if (user.IsAdmin) {
