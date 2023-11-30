@@ -60,6 +60,38 @@
             <!-- admin shifts list -->
             <section id="shifts-list-admin" class="view-content">
                 <p>shifts list admin</p>
+                <div class="shifts-tables">
+                    <div id="tabs">
+                        <h2 data-tab-show="myShifts-tab">Vagter</h2>
+                        <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
+                        <div id="myShifts-tab" class="hidden">
+                            <table>
+                                <thead id="table-headers">
+                                    <tr>
+                                        <th id="shift-date">Dato</th>
+                                        <th id="shift-time">Tidspunkt</th>
+                                        <th id="shift-employee">Medarbejder</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myShifts"></tbody>
+                            </table>
+                        </div>
+
+                        <div id="availableShifts-tab" class="hidden">
+                            <table>
+                                <thead id="table-headers">
+                                    <tr>
+                                        <th id="shift-date">Dato</th>
+                                        <th id="shift-time">Tidspunkt</th>
+                                        <th id="shift-requested-by">Anmodet af</th>
+                                        <th id="shift-assign-btn">Tildel vagt</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="availableShifts"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- admin Substitutes list -->
