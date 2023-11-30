@@ -199,30 +199,30 @@ h1 {
 }
 
 
-#tabs {
+#tabs-substitute, #tabs-admin {
   max-width: 60vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-#tabs h2 {
+#tabs-substitute h2, #tabs-admin h2 {
   margin: 0;
   padding: .5em;
   background-color: #444;
   cursor: pointer;
 }
 
-#tabs h2.selected {
+#tabs-substitute h2.selected, #tabs-admin h2.selected {
   background-color: #666;
   border: 1px solid black;
   border-bottom: none;
 }
 
-#tabs h2:not(.selected) {
+#tabs-substitute h2:not(.selected), #tabs-admin h2:not(.selected) {
   border-bottom: 1px solid black;
 }
 
-#tabs div {
+#tabs-substitute div, #tabs-admin div {
   padding: 1em;
   background-color: white;
   grid-area: 2 / 1 / 2 / 3 ;
@@ -230,7 +230,7 @@ h1 {
   border-top: none;
 }
 
-#tabs div table {
+#tabs-substitute div table, #tabs-admin div table {
   width: 100%;
 }
 

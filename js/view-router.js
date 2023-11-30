@@ -1,3 +1,5 @@
+import { initTabs } from "./tabs.js";
+
 function initViews(user) {
     // Add hashchange event listener only once during initialization
     window.addEventListener("hashchange", function () {
@@ -13,6 +15,7 @@ function viewChange(user) {
 
     // Get the current hashLink
     let hashLink = window.location.hash || "#login-page";
+    console.log(`view is: ${hashLink}`)
 
     if (user) {
         // Check user role and set hashLink accordingly
@@ -24,13 +27,14 @@ function viewChange(user) {
             hashLink = "#substitute-page";
             // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
             document.querySelector("#logout-btn").classList.remove("hidden");
+            
         }
     }
 
     // Hide all views
     hideAllViews();
 
-    // Display the active one
+    // Display the active one //hører det her under setActiveLink??
     const activeView = document.querySelector(hashLink);
     if (activeView) {
         activeView.classList.add("active");
@@ -39,6 +43,10 @@ function viewChange(user) {
     // Update the hash link in case it was modified
     if (window.location.hash !== hashLink) {
         window.location.hash = hashLink;
+    }
+
+    if (hashLink === "#shifts-list-admin" || hashLink === "#shifts") {
+        initTabs();
     }
 }
 

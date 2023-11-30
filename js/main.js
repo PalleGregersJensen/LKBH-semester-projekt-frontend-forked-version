@@ -39,10 +39,11 @@ async function initApp() {
             const substituteRenderer = new Substituterenderer();
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            // console.log(specificSubstitute);
+            console.log(specificSubstitute);
             const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
             substitute.render();
             
+            initTabs();
         } else if (!employee.IsAdmin) {
             console.log(`logged in as: substitute`);
 
@@ -68,8 +69,8 @@ async function initApp() {
             availableShiftsSubstitutes.render();
         }
     });
-
-    initTabs();
+    
+    // initTabs();
     initViews();
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
