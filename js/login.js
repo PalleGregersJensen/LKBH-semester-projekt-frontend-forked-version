@@ -68,7 +68,7 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
             document.querySelector("#logout-btn").classList.remove("hidden");
 
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             return data;
         } else {
             console.log("Login failed");
