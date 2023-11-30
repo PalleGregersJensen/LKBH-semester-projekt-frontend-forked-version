@@ -26,6 +26,9 @@ async function initApp() {
     console.log("JavaScript is live! 🎉");
     document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
+    document.querySelector("#denyInterest-btn").addEventListener("click", function() {
+        document.querySelector("#shiftInterest-dialog").close();
+    });    
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
