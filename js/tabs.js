@@ -6,7 +6,7 @@ function initTabs() {
     document.querySelectorAll("#tabs-admin h2").forEach((tab) => tab.addEventListener("click", selectTab));
     document.querySelectorAll("#tabs-substitute h2").forEach((tab) => tab.addEventListener("click", selectTab));
     // click the first tab to enable everything
-    if (window.location.hash === "#shifts-list-admin") {
+    if (window.location.hash === "#shifts-view-section-admin") {
         document.querySelector("#tabs-admin h2").click();
         console.log("admin shifts table initiated");
     } else if (window.location.hash === "#shifts") {

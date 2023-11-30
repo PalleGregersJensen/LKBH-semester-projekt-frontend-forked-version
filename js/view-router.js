@@ -45,7 +45,7 @@ function viewChange(user) {
         window.location.hash = hashLink;
     }
 
-    if (hashLink === "#shifts-list-admin" || hashLink === "#shifts") {
+    if (hashLink === "#shifts-view-section-admin" || hashLink === "#shifts") {
         initTabs();
     }
 }

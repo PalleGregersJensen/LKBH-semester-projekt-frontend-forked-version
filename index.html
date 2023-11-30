@@ -47,8 +47,8 @@
                 <!-- admin navbar -->
                 <nav class="navbar-container">
                     <a href="#mypage-admin" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
-                    <a href="#shifts-list-admin" class="view-link navbar-content">Vagter</a>
-                    <a href="#substitutes-list-admin" class="view-link navbar-content">Vikarer</a>
+                    <a href="#shifts-view-section-admin" class="view-link navbar-content">Vagter</a>
+                    <a href="#substitutes-view-section-admin" class="view-link navbar-content">Vikarer</a>
                 </nav>
             </section>
 
@@ -58,7 +58,7 @@
             </section>
 
             <!-- admin shifts list -->
-            <section id="shifts-list-admin" class="view-content">
+            <section id="shifts-view-section-admin" class="view-content">
                 <p>Shifts list admin</p>
                 <div class="shifts-tables">
                     <div id="tabs-admin">
@@ -95,8 +95,19 @@
             </section>
 
             <!-- admin Substitutes list -->
-            <section id="substitutes-list-admin" class="view-content">
-                <p>substitutes list admin</p>
+            <section id="substitutes-view-section-admin" class="view-content">
+                <button id="create-substitute-btn">Opret ny vikar</button>
+                <div id="substitutes-list-admin">
+                    <table>
+                        <thead id="table-headers">
+                            <th id="substitute-name">Navn</th>
+                            <th id="substitute-employeeID">MedlemsNr.</th>
+                            <th id="substitute-phonenumber">telefon</th>
+                            <th id="substitute-update-btn">Opdater</th>
+                            <th id="substitute-delete-btn">Slet</th>
+                        </thead>
+                    </table>
+                </div>
             </section>
 
             <!-- Vikar section -->

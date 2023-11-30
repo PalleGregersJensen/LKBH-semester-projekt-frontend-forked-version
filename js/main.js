@@ -12,6 +12,7 @@ import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
+import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 
 window.addEventListener("load", initApp);
 
@@ -34,18 +35,23 @@ async function initApp() {
         // console.log(loggedInEmployeeID);
 
         if (employee.IsAdmin) {
-            console.log(`logged in as: admin`);
-            // Create an instance of Renderers
-            const substituteRenderer = new Substituterenderer();
+            // console.log(`logged in as: admin`);
 
+            // Create an instance of "item"Renderers for admin
+            const substituteRenderer = new Substituterenderer();
+            const shiftsadminrenderer = new ShiftsAdminRenderer();
+
+            //filtering substitutes-list for everyone but the user logged in
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            console.log(specificSubstitute);
+            //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
             const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
             substitute.render();
-            
-            initTabs();
+
+            //New instance of Listrenderer for shifts (admin view)
+            const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", shiftsadminrenderer);
+            shiftsAdminList.render();
         } else if (!employee.IsAdmin) {
-            console.log(`logged in as: substitute`);
+            // console.log(`logged in as: substitute`);
 
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -69,7 +75,7 @@ async function initApp() {
             availableShiftsSubstitutes.render();
         }
     });
-    
+
     // initTabs();
     initViews();
     substitutes = await getSubstitutesData();

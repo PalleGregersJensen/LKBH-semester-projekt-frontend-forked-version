@@ -199,7 +199,7 @@ h1 {
 }
 
 
-#tabs-substitute, #tabs-admin {
+#tabs-substitute, #tabs-admin, #substitutes-list-admin {
   max-width: 60vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -222,7 +222,7 @@ h1 {
   border-bottom: 1px solid black;
 }
 
-#tabs-substitute div, #tabs-admin div {
+#tabs-substitute div, #tabs-admin div, #substitutes-list-admin {
   padding: 1em;
   background-color: white;
   grid-area: 2 / 1 / 2 / 3 ;
@@ -234,7 +234,7 @@ h1 {
   width: 100%;
 }
 
-#shiftinterestbutton {
+#shiftinterestbutton, #create-substitute-btn{
   background-color: rgb(155, 24, 24);
   color: #fff;
   padding: 10px 20px;
@@ -245,7 +245,8 @@ h1 {
   top: 3px;
   right: 3px;
 }
-#shiftinterestbutton:hover {
+
+#shiftinterestbutton:hover, #create-substitute-btn:hover {
   background-color: #43597a;
 }
 
@@ -253,6 +254,10 @@ h1 {
   background-color: white;
   border: 1px solid black;
 
+}
+
+#substitutes-view-section-admin button {
+  margin: 8px;
 }
 
 td {
