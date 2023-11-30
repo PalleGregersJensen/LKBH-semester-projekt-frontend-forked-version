@@ -28,14 +28,19 @@ async function initApp() {
     document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
     document.querySelector("#denyInterest-btn").addEventListener("click", function() {
-        document.querySelector("#shiftInterest-dialog").close();
+    document.querySelector("#shiftInterest-dialog").close();
     });
+    document.querySelector("#reject-new-login-info").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        document.querySelector("#editLoginInfo-dialog").close();
+    });
+    
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
         console.log(employee);
         document.querySelector("#logout-btn").classList.add(".active");
-        
+     
             // Get the EmployeeID of the logged-in user
             loggedInEmployeeID = employee.EmployeeID;
             console.log(loggedInEmployeeID);
@@ -53,8 +58,9 @@ async function initApp() {
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
             console.log(specificSubstitute);
-            const substitute = new ListRenderer(specificSubstitute, ".forside-text", substituteRenderer);
+            const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
+            substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
@@ -68,4 +74,4 @@ async function initApp() {
     shifts = await getShiftData();
 }
 
-export { endpoint, initApp, loggedInEmployeeID };
+export { endpoint, initApp, loggedInEmployeeID, employee };

@@ -257,7 +257,7 @@ td {
 
 }
 
-#shiftInterest-dialog {
+#shiftInterest-dialog, #editLoginInfo-dialog {
   width: 400px; /* Set a width for your dialog */
   margin: auto;
   position: fixed;
@@ -274,8 +274,14 @@ td {
   margin-bottom: 20px;
 }
 
+#editLoginInfo-dialogheader{
+  margin-bottom: 20px;
+text-decoration: underline;
+text-emphasis: bolder;
+}
+
 #confirmInterest-btn,
-#denyInterest-btn {
+#denyInterest-btn, #confirm-new-login-info, #reject-new-login-info {
   background-color: rgb(155, 24, 24);
   color: #fff;
   padding: 10px 20px;
@@ -290,7 +296,7 @@ td {
 
 
 #confirmInterest-btn:hover,
-#denyInterest-btn:hover {
+#denyInterest-btn:hover, #reject-new-login-info:hover, #confirm-new-login-info:hover {
   background-color: #43597a;
 }
 

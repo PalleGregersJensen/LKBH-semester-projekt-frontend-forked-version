@@ -59,16 +59,4 @@ function convertTo24HourFormat(dateTimeString) {
     return date.toLocaleString("da", options);
   }
 
-  // Add event listener
-document.querySelectorAll(".shift-interest-button").forEach(button => {
-  button.addEventListener("click", confirmInterest);
-});
   
-function confirmInterest(){
-  document.querySelector("#confirmInterestText").textContent = `Er du sikker på, at du vil byde på denne vagt: ${formattedDate} + " " ${convertedShiftStart} - ${convertedShiftEnd}`
-  document.querySelector("#shiftInterest-dialog").showModal();
-}
-
-  // Example usage:
-  const formattedDate = formatShiftDate("2023-12-06T23:00:00.000Z");
-  console.log(formattedDate);  // This should output something like "Tir. d. 06/12-2023"

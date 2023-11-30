@@ -57,7 +57,21 @@
             </section>
 
             <section id="mypage" class="view-content">
-                <div class="forside-text"></div>
+                <div class="my-info"></div>
+                <!-- Dialog til at redigere login informationer for vikarer-->
+                <dialog id="editLoginInfo-dialog">
+                  <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
+                  <form action="">
+                    <label for="edit-username">Brugernavn:</label>
+                    <input name="edit-username" id="edit-username" type="text">
+                    <label for="edit-password">Nyt kodeord:</label>
+                    <input name="edit-password" id="edit-password" type="password">
+                    <label for="confirm-new-password">Bekræft nyt kodeord:</label>
+                    <input name="confirm-new-password" id="confirm-new-password" type="password">
+                    <button id="confirm-new-login-info">Bekræft</button>
+                    <button id="reject-new-login-info">Fortryd</button>
+                  </form>
+                </dialog>
             </section>
 
             <section id="shifts" class="view-content">
