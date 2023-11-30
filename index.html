@@ -225,10 +225,13 @@
         </dialog>
 
         <!-- substitute update own information -->
+        <!-- perhaps only update password is needed -->
         <dialog id="dialog-substitue-update-own-information">
             <fieldset>
                 <legend>Rediger mine oplysninger</legend>
                 <form id="form-substitue-update-own-information" action="" method="dialog">
+                    <label for="form-substitue-current-password">Nuværende password:</label>
+                    <input type="text" name="update-own-password" id="form-substitue-current-password" />
                     <label for="form-substitue-update-own-password">Nyt password:</label>
                     <input type="text" name="update-own-password" id="form-substitue-update-own-password" />
                     <label for="form-substitue-update-own-mail">Opdater e-mailadresse:</label>
