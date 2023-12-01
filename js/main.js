@@ -15,43 +15,33 @@ import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 
 window.addEventListener("load", initApp);
-
 //Definer globale variabler
 let substitutes = [];
 let shifts = [];
-// let employee = [];
+let employee = [];
+let loggedInEmployeeID;
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
     document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
+    document.querySelector("#denyInterest-btn").addEventListener("click", function() {
+    document.querySelector("#shiftInterest-dialog").close();
+    });
+    document.querySelector("#reject-new-login-info").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        document.querySelector("#editLoginInfo-dialog").close();
+    });
+    
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
-        let employee = await loginClicked();
-        // console.log(employee);
-
-        // Get the EmployeeID of the logged-in user
-        const loggedInEmployeeID = employee.EmployeeID;
-        // console.log(loggedInEmployeeID);
-
-        if (employee.IsAdmin) {
-            // console.log(`logged in as: admin`);
-
-            // Create an instance of "item"Renderers for admin
-            const substituteRenderer = new Substituterenderer();
-            const shiftsadminrenderer = new ShiftsAdminRenderer();
-
-            //filtering substitutes-list for everyone but the user logged in
-            const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
-            const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
-            substitute.render();
-
-            //New instance of Listrenderer for shifts (admin view)
-            const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", shiftsadminrenderer);
-            shiftsAdminList.render();
-        } else if (!employee.IsAdmin) {
-            // console.log(`logged in as: substitute`);
+        employee = await loginClicked();
+        console.log(employee);
+        document.querySelector("#logout-btn").classList.add(".active");
+     
+            // Get the EmployeeID of the logged-in user
+            loggedInEmployeeID = employee.EmployeeID;
+            console.log(loggedInEmployeeID);
 
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -66,17 +56,17 @@ async function initApp() {
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
             // console.log(specificSubstitute);
-            const substitute = new ListRenderer(specificSubstitute, ".forside-text", substituteRenderer);
+            const substitute = new ListRenderer(specificSubstitute, "#mypage", substituteRenderer);
             substitute.render();
+            substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
-            // console.log(displayAvailableShifts);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
-        }
+            availableShiftsRenderer.attachEventListener();        
     });
 
-    // initTabs();
+    initTabs();
     initViews();
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
