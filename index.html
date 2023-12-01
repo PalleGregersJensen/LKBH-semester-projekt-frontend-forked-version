@@ -121,7 +121,21 @@
 </section>
 
 <section id="mypage" class="view-content">
-    <div class="forside-text"></div>
+  <div class="my-info"></div>
+  <!-- Dialog til at redigere login informationer for vikarer-->
+  <dialog id="editLoginInfo-dialog">
+    <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
+    <form action="">
+      <label for="edit-username">Brugernavn:</label>
+      <input name="edit-username" id="edit-username" type="text">
+      <label for="edit-password">Nyt kodeord:</label>
+      <input name="edit-password" id="edit-password" type="password">
+      <label for="confirm-new-password">Bekræft nyt kodeord:</label>
+      <input name="confirm-new-password" id="confirm-new-password" type="password">
+      <button id="confirm-new-login-info">Bekræft</button>
+      <button id="reject-new-login-info">Fortryd</button>
+    </form>
+  </dialog>
 </section>
 
 <section id="shifts" class="view-content">
@@ -153,6 +167,12 @@
                     </thead>
                     <tbody id="availableShifts"></tbody>
                 </table>
+                <dialog id="shiftInterest-dialog">
+                  <p id="confirmInterestText"></p>
+                  <button id="confirmInterest-btn">Ja</button>
+                  <button id="denyInterest-btn">Nej</button>
+            </dialog>
+
             </div>
         </div>
     </div>
@@ -166,6 +186,16 @@
         <p>Tlf: +45 98765432</p>
     </div>
 </section>
+
+            <!-- Vikar section -->
+            <section id="substitute-page" class="substitute-view">
+              <!--Navbar for vikarer-->
+              <div class="navbar-container">
+                  <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
+                  <a href="#shifts" class="view-link navbar-content">Vagter</a>
+                  <a href="#schema" class="view-link navbar-content">Skema</a>
+              </div>
+          </section>
 </main>
 
         </main>
