@@ -93,4 +93,4 @@ async function initApp() {
     shifts = await getShiftData();
 }
 
-export { endpoint, initApp, employee };
+export { endpoint, initApp, employee, loggedInEmployeeID };

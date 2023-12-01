@@ -1,4 +1,5 @@
 import { createShiftInterest } from "./helpers.js";
+import { loggedInEmployeeID} from "./main.js"
 
 export class AvailableShiftsRenderer {
   render(shift) {
