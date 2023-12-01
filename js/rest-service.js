@@ -14,4 +14,11 @@ async function getShiftData() {
   return data;
 }
 
-export {getShiftData, getSubstitutesData};
+async function getShiftInterestData(){
+  const response = await fetch(`${endpoint}/shiftInterests`);
+  const data = await response.json();
+  return data;
+
+}
+
+export {getShiftData, getSubstitutesData, getShiftInterestData};
