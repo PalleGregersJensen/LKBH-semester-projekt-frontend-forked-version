@@ -234,7 +234,7 @@ h1 {
   width: 100%;
 }
 
-#shiftinterestbutton, #create-substitute-btn{
+.shift-interest-button, #create-substitute-btn{
   background-color: rgb(155, 24, 24);
   color: #fff;
   padding: 10px 20px;

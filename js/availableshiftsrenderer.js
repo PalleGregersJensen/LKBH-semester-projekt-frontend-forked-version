@@ -1,3 +1,5 @@
+import { createShiftInterest } from "./helpers.js";
+
 export class AvailableShiftsRenderer {
   render(shift) {
     const convertedShiftStart = convertTo24HourFormat(shift.ShiftStart);
