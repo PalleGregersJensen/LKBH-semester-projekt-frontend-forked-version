@@ -72,4 +72,4 @@ async function initApp() {
     shifts = await getShiftData();
 }
 
-export { endpoint, initApp };
+export { endpoint, initApp, employee };
