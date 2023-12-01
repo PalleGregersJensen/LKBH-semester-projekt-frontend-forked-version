@@ -22,6 +22,20 @@ let employee = [];
 let loggedInEmployeeID;
 
 async function initApp() {
+    console.log("JavaScript is live! 🎉");
+    document.querySelector("#logout-btn").classList.add("hidden");
+    document.querySelector("#logout-btn").addEventListener("click", logOutView);
+    document.querySelector("#login-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        employee = await loginClicked();
+        // console.log(employee);
+
+        // Get the EmployeeID of the logged-in user
+        loggedInEmployeeID = employee.EmployeeID;
+        // console.log(loggedInEmployeeID);
+
+    }
+
     if (employee.IsAdmin) {
         // console.log(`logged in as: admin`);
 
