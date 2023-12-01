@@ -36,6 +36,42 @@ export class Substituterenderer {
       `;
         return html;
     }
+    attachEventListener() {
+      document.querySelectorAll(".editLoginInfo-btn").forEach(button => {
+          button.addEventListener("click", function () {
+              // 'this' refers to the button that was clicked
+              const username = this.dataset.username;
+              document.querySelector("#edit-username").value = username;
+              document.querySelector("#editLoginInfo-dialog").showModal();
+          });
+      });
+
+      document.querySelector("#confirm-new-login-info").addEventListener("click", async function(event) {
+        event.preventDefault();
+        const username = document.querySelector("#edit-username").value;
+        const password = document.querySelector("#edit-password").value;
+        const confirmPassword = document.querySelector("#confirm-new-password").value;
+        const EmployeeID = employee.EmployeeID;
+        if (password !== confirmPassword) {
+            alert("Passwords stemmer ikke overens");
+            return;
+        }
+      
+        await updateLoginInfo(username, password, EmployeeID);
+      
+        document.querySelector("#editLoginInfo-dialog").close();
+      });
+  }
+
+  editLoginInfo() {
+      // Check if 'this.substitute' is not null before accessing its properties
+      if (this.substitute) {
+          const username = this.substitute.Username;
+          document.querySelector("#edit-username").value = username;
+          document.querySelector("#editLoginInfo-dialog").showModal();
+      }
+ }
+
 }
 
 function formatShiftDate(dateString) {
