@@ -69,11 +69,14 @@ async function initApp() {
             // console.log(specificSubstitute);
             const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
+            substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
             // console.log(displayAvailableShifts);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
+            availableShiftsRenderer.attachEventListener();        
+
         }
     });
 
