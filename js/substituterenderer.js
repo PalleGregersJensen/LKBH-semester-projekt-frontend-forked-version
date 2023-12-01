@@ -62,10 +62,10 @@ export class Substituterenderer {
         const confirmPassword = document.querySelector("#confirm-new-password").value;
         const EmployeeID = employee.EmployeeID;
         if (password !== confirmPassword) {
-            alert("Passwords stemmer ikke overens");
-            return;
+          document.querySelector("#not-matching-passwords").showModal();  
+          return;          
         }
-      
+        
         await updateLoginInfo(username, password, EmployeeID);
       
         document.querySelector("#editLoginInfo-dialog").close();

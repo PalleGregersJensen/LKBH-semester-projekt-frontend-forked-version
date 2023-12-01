@@ -33,6 +33,11 @@ async function initApp() {
             event.preventDefault(); // Prevent the default form submission behavior
             document.querySelector("#editLoginInfo-dialog").close();
         });
+        
+        document.querySelector("#close-passwords-dialog").addEventListener("click", function(){
+            document.querySelector("#not-matching-passwords").close();            
+        });
+
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
