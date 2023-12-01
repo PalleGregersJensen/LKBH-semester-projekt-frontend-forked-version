@@ -13,6 +13,7 @@ import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
+import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
 
 window.addEventListener("load", initApp);
 
@@ -59,7 +60,9 @@ async function initApp() {
             const availableShiftsRenderer = new AvailableShiftsRenderer();
 
             // Convert shift.EmployeeID to string before comparison
-            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.EmployeeID) === String(loggedInEmployeeID));
+            const shiftsOfLoggedInEmployee = shifts.filter(
+                (shift) => String(shift.EmployeeID) === String(loggedInEmployeeID)
+            );
             // console.log(shiftsOfLoggedInEmployee);
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
@@ -71,7 +74,11 @@ async function initApp() {
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
             // console.log(displayAvailableShifts);
-            const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
+            const availableShiftsSubstitutes = new ListRenderer(
+                displayAvailableShifts,
+                "#availableShifts",
+                availableShiftsRenderer
+            );
             availableShiftsSubstitutes.render();
         }
     });
@@ -80,6 +87,10 @@ async function initApp() {
     initViews();
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
+    // eventlisteners for create new substitute
+    document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
+    document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
+    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
 }
 
 export { endpoint, initApp };
