@@ -12,7 +12,7 @@ export class AvailableShiftsRenderer {
       return html;
     }
     attachEventListener() {
-      document.querySelectorAll(".shift-interest-button").forEach(button => {
+      document.querySelectorAll(".shiftinterestbutton").forEach(button => {
         button.addEventListener("click", this.confirmInterest.bind(this));
       });
     }

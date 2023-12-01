@@ -56,7 +56,7 @@ async function initApp() {
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
             // console.log(specificSubstitute);
-            const substitute = new ListRenderer(specificSubstitute, ".myinfo", substituteRenderer);
+            const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
 
