@@ -1,7 +1,7 @@
 function initViews(user) {
     console.log(user);
     // Add hashchange event listener only once during initialization
-    window.addEventListener("hashchange", function() {
+    window.addEventListener("hashchange", function () {
         viewChange(user);
     });
 
@@ -18,12 +18,12 @@ function viewChange(user) {
         // Check user role and set hashLink accordingly
         if (user.IsAdmin) {
             hashLink = "#admin-page";
-            console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
-            document.querySelector("#logout-btn").classList.add("active");
+            // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
+            document.querySelector("#logout-btn").classList.remove("hidden");
         } else {
             hashLink = "#substitute-page";
-            console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
-            document.querySelector("#logout-btn").classList.add("active");
+            // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
+            document.querySelector("#logout-btn").classList.remove("hidden");
         }
     }
 
@@ -41,7 +41,6 @@ function viewChange(user) {
         window.location.hash = hashLink;
     }
 }
-
 
 function setActiveLink(view) {
     //sætter link variabel til at være det samme som hashLink/location.hash, altså den URL man er på
@@ -65,10 +64,11 @@ function logOutView() {
 
     hideAllViews();
     document.querySelector(hashLink).classList.add("active");
-    document.querySelector("#login-form").reset(); //flyttes et led op
+    document.querySelector("#login-form").reset();
     document.querySelector("#logout-btn").classList.add("hidden");
     document.querySelector("#username-logged-in").textContent = "";
     document.querySelector(".substitute-view").classList.remove("active");
+    document.querySelector(".view-content-admin").classList.remove("active");
     setActiveLink(hashLink);
 
 

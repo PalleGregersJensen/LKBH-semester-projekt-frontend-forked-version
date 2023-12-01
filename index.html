@@ -42,10 +42,31 @@
                 </div>
             </section>
 
-            <!-- admin section -->
-            <section id="admin-page" class="view-content">
-                <p>admin page struktur</p>
+            <!-- ADMIN SECTION -->
+            <section id="admin-page" class="view-content-admin">
+                <!-- admin navbar -->
+                <nav class="navbar-container">
+                    <a href="#mypage-admin" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
+                    <a href="#shifts-list-admin" class="view-link navbar-content">Vagter</a>
+                    <a href="#substitutes-list-admin" class="view-link navbar-content">Vikarer</a>
+                </nav>
             </section>
+
+            <!-- admin mypage -->
+            <section id="mypage-admin" class="view-content">
+                <p>mypage admin</p>
+            </section>
+
+            <!-- admin shifts list -->
+            <section id="shifts-list-admin" class="view-content">
+                <p>shifts list admin</p>
+            </section>
+
+            <!-- admin Substitutes list -->
+            <section id="substitutes-list-admin" class="view-content">
+                <p>substitutes list admin</p>
+            </section>
+
             <!-- Vikar section -->
             <section id="substitute-page" class="substitute-view">
                 <!--Navbar for vikarer-->
@@ -123,6 +144,148 @@
                 </div>
             </section>
         </main>
+
+        <!-- admin create new substitue  -->
+        <dialog id="dialog-create-new-substitute">
+            <fieldset>
+                <legend>Opret ny medarbejder</legend>
+                <form id="form-create-new-substitute" action="" method="dialog">
+                    <label for="form-create-new-substitute-firstname">Fornavn</label>
+                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" />
+                    <label for="form-create-new-substitute-lastname"> Efternavn</label>
+                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" />
+                    <label for="form-create-new-substitute-date-of-birth">Fødselsdato</label>
+                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" />
+                    <label for="form-create-new-substitute-mail">E-mail</label>
+                    <input type="mail" name="mail" id="form-create-new-substitute-mail" />
+                    <label for="form-create-new-substitute-number">Telefonnummner</label>
+                    <input type="number" name="phone-number" id="form-create-new-substitute-number" />
+                    <fieldset>
+                        <legend>Skal bruger have administratorrettigheder?</legend>
+                        <br />
+                        <label for="form-create-new-substitute-is-admin">Ja</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-admin"
+                            value="is-admin"
+                        />
+                        <label for="form-create-new-substitute-is-not-admin">Nej</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-not-admin"
+                            value="is-not-admin"
+                        />
+                    </fieldset>
+                    <label for="form-create-new-substitute-username">Brugernavn</label>
+                    <input type="text" name="username" id="form-create-new-substitute-username" />
+                    <label for="form-create-new-substitute-password">Password</label>
+                    <input type="text" name="password" id="form-create-new-substitute-password" />
+                    <button type="submit" value="submit">Submit</button>
+                    <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Cancel</button>
+                </form>
+            </fieldset>
+        </dialog>
+
+        <!-- admin update substitue -->
+        <dialog id="dialog-admin-update-substitute">
+            <fieldset>
+                <legend>Opdater medarbejders oplysninger</legend>
+                <form id="form-admin-update-substitute" action="" method="dialog">
+                    <label for="form-admin-update-substitute-firstname">Fornavn</label>
+                    <input type="text" name="firstname" id="form-admin-update-substitute-firstname" />
+                    <label for="form-admin-update-substitute-lastname"> Efternavn</label>
+                    <input type="text" name="lastname" id="form-admin-update-substitute-lastname" />
+                    <label for="form-admin-update-substitute-date-of-birth">Fødselsdato</label>
+                    <input type="date" name="date-of-birth" id="form-admin-update-substitute-date-of-birth" />
+                    <label for="form-admin-update-substitute-mail">E-mail</label>
+                    <input type="mail" name="mail" id="form-admin-update-substitute-mail" />
+                    <label for="form-admin-update-substitute-number">Telefonnummner</label>
+                    <input type="number" name="phone-number" id="form-admin-update-substitute-number" />
+                    <fieldset>
+                        <legend>Skal bruger have administratorrettigheder?</legend>
+                        <br />
+                        <label for="form-admin-update-substitute-is-admin">Ja</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-admin-update-substitute-is-admin"
+                            value="is-admin"
+                        />
+                        <label for="form-admin-update-substitute-is-not-admin">Nej</label>
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-admin-update-substitute-is-not-admin"
+                            value="is-not-admin"
+                        />
+                    </fieldset>
+                    <label for="form-admin-update-substitute-username">Brugernavn</label>
+                    <input type="text" name="username" id="form-admin-update-substitute-username" />
+                    <label for="form-admin-update-substitute-password">Password</label>
+                    <input type="text" name="password" id="form-admin-update-substitute-password" />
+                    <button type="submit" value="submit">Submit</button>
+                    <button type="button" value="cancel" id="form-admin-update-substitute-cancel-btn">Cancel</button>
+                </form>
+            </fieldset>
+        </dialog>
+
+        <!-- admin create new shift -->
+        <dialog id="dialog-create-new-shift">
+            <fieldset>
+                <legend>Opret ny ledig vagt</legend>
+                <form id="form-create-new-shift" action="" method="dialog">
+                    <label for="form-create-new-shift-date">Dato</label>
+                    <input type="date" name="shift-date" id="form-create-new-shift-date" />
+                    <label for="form-create-new-shift-start">Vagt starter</label>
+                    <input type="time" name="shift-start" id="form-create-new-shift-start" />
+                    <label for="form-create-new-shift-end">Vagt slutter</label>
+                    <input type="time" name="shift-end" id="form-create-new-shift-end" />
+                    <button type="submit" value="submit">Submit</button>
+                    <button type="button" value="cancel" id="form-create-new-shift-cancel-btn">Cansel</button>
+                </form>
+            </fieldset>
+        </dialog>
+
+        <!-- admin update shift -->
+        <dialog id="dialog-admin-update-shift">
+            <fieldset>
+                <legend>Rediger ledig vagt</legend>
+                <form id="form-admin-update-shift" action="" method="dialog">
+                    <label for="form-admin-update-shift-date">Dato</label>
+                    <input type="date" name="shift-date" id="form-admin-update-shift-date" />
+                    <label for="form-admin-update-shift-start">Vagt starter</label>
+                    <input type="time" name="shift-start" id="form-admin-update-shift-start" />
+                    <label for="form-admin-update-shift-end">Vagt slutter</label>
+                    <input type="time" name="shift-end" id="form-admin-update-shift-end" />
+                    <button type="submit">Submit</button>
+                    <button type="button" value="cancel" id="form-admin-update-shift-cancel-btn">Cancel</button>
+                </form>
+            </fieldset>
+        </dialog>
+
+        <!-- substitute update own information -->
+        <!-- perhaps only update password is needed -->
+        <dialog id="dialog-substitue-update-own-information">
+            <fieldset>
+                <legend>Rediger mine oplysninger</legend>
+                <form id="form-substitue-update-own-information" action="" method="dialog">
+                    <label for="form-substitue-current-password">Nuværende password:</label>
+                    <input type="text" name="update-own-password" id="form-substitue-current-password" />
+                    <label for="form-substitue-update-own-password">Nyt password:</label>
+                    <input type="text" name="update-own-password" id="form-substitue-update-own-password" />
+                    <label for="form-substitue-update-own-mail">Opdater e-mailadresse:</label>
+                    <input type="email" name="update-own-mail" id="form-substitue-update-own-mail" />
+                    <label for="form-substitue-update-own-number">Opdater telefonnummer:</label>
+                    <input type="number" name="update-own-number" id="form-substitue-update-own-number" />
+                    <button type="submit" value="submit">Submit</button>
+                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">
+                        Cancel
+                    </button>
+                </form>
+            </fieldset>
+        </dialog>
 
         <script type="module" src="./js/main.js"></script>
     </body>

@@ -9,7 +9,7 @@ export class Substituterenderer {
     render(substitute) {
       this.substitute = substitute;
         const formattedDateOfBirth = formatShiftDate(substitute.DateOfBirth);
-      let html = `
+        let html = `
         <h1>Personlige Oplysninger</h1>
         <table class="substitute-table" data-substitute-id="${substitute.EmployeeID}">
           <tr>
@@ -84,9 +84,7 @@ export class Substituterenderer {
 }
 
 function formatShiftDate(dateString) {
-  const options = {day: "numeric", month: "short", year: "numeric" };
-  const date = new Date(dateString);
-  return date.toLocaleString("da", options);
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const date = new Date(dateString);
+    return date.toLocaleString("da", options);
 }
-
-

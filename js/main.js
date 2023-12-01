@@ -1,7 +1,7 @@
 "use strict";
 
+//Endpoint 
 const endpoint = "http://localhost:3333";
-
 
 // ===== IMPORTS ===== \\
 import { loginClicked} from "./login.js";
@@ -15,9 +15,7 @@ import { AvailableShiftsRenderer} from "./availableshiftsrenderer.js";
 
 window.addEventListener("load", initApp);
 
-
 //Definer globale variabler
-
 let substitutes = [];
 let shifts = [];
 let employee = [];
@@ -37,7 +35,7 @@ async function initApp() {
     
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
-        employee = await loginClicked();
+        let employee = await loginClicked();
         console.log(employee);
         document.querySelector("#logout-btn").classList.add(".active");
      
@@ -52,13 +50,13 @@ async function initApp() {
 
             // Convert shift.EmployeeID to string before comparison
             const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.EmployeeID) === String(loggedInEmployeeID));
-            console.log(shiftsOfLoggedInEmployee);
+            // console.log(shiftsOfLoggedInEmployee);
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            console.log(specificSubstitute);
-            const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
+            // console.log(specificSubstitute);
+            const substitute = new ListRenderer(specificSubstitute, ".forside-text", substituteRenderer);
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
 

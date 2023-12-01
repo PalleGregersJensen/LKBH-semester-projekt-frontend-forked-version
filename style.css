@@ -137,6 +137,9 @@ input {
     display: none;
   }
 
+  .view-content-admin:not(.active){
+    display: none;
+  }
 
 
 /* .view-content{
