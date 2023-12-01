@@ -11,6 +11,30 @@ export class AvailableShiftsRenderer {
 
       return html;
     }
+    attachEventListener() {
+      document.querySelectorAll(".shift-interest-button").forEach(button => {
+        button.addEventListener("click", this.confirmInterest.bind(this));
+      });
+    }
+  
+    confirmInterest(event) {
+      const shiftID = Number(event.target.dataset.shiftId);
+      const formattedDate = event.target.dataset.formattedDate;
+      const convertedShiftStart = event.target.dataset.shiftStart;
+      const convertedShiftEnd = event.target.dataset.shiftEnd;
+  
+      document.querySelector("#confirmInterestText").textContent = `Er du sikker på, at du vil byde på denne vagt: ${formattedDate}, kl.: ${convertedShiftStart} - ${convertedShiftEnd}?`;
+      
+      document.querySelector("#confirmInterest-btn").addEventListener("click", function() {
+        createShiftInterest(shiftID,loggedInEmployeeID)
+        document.querySelector("#shiftInterest-dialog").close();
+    });   
+  
+      // Pass shiftID to createShiftInterest function
+  //    createShiftInterest(shiftID, loggedInEmployeeID);
+      
+      document.querySelector("#shiftInterest-dialog").showModal();
+    }
   }
   
   // Function to convert ISO date and time to 24-hour format
@@ -28,6 +52,3 @@ function convertTo24HourFormat(dateTimeString) {
     return date.toLocaleString("da", options);
   }
   
-  // Example usage:
-  const formattedDate = formatShiftDate("2023-12-06T23:00:00.000Z");
-  // console.log(formattedDate);  // This should output something like "Tir. d. 06/12-2023"
