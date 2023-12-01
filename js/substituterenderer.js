@@ -57,8 +57,6 @@ export class Substituterenderer {
 
       document.querySelector("#confirm-new-login-info").addEventListener("click", async function(event) {
         event.preventDefault();
-        const mail = employee.Mail;
-        const number = employee.Number;
         const username = document.querySelector("#edit-username").value;
         const password = document.querySelector("#edit-password").value;
         const confirmPassword = document.querySelector("#confirm-new-password").value;
@@ -68,7 +66,7 @@ export class Substituterenderer {
             return;
         }
       
-        await updateLoginInfo(mail, number, username, password, EmployeeID);
+        await updateLoginInfo(username, password, EmployeeID);
       
         document.querySelector("#editLoginInfo-dialog").close();
       });

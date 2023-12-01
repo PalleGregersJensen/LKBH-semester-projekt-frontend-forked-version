@@ -14,8 +14,8 @@ async function createShiftInterest(ShiftID, EmployeeID){
     return response;
 }
 
-async function updateLoginInfo(mail, number, username, password, EmployeeID){
-    const newLoginInfo = {Mail: mail, Number: number, Username: username, PasswordHash: password};
+async function updateLoginInfo(username, password, EmployeeID){
+    const newLoginInfo = {Username: username, PasswordHash: password};
 
     const newLoginInfoJSON = JSON.stringify(newLoginInfo);
     console.log(newLoginInfoJSON);

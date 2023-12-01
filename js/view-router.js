@@ -1,4 +1,5 @@
 function initViews(user) {
+    console.log(user);
     // Add hashchange event listener only once during initialization
     window.addEventListener("hashchange", function() {
         viewChange(user);
