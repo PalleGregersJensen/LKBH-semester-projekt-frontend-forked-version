@@ -110,93 +110,84 @@
                 </div>
             </section>
 
-  <!-- Vikar section -->
-  <section id="substitute-page" class="substitute-view">
-    <!--Navbar for vikarer-->
-    <div class="navbar-container">
-        <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
-        <a href="#shifts" class="view-link navbar-content">Vagter</a>
-        <a href="#schema" class="view-link navbar-content">Skema</a>
-    </div>
-</section>
+                    <!-- Vikar section -->
+                    <section id="substitute-page" class="substitute-view">
+                      <!--Navbar for vikarer-->
+                      <div class="navbar-container">
+                          <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
+                          <a href="#shifts" class="view-link navbar-content">Vagter</a>
+                          <a href="#schema" class="view-link navbar-content">Skema</a>
+                      </div>
+                  </section>
 
-<section id="mypage" class="view-content">
-  <div class="my-info"></div>
-  <!-- Dialog til at redigere login informationer for vikarer-->
-  <dialog id="editLoginInfo-dialog">
-    <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
-    <form action="">
-      <label for="edit-username">Brugernavn:</label>
-      <input name="edit-username" id="edit-username" type="text">
-      <label for="edit-password">Nyt kodeord:</label>
-      <input name="edit-password" id="edit-password" type="password">
-      <label for="confirm-new-password">Bekræft nyt kodeord:</label>
-      <input name="confirm-new-password" id="confirm-new-password" type="password">
-      <button id="confirm-new-login-info">Bekræft</button>
-      <button id="reject-new-login-info">Fortryd</button>
-    </form>
-  </dialog>
-</section>
+                  <section id="mypage" class="view-content">
+                    <div class="my-info"></div>
+                    <!-- Dialog til at redigere login informationer for vikarer-->
+                    <dialog id="editLoginInfo-dialog">
+                      <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
+                      <form action="">
+                        <label for="edit-username">Brugernavn:</label>
+                        <input name="edit-username" id="edit-username" type="text">
+                        <label for="edit-password">Nyt kodeord:</label>
+                        <input name="edit-password" id="edit-password" type="password">
+                        <label for="confirm-new-password">Bekræft nyt kodeord:</label>
+                        <input name="confirm-new-password" id="confirm-new-password" type="password">
+                        <button id="confirm-new-login-info">Bekræft</button>
+                        <button id="reject-new-login-info">Fortryd</button>
+                      </form>
+                    </dialog>
+                  </section>
 
-<section id="shifts" class="view-content">
-    <div class="shifts-tables">
-        <div id="tabs-substitute">
-            <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
-            <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
-            <div id="myShifts-tab" class="hidden">
-                <table>
-                    <thead id="table-headers">
-                        <tr>
-                            <th id="shift-date">Dato</th>
-                            <th id="shift-time">Tidspunkt</th>
-                            <th id="shift-hours">Antal Timer</th>
-                        </tr>
-                    </thead>
-                    <tbody id="myShifts"></tbody>
-                </table>
-            </div>
+                  <section id="shifts" class="view-content">
+                      <div class="shifts-tables">
+                          <div id="tabs-substitute">
+                              <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
+                              <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
+                              <div id="myShifts-tab" class="hidden">
+                                  <table>
+                                      <thead id="shifts-table-headers">
+                                          <tr>
+                                              <th id="shift-date">Dato</th>
+                                              <th id="shifts-shift-time">Tidspunkt</th>
+                                              <th id="shift-hours">Antal Timer</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="myShifts"></tbody>
+                                  </table>
+                              </div>
 
-            <div id="availableShifts-tab" class="hidden">
-                <table>
-                    <thead id="table-headers">
-                        <tr>
-                            <th id="shift-date">Dato</th>
-                            <th id="shift-time">Tidspunkt</th>
-                            <th id="shift-button">Byd på vagter</th>
-                        </tr>
-                    </thead>
-                    <tbody id="availableShifts"></tbody>
-                </table>
-                <dialog id="shiftInterest-dialog">
-                  <p id="confirmInterestText"></p>
-                  <button id="confirmInterest-btn">Ja</button>
-                  <button id="denyInterest-btn">Nej</button>
-            </dialog>
+                              <div id="availableShifts-tab" class="hidden">
+                                  <table>
+                                      <thead id="available-shifts-table-headers">
+                                          <tr>
+                                              <th id="shift-date">Dato</th>
+                                              <th id="available-shift-time">Tidspunkt</th>
+                                              <th id="shift-button">Byd på vagter</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="availableShifts"></tbody>
+                                  </table>
+                                  <dialog id="shiftInterest-dialog">
+                                    <p id="confirmInterestText"></p>
+                                    <button id="confirmInterest-btn">Ja</button>
+                                    <button id="denyInterest-btn">Nej</button>
+                              </dialog>
 
-            </div>
-        </div>
-    </div>
-</section>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
 
-<section id="schema" class="view-content">
-    <div class="schema-data">
-        <h2>Kontakt</h2>
-        <p>Stillehavsvej 123</p>
-        <p>2000, Frederiksberg</p>
-        <p>Tlf: +45 98765432</p>
-    </div>
-</section>
+                  <section id="schema" class="view-content">
+                      <div class="schema-data">
+                          <h2>Kontakt</h2>
+                          <p>Stillehavsvej 123</p>
+                          <p>2000, Frederiksberg</p>
+                          <p>Tlf: +45 98765432</p>
+                      </div>
+                  </section>
 
-            <!-- Vikar section -->
-            <section id="substitute-page" class="substitute-view">
-              <!--Navbar for vikarer-->
-              <div class="navbar-container">
-                  <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
-                  <a href="#shifts" class="view-link navbar-content">Vagter</a>
-                  <a href="#schema" class="view-link navbar-content">Skema</a>
-              </div>
-          </section>
-</main>
+            
 
         </main>
 
