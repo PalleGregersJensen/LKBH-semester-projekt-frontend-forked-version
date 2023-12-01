@@ -307,3 +307,15 @@ text-emphasis: bolder;
 #denyInterest-btn:hover, #reject-new-login-info:hover, #confirm-new-login-info:hover {
   background-color: #43597a;
 }
+
+.btnStyling {
+  background-color: rgb(155, 24, 24);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  top: 3px;
+  right: 3px;
+}

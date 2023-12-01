@@ -12,7 +12,8 @@ import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
-import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
+import { AdminShiftRenderer } from "./adminshiftrenderer.js";
+import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
 
 window.addEventListener("load", initApp);
 
@@ -24,15 +25,19 @@ let loggedInEmployeeID = [];
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
+
+    //hiding logout button
     document.querySelector("#logout-btn").classList.add("hidden");
+
+    //eventlisteners
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
-    document.querySelector("#denyInterest-btn").addEventListener("click", function() {
+    document.querySelector("#denyInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
-        });
-        document.querySelector("#reject-new-login-info").addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            document.querySelector("#editLoginInfo-dialog").close();
-        });
+    });
+    document.querySelector("#reject-new-login-info").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        document.querySelector("#editLoginInfo-dialog").close();
+    });
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
@@ -47,7 +52,8 @@ async function initApp() {
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
-            const shiftsadminrenderer = new ShiftsAdminRenderer();
+            const adminShiftRenderer = new AdminShiftRenderer();
+            const adminAvaliableShiftRenderer = new AdminAvaliableShiftRenderer();
 
             //filtering substitutes-list for everyone but the user logged in
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
@@ -56,8 +62,12 @@ async function initApp() {
             substitute.render();
 
             //New instance of Listrenderer for shifts (admin view)
-            const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", shiftsadminrenderer);
+            const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
             shiftsAdminList.render();
+
+            const availableShiftsListAdmin = shifts.filter((shift) => !shift.ShiftIsTaken);
+            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminAvaliableShiftRenderer);
+            adminAvaliableShiftList.render();
         } else if (!employee.IsAdmin) {
             // console.log(`logged in as: substitute`);
 
@@ -82,8 +92,7 @@ async function initApp() {
             // console.log(displayAvailableShifts);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
-            availableShiftsRenderer.attachEventListener();        
-
+            availableShiftsRenderer.attachEventListener();
         }
     });
 
@@ -93,4 +102,4 @@ async function initApp() {
     shifts = await getShiftData();
 }
 
-export { endpoint, initApp, employee };
+export { endpoint, initApp, employee, substitutes };
