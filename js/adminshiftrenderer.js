@@ -38,7 +38,7 @@ function getFullName(shift) {
     let fullName;
 
     const matchingSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === shift.EmployeeID);
-    console.log(matchingSubstitute);
+    // console.log(matchingSubstitute);
 
     if (matchingSubstitute[0]) {
         return (fullName = `${matchingSubstitute[0].FirstName} ${matchingSubstitute[0].LastName}`);

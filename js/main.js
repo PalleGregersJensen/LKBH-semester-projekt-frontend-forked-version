@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getSubstitutesData } from "./rest-service.js";
+import { getShiftData, getSubstitutesData, getRequestedShifts } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -18,6 +18,7 @@ import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
 window.addEventListener("load", initApp);
 
 //Definer globale variabler
+let requestedShiftsList;
 let substitutes = [];
 let shifts = [];
 let employee = [];
@@ -98,8 +99,10 @@ async function initApp() {
 
     // initTabs();
     initViews();
+    requestedShiftsList = await getRequestedShifts();
+    // console.log(requestedShiftsList);
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
 }
 
-export { endpoint, initApp, employee, substitutes };
+export { endpoint, initApp, employee, substitutes, requestedShiftsList };
