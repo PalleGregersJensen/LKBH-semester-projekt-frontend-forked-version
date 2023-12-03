@@ -22,7 +22,7 @@ export class AdminAvaliableShiftRenderer {
 
 function getFullNameOfInterested(shift) {
     const requestedShift = requestedShiftsList.find((item) => item.ShiftID === shift.ShiftID);
-    console.log(requestedShift);
+    // console.log(requestedShift);
 
     if (requestedShift.FirstName && requestedShift.LastName) {
         let fullNames = [];

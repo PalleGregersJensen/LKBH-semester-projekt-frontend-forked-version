@@ -14,6 +14,7 @@ import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
+import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
 
 window.addEventListener("load", initApp);
 
@@ -55,6 +56,7 @@ async function initApp() {
             const substituteRenderer = new Substituterenderer();
             const adminShiftRenderer = new AdminShiftRenderer();
             const adminAvaliableShiftRenderer = new AdminAvaliableShiftRenderer();
+            const substitutesForAdminRenderer = new SubstitutesForAdminRenderer();
 
             //filtering substitutes-list for everyone but the user logged in
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
@@ -69,6 +71,9 @@ async function initApp() {
             const availableShiftsListAdmin = shifts.filter((shift) => !shift.ShiftIsTaken);
             const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminAvaliableShiftRenderer);
             adminAvaliableShiftList.render();
+
+            const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);
+            userListForAdmin.render();
         } else if (!employee.IsAdmin) {
             // console.log(`logged in as: substitute`);
 
