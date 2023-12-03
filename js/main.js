@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getSubstitutesData, getRequestedShifts } from "./rest-service.js";
+import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -24,6 +24,7 @@ let substitutes = [];
 let shifts = [];
 let employee = [];
 let loggedInEmployeeID = [];
+let shiftInterests = [];
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
@@ -40,6 +41,15 @@ async function initApp() {
         event.preventDefault(); // Prevent the default form submission behavior
         document.querySelector("#editLoginInfo-dialog").close();
     });
+        
+        document.querySelector("#close-passwords-dialog").addEventListener("click", function(){
+            document.querySelector("#not-matching-passwords").close();            
+        });
+        document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function(){
+            document.querySelector("#existing-shiftInterest-entry").close();            
+        });
+
+
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
@@ -108,6 +118,7 @@ async function initApp() {
     // console.log(requestedShiftsList);
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
+    shiftInterests = await getShiftInterestData();
 }
 
-export { endpoint, initApp, employee, substitutes, requestedShiftsList };
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };

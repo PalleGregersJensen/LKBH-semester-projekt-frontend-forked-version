@@ -1,3 +1,6 @@
+import { createShiftInterest } from "./helpers.js";
+import { loggedInEmployeeID} from "./main.js"
+
 export class AvailableShiftsRenderer {
   render(shift) {
     const convertedShiftStart = convertTo24HourFormat(shift.ShiftStart);
@@ -21,22 +24,31 @@ export class AvailableShiftsRenderer {
 
   confirmInterest(event) {
     const shiftID = Number(event.target.dataset.shiftId);
+    console.log(shiftID);
     const formattedDate = event.target.dataset.formattedDate;
     const convertedShiftStart = event.target.dataset.shiftStart;
     const convertedShiftEnd = event.target.dataset.shiftEnd;
-
+  
     document.querySelector("#confirmInterestText").textContent = `Er du sikker på, at du vil byde på denne vagt: ${formattedDate}, kl.: ${convertedShiftStart} - ${convertedShiftEnd}?`;
-    
-    document.querySelector("#confirmInterest-btn").addEventListener("click", function() {
-      createShiftInterest(shiftID,loggedInEmployeeID)
-      document.querySelector("#shiftInterest-dialog").close();
-  });   
-
-    // Pass shiftID to createShiftInterest function
-//    createShiftInterest(shiftID, loggedInEmployeeID);
-    
+  
+    const confirmInterestBtn = document.querySelector("#confirmInterest-btn");
+  
+    // Remove previous event listener for confirmInterest-btn
+    confirmInterestBtn.removeEventListener("click", this.handleConfirmInterestClick);
+  
+    // Add a new event listener for confirmInterest-btn using an arrow function
+    confirmInterestBtn.addEventListener("click", () => {
+      this.handleConfirmInterestClick(shiftID);
+    }, { once: true });
+  
     document.querySelector("#shiftInterest-dialog").showModal();
   }
+  
+  handleConfirmInterestClick(shiftID) {
+    createShiftInterest(shiftID, loggedInEmployeeID);
+    document.querySelector("#shiftInterest-dialog").close();
+  }
+  
 }
   
   // Function to convert ISO date and time to 24-hour format

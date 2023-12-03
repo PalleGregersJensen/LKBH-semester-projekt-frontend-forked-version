@@ -14,6 +14,13 @@ async function getShiftData() {
     return data;
 }
 
+async function getShiftInterestData(){
+  const response = await fetch(`${endpoint}/shiftInterests`);
+  const data = await response.json();
+  return data;
+
+}
+
 //Fetcher "/shifts/requestedshifts" fra endpoint og returnere resultat som js objekt
 async function getRequestedShifts() {
     const response = await fetch(`${endpoint}/shifts/requestedshifts`);
@@ -21,4 +28,4 @@ async function getRequestedShifts() {
     return data;
 }
 
-export { getShiftData, getSubstitutesData, getRequestedShifts };
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts };
