@@ -20,9 +20,10 @@ export class AdminAvaliableShiftRenderer {
     }
 }
 
+
+// returnere navne på de vikarer der har vist interesse i en vagt
 function getFullNameOfInterested(shift) {
     const requestedShift = requestedShiftsList.find((item) => item.ShiftID === shift.ShiftID);
-    // console.log(requestedShift);
 
     if (requestedShift.FirstName && requestedShift.LastName) {
         let fullNames = [];
@@ -37,28 +38,6 @@ function getFullNameOfInterested(shift) {
     }
 }
 
-
-// function getFullNameOfInterested(shift) {
-//     const requestedShift = requestedShiftsList.find((item) => item.ShiftID === shift.ShiftID);
-//     console.log(requestedShift);
-
-//     if (requestedShift.FirstName && requestedShift.LastName) {
-//         let fullNames = [];
-
-//         // requestedShift.FirstName.forEach((fname) => {
-//         //     fullNames.push(`${requestedShift.FirstName} ${requestedShift.LastName}`);
-//         // });
-
-//         for (let i = 0; i < requestedShift.FirstName.length; i++) {
-//             fullNames.push(`${requestedShift.FirstName[i]} ${requestedShift.LastName[i]}`);
-//         }
-
-//         return `- ${fullNames} `;
-//     } else {
-//         return "Ingen anmodninger/bud";
-//     }
-// }
-
 // Function to convert ISO date and time to 24-hour format
 function convertTo24HourFormat(dateTimeString) {
     const dateTime = new Date(dateTimeString);
@@ -68,6 +47,7 @@ function convertTo24HourFormat(dateTimeString) {
     return `${hours}:${minutes < 10 ? "0" : ""}${minutes}`;
 }
 
+// Shift/vagt dato property bliver lavet om til dansk dato format
 function formatShiftDate(dateString) {
     const options = { weekday: "long", day: "numeric", month: "short", year: "numeric" };
     const date = new Date(dateString);
