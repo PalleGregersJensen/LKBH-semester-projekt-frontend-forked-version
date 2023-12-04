@@ -12,7 +12,7 @@ import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
-import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
+// import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
