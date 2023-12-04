@@ -54,7 +54,7 @@ async function createNewSubstitute(event) {
     });
 
     if (response.ok) {
-        // if success, start the app and update artists grid
+        // if success, close dialog tag
         console.log("New user in database");
         document.querySelector("#dialog-create-new-substitute").close();
 

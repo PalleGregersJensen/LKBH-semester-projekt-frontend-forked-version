@@ -128,10 +128,12 @@ async function initApp() {
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
     shiftInterests = await getShiftInterestData();
+    
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
     document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
+    
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift)

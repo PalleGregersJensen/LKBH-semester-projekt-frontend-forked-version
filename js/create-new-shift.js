@@ -34,7 +34,7 @@ async function createNewShift(event) {
         },
     });
     if (response.ok) {
-        // if success, start the app and update artists grid
+        // if success, close dialog tag
         console.log("New shift in database");
         document.querySelector("#dialog-create-new-shift").close();
 
