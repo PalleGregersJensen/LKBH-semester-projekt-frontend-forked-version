@@ -11,20 +11,20 @@ async function createNewShift(event) {
     event.preventDefault();
     console.log("create new shift");
     const form = event.target;
-    console.log(form);
+    // console.log(form);
     const shiftDate = form.elements["shift-date"].value;
-    console.log(shiftDate);
+    // console.log(shiftDate);
     const shiftStart = form.elements["shift-start"].value;
-    console.log(shiftStart);
+    // console.log(shiftStart);
     const shiftEnd = form.elements["shift-end"].value;
-    console.log(shiftEnd);
+    // console.log(shiftEnd);
 
     const newShift = {
         Date: shiftDate,
         ShiftStart: shiftStart,
         ShiftEnd: shiftEnd,
     };
-    console.log(newShift);
+    // console.log(newShift);
     const newShiftAsJson = JSON.stringify(newShift);
     const response = await fetch(`${endpoint}/shifts/`, {
         method: "POST",
@@ -34,7 +34,7 @@ async function createNewShift(event) {
         },
     });
     if (response.ok) {
-        // if success, close dialog tag
+        // if success, close dialog window
         console.log("New shift in database");
         document.querySelector("#dialog-create-new-shift").close();
 
