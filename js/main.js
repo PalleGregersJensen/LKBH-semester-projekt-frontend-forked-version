@@ -13,13 +13,14 @@ import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
-import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
+import { AdminAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
+import * as requestedshift from "./model/requested-shift.js";
 
 window.addEventListener("load", initApp);
 
 //Definer globale variabler
-let requestedShiftsList;
+let requestedShiftsList = [];
 let substitutes = [];
 let shifts = [];
 let employee = [];
@@ -41,14 +42,13 @@ async function initApp() {
         event.preventDefault(); // Prevent the default form submission behavior
         document.querySelector("#editLoginInfo-dialog").close();
     });
-        
-        document.querySelector("#close-passwords-dialog").addEventListener("click", function(){
-            document.querySelector("#not-matching-passwords").close();            
-        });
-        document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function(){
-            document.querySelector("#existing-shiftInterest-entry").close();            
-        });
 
+    document.querySelector("#close-passwords-dialog").addEventListener("click", function () {
+        document.querySelector("#not-matching-passwords").close();
+    });
+    document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
+        document.querySelector("#existing-shiftInterest-entry").close();
+    });
 
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -61,6 +61,8 @@ async function initApp() {
 
         if (employee.IsAdmin) {
             // console.log(`logged in as: admin`);
+            await updateRequestedShiftsList();
+            console.log(requestedShiftsList);
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
@@ -78,12 +80,13 @@ async function initApp() {
             const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
             shiftsAdminList.render();
 
-            const availableShiftsListAdmin = shifts.filter((shift) => !shift.ShiftIsTaken);
+            const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
             const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminAvaliableShiftRenderer);
             adminAvaliableShiftList.render();
 
             const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);
             userListForAdmin.render();
+            attachEventListeners();
         } else if (!employee.IsAdmin) {
             // console.log(`logged in as: substitute`);
 
@@ -114,11 +117,25 @@ async function initApp() {
 
     // initTabs();
     initViews();
-    requestedShiftsList = await getRequestedShifts();
-    // console.log(requestedShiftsList);
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
     shiftInterests = await getShiftInterestData();
 }
 
-export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };
+async function updateRequestedShiftsList() {
+    const data = await getRequestedShifts();
+    requestedShiftsList = data.map(requestedshift.construct);
+}
+
+function attachEventListeners() {
+    document.querySelectorAll("#assign-shift-to-substitute-btn").forEach((element) => {
+        element.addEventListener("click", assignSubstitute);
+    });
+}
+
+function assignSubstitute(event) {
+    console.log(event.target);
+    console.log("assign substitute...");
+}
+
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, attachEventListeners };

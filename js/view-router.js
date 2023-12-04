@@ -1,4 +1,5 @@
 import { initTabs } from "./tabs.js";
+import { attachEventListeners } from "./main.js";
 
 function initViews(user) {
     // Add hashchange event listener only once during initialization
