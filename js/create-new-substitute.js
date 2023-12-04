@@ -22,9 +22,9 @@ async function createNewSubstitute(event) {
     console.log(number);
     let adminStatus = form.elements["admin-status"].value;
     if (adminStatus === "is-not-admin") {
-        adminStatus = 0;
+        adminStatus = false;
     } else if (adminStatus === "is-admin") {
-        adminStatus = 0;
+        adminStatus = true;
     }
     console.log(adminStatus);
     const userName = form.username.value;
@@ -59,6 +59,7 @@ async function createNewSubstitute(event) {
 
 function closeCreateNewSubstituteDialog() {
     console.log("close create new substitute dialog");
+    document.querySelector("#dialog-create-new-substitute").close();
 }
 
 export { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog };
