@@ -1,4 +1,4 @@
-import { endpoint } from "./main.js";
+import { endpoint, initApp } from "./main.js";
 
 // Create new shift clicked
 function createNewShiftClicked() {
