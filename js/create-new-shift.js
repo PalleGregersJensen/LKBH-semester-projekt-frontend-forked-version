@@ -24,6 +24,7 @@ async function createNewShift(event) {
         ShiftStart: shiftStart,
         ShiftEnd: shiftEnd
     }
+    console.log(newShift);
     const newShiftAsJson = JSON.stringify(newShift);
     const response = await fetch(`${endpoint}/shifts/`, {
         method: "POST",
