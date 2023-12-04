@@ -17,6 +17,7 @@ import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstitu
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
+import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
@@ -131,6 +132,9 @@ async function initApp() {
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
     document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
+    // eventlisteners for create new shift
+    document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
+    document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift)
 }
 
 export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };
