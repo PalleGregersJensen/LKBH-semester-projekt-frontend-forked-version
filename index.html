@@ -174,15 +174,15 @@
                 <legend>Opret ny medarbejder</legend>
                 <form id="form-create-new-substitute" action="" method="dialog">
                     <label for="form-create-new-substitute-firstname">Fornavn</label>
-                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" />
+                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" required/>
                     <label for="form-create-new-substitute-lastname"> Efternavn</label>
-                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" />
+                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" required/>
                     <label for="form-create-new-substitute-date-of-birth">Fødselsdato</label>
-                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" />
+                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" required/>
                     <label for="form-create-new-substitute-mail">E-mail</label>
-                    <input type="mail" name="mail" id="form-create-new-substitute-mail" />
+                    <input type="mail" name="mail" id="form-create-new-substitute-mail" required/>
                     <label for="form-create-new-substitute-number">Telefonnummner</label>
-                    <input type="number" name="phone-number" id="form-create-new-substitute-number" />
+                    <input type="number" name="phone-number" id="form-create-new-substitute-number" required/>
                     <fieldset>
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
@@ -192,6 +192,7 @@
                             name="admin-status"
                             id="form-create-new-substitute-is-admin"
                             value="is-admin"
+                            required
                         />
                         <label for="form-create-new-substitute-is-not-admin">Nej</label>
                         <input
@@ -199,12 +200,13 @@
                             name="admin-status"
                             id="form-create-new-substitute-is-not-admin"
                             value="is-not-admin"
+                            required
                         />
                     </fieldset>
                     <label for="form-create-new-substitute-username">Brugernavn</label>
-                    <input type="text" name="username" id="form-create-new-substitute-username" />
+                    <input type="text" name="username" id="form-create-new-substitute-username" required/>
                     <label for="form-create-new-substitute-password">Password</label>
-                    <input type="text" name="password" id="form-create-new-substitute-password" />
+                    <input type="text" name="password" id="form-create-new-substitute-password" required/>
                     <button type="submit" value="submit">Submit</button>
                     <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Cancel</button>
                 </form>
