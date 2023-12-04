@@ -12,18 +12,18 @@ async function createNewShift(event) {
     console.log("create new shift");
     const form = event.target;
     console.log(form);
-    const shiftDate = form.elements['shift-date'].value;
+    const shiftDate = form.elements["shift-date"].value;
     console.log(shiftDate);
-    const shiftStart = form.elements['shift-start'].value;
+    const shiftStart = form.elements["shift-start"].value;
     console.log(shiftStart);
-    const shiftEnd = form.elements['shift-end'].value;
+    const shiftEnd = form.elements["shift-end"].value;
     console.log(shiftEnd);
 
     const newShift = {
         Date: shiftDate,
         ShiftStart: shiftStart,
-        ShiftEnd: shiftEnd
-    }
+        ShiftEnd: shiftEnd,
+    };
     console.log(newShift);
     const newShiftAsJson = JSON.stringify(newShift);
     const response = await fetch(`${endpoint}/shifts/`, {
@@ -41,7 +41,6 @@ async function createNewShift(event) {
         // Probably needs to be changed to updateList or something like that
         initApp();
     }
-
 }
 
 export { createNewShiftClicked, createNewShift };
