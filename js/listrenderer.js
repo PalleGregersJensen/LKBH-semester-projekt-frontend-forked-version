@@ -2,19 +2,25 @@ import { calculateTimeDifference, formatShiftDate, convertTo24HourFormat } from 
 
 export class ListRenderer {
     constructor(list, container, itemRenderer) {
-      this.items = list;
-      this.container = document.querySelector(container);
-      this.itemRenderer = itemRenderer;
+        this.items = list;
+        this.container = document.querySelector(container);
+        this.itemRenderer = itemRenderer;
     }
-  
+
     render() {
-      this.container.innerHTML = "";
-      for (const item of this.items) {
-        const html = this.itemRenderer.render(item);
-        this.container.insertAdjacentHTML("beforeend", html);
-      }
+        this.container.innerHTML = "";
+        for (const item of this.items) {
+            const html = this.itemRenderer.render(item);
+            this.container.insertAdjacentHTML("beforeend", html);
+
+            if (this.itemRenderer.postRenderer) {
+                const element = this.container.lastElementChild;
+                const button = element.querySelector("#assign-btn"); //button id kan måske styres med parameter/argument så det kan genbruges...
+                this.itemRenderer.postRenderer(button, item);
+            }
+        }
     }
-  
+
     sort(sortBy, sortDir) {
       if (sortDir) {
         this.sortDir = sortDir;

@@ -266,7 +266,7 @@ td {
 
 }
 
-#shiftInterest-dialog, #editLoginInfo-dialog {
+#shiftInterest-dialog, #editLoginInfo-dialog, #dialog-admin-assign-shift {
   width: 400px; /* Set a width for your dialog */
   margin: auto;
   position: fixed;
@@ -327,4 +327,16 @@ font-weight: bold;}
 #not-matching-passwords-text, #existing-shiftInterest-entry-text {
   font-weight: bolder;
   margin-bottom: 20px;
+}
+
+.btnStyling {
+  background-color: rgb(155, 24, 24);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  top: 3px;
+  right: 3px;
 }

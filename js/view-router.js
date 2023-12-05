@@ -15,7 +15,7 @@ function viewChange(user) {
 
     // Get the current hashLink
     let hashLink = window.location.hash || "#login-page";
-    console.log(`view is: ${hashLink}`)
+    // console.log(`view is: ${hashLink}`)
 
     if (user) {
         // Check user role and set hashLink accordingly
