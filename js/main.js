@@ -15,13 +15,10 @@ import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 // import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
-import { AdminAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
+import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
-<<<<<<< HEAD
 import * as requestedshift from "./model/requested-shift.js";
-=======
 import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
->>>>>>> main
 
 window.addEventListener("load", initApp);
 
@@ -40,6 +37,7 @@ async function initApp() {
     document.querySelector("#logout-btn").classList.add("hidden");
 
     //eventlisteners
+    document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
     document.querySelector("#denyInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
@@ -68,12 +66,11 @@ async function initApp() {
         if (employee.IsAdmin) {
             // console.log(`logged in as: admin`);
             await updateRequestedShiftsList();
-            console.log(requestedShiftsList);
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
             const adminShiftRenderer = new AdminShiftRenderer();
-            const adminAvaliableShiftRenderer = new AdminAvaliableShiftRenderer();
+            const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
             const substitutesForAdminRenderer = new SubstitutesForAdminRenderer();
 
             //filtering substitutes-list for everyone but the user logged in
@@ -87,7 +84,7 @@ async function initApp() {
             shiftsAdminList.render();
 
             const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminAvaliableShiftRenderer);
+            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer);
             adminAvaliableShiftList.render();
 
             const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);

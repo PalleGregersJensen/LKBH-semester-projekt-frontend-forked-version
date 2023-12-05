@@ -28,4 +28,11 @@ async function getRequestedShifts() {
     return data;
 }
 
+function assignSubstitute(event) {
+    event.preventDefault();
+    console.log("assignSubstitute called");
+    // const form = event.target
+
+    document.querySelector("#dialog-admin-assign-shift").close();
+}
 export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts };

@@ -10,6 +10,12 @@ export class ListRenderer {
       for (const item of this.items) {
         const html = this.itemRenderer.render(item);
         this.container.insertAdjacentHTML("beforeend", html);
+
+        if (this.itemRenderer.postRenderer) {
+          const element = this.container.lastElementChild;
+          const button = element.querySelector("#assign-btn");
+          this.itemRenderer.postRenderer(button, item)
+        }
       }
     }
   
