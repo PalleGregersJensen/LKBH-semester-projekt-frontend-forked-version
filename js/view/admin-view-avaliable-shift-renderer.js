@@ -15,16 +15,30 @@ export class AdminViewAvaliableShiftRenderer {
 
     postRenderer(button, shift) {
         button.addEventListener("click", () => {
-            // console.log(shift)
 
+            const form = document.querySelector("#form-admin-assign-shift");
             const selectElement = document.querySelector("#select-substitute");
             
-            for (let i = 0; i < shift.firstNames.length; i++) {
+            for (let i = 0; i < shift.fullname.length; i++) {
                 const option = document.createElement("option");
-                option.value = shift.firstNames[i];
-                option.text = shift.firstNames[i];
+                option.value = shift.fullname[i];
+                option.text = shift.fullname[i];
                 selectElement.appendChild(option);
             }
+            
+            form.querySelector("#form-assign-shift-header").textContent = shift.timeDK;
+            form.formAssignShiftID.value = shift.shiftID
+            form.formAssignSubstituteID.value = shift.interestedEmployeeIDs[0];;
+            
+            selectElement.addEventListener("change", () => {
+                
+                for (let i = 0; i < shift.fullname.length; i++) {
+                    if (shift.fullname[i] === selectElement.value) {
+                    form.formAssignSubstituteID.value = shift.interestedEmployeeIDs[i];
+                    }
+                }
+            });
+
             document.querySelector("#dialog-admin-assign-shift").showModal();
         });
 

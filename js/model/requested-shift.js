@@ -6,8 +6,8 @@ export function construct(dataObject) {
         shiftEnd: dataObject.ShiftEnd,
         employeeID: dataObject.EmployeeID,
         shiftIsTaken: dataObject.ShiftIsTaken,
-        firstNames: dataObject.FirstName,
-        lastNames: dataObject.LastName,
+        fullname: dataObject.FullName,
+        interestedEmployeeIDs: dataObject.InterestedEmployeeIDs,
 
         get timeDK() {
             const options = { weekday: "long", day: "numeric", month: "short", year: "numeric" };
@@ -30,16 +30,16 @@ export function construct(dataObject) {
         },
 
         get numberOfRequests() {
-            if (this.firstNames) {
-                return String(this.firstNames.length);
+            if (this.fullname) {
+                return String(this.fullname.length);
             } else {
                 return "0";
             }
         },
 
-        get fullname() {
-            return `${this.firstNames} ${this.lastNames}`;
-        },
+        // get fullname() {
+        //     return `${this.fullname}`;
+        // },
     };
 
     return requestedShiftObject;
