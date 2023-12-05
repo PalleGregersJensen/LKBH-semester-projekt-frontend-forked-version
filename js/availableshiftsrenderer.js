@@ -3,16 +3,18 @@ import { loggedInEmployeeID} from "./main.js"
 
 export class AvailableShiftsRenderer {
   render(shift) {
-    const convertedShiftStart = convertTo24HourFormat(shift.ShiftStart);
-    const convertedShiftEnd = convertTo24HourFormat(shift.ShiftEnd);
-    const formattedDate = formatShiftDate(shift.Date);
+    // const convertedShiftStart = convertTo24HourFormat(shift.ShiftStart);
+    // const convertedShiftEnd = convertTo24HourFormat(shift.ShiftEnd);
+    // const formattedDate = formatShiftDate(shift.Date);
     const html = /*html*/`
-      <tr>
-        <td>${formattedDate}</td>
-        <td>${convertedShiftStart} - ${convertedShiftEnd}</td>
-        <td> <button class="shift-interest-button" data-shift-id="${shift.ShiftID}" data-formatted-date="${formattedDate}" data-shift-start="${convertedShiftStart}" data-shift-end="${convertedShiftEnd}">Byd på vagt</button> </td>
-      </tr>`;
-
+    <tr>
+      <td>${shift.date}</td>
+      <td>${shift.shiftStart} - ${shift.shiftEnd}</td>
+      <td>
+        <button class="shift-interest-button" data-shift-id="${shift.id}" data-shift="${encodeURIComponent(JSON.stringify(shift))}">Byd på vagt</button>
+      </td>
+    </tr>`;
+  
     return html;
   }
 
@@ -25,11 +27,12 @@ export class AvailableShiftsRenderer {
   confirmInterest(event) {
     const shiftID = Number(event.target.dataset.shiftId);
     console.log(shiftID);
-    const formattedDate = event.target.dataset.formattedDate;
-    const convertedShiftStart = event.target.dataset.shiftStart;
-    const convertedShiftEnd = event.target.dataset.shiftEnd;
-  
-    document.querySelector("#confirmInterestText").textContent = `Er du sikker på, at du vil byde på denne vagt: ${formattedDate}, kl.: ${convertedShiftStart} - ${convertedShiftEnd}?`;
+    const shift = JSON.parse(decodeURIComponent(event.target.dataset.shift));
+    const date = shift.date;
+    const shiftStart = shift.shiftStart;
+    const shiftEnd = shift.shiftEnd;
+      
+    document.querySelector("#confirmInterestText").textContent = `Er du sikker på, at du vil byde på denne vagt: ${date}, kl.: ${shiftStart} - ${shiftEnd}?`;
   
     const confirmInterestBtn = document.querySelector("#confirmInterest-btn");
   
@@ -50,19 +53,4 @@ export class AvailableShiftsRenderer {
   }
   
 }
-  
-  // Function to convert ISO date and time to 24-hour format
-function convertTo24HourFormat(dateTimeString) {
-    const dateTime = new Date(dateTimeString);
-    const hours = dateTime.getHours();
-    const minutes = dateTime.getMinutes();
-  
-    return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-  }  
-
-  function formatShiftDate(dateString) {
-    const options = { weekday: "long", day: "numeric", month: "short", year: "numeric" };
-    const date = new Date(dateString);
-    return date.toLocaleString("da", options);
-  }
-  
+ 

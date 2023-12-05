@@ -1,5 +1,3 @@
-import { calculateTimeDifference, formatShiftDate, convertTo24HourFormat } from "./myshiftsrenderer.js";
-
 export class ListRenderer {
     constructor(list, container, itemRenderer) {
         this.items = list;
@@ -55,14 +53,11 @@ export class ListRenderer {
 
   extractSortValue(item, sortBy) {
     // Extract the value based on the sortBy parameter
-    if (sortBy === 'formattedDate') {
+    if (sortBy === 'date') {
         return new Date(item.Date);
-    } else if (sortBy === 'convertedShiftStart') {
-        return this.convertToMinutes(convertTo24HourFormat(item.ShiftStart));
-    } else if (sortBy === 'timeDifference') {
-        const timeDiff = calculateTimeDifference(item.ShiftStart, item.ShiftEnd);
-        return timeDiff.hours * 60 + timeDiff.minutes; // Convert time difference to total minutes
-    } else {
+    } else if (sortBy === 'shiftStart') {
+        return this.convertToMinutes(item.shiftStart);
+    }    else {
         // Default to sorting by the property key
         return item[sortBy];
     }

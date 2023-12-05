@@ -4,7 +4,7 @@
 const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
-import { loginClicked } from "./login.js";
+import { loginClicked, isLoggedIn } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
 import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
@@ -18,6 +18,7 @@ import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
 import * as requestedshift from "./model/requested-shift.js";
+import * as shift from "./model/myshifts.js";
 import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
@@ -96,8 +97,8 @@ async function initApp() {
             const MyShiftsrenderer = new MyShiftsRenderer();
             const availableShiftsRenderer = new AvailableShiftsRenderer();
 
-            // Convert shift.EmployeeID to string before comparison
-            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.EmployeeID) === String(loggedInEmployeeID));
+            // Convert shift.id to string before comparison
+            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
@@ -106,7 +107,7 @@ async function initApp() {
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
 
-            const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
+            const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
             availableShiftsRenderer.attachEventListener();  
@@ -116,11 +117,11 @@ async function initApp() {
             document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
                 const targetId = event.target.id;
                 if (targetId === "shift-date") {
-                    myShifts.sort("formattedDate");
+                    myShifts.sort("date");
                 } else if (targetId === "shifts-shift-time") {
-                    myShifts.sort("convertedShiftStart");
+                    myShifts.sort("shiftStart");
                 } else if (targetId === "shift-hours") {
-                    myShifts.sort("timeDifference");
+                    myShifts.sort("shiftLength");
                 }
             });    
             
@@ -128,12 +129,11 @@ async function initApp() {
                         document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
                             const targetId = event.target.id;
                             if (targetId === "shift-date") {
-                                availableShiftsSubstitutes.sort("formattedDate");
+                                availableShiftsSubstitutes.sort("date");
                             } else if (targetId === "available-shift-time") {
-                                availableShiftsSubstitutes.sort("convertedShiftStart");
+                                availableShiftsSubstitutes.sort("shiftStart");
                             }
                         });   
-            availableShiftsRenderer.attachEventListener();
         }
     });
 
@@ -142,7 +142,7 @@ async function initApp() {
     // initTabs();
     initViews();
     substitutes = await getSubstitutesData();
-    shifts = await getShiftData();
+    await buildShiftsList();
     shiftInterests = await getShiftInterestData();
 
     // eventlisteners for create new substitute
@@ -160,4 +160,8 @@ async function updateRequestedShiftsList() {
     requestedShiftsList = data.map(requestedshift.construct);
 }
 
+async function buildShiftsList(){
+    const originalData = await getShiftData();
+    shifts = originalData.map(shift.construct);
+}
 export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };
