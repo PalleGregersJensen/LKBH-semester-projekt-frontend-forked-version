@@ -13,8 +13,8 @@ export class MyShiftsRenderer {
   
       return html;
     }
-  }
-  
+  }   
+
   // Function to convert ISO date and time to 24-hour format
 function convertTo24HourFormat(dateTimeString) {
     const dateTime = new Date(dateTimeString);
@@ -47,3 +47,5 @@ function convertTo24HourFormat(dateTimeString) {
     return date.toLocaleString("da", options);
   }
     
+
+  export {formatShiftDate, calculateTimeDifference, convertTo24HourFormat};

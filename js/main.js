@@ -69,7 +69,6 @@ async function initApp() {
             const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", shiftsadminrenderer);
             shiftsAdminList.render();
         } else if (!employee.IsAdmin) {
-            // console.log(`logged in as: substitute`);
 
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -78,24 +77,45 @@ async function initApp() {
 
             // Convert shift.EmployeeID to string before comparison
             const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.EmployeeID) === String(loggedInEmployeeID));
-            // console.log(shiftsOfLoggedInEmployee);
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            // console.log(specificSubstitute);
             const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
-            // console.log(displayAvailableShifts);
             const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
-            availableShiftsRenderer.attachEventListener();        
-
+            availableShiftsRenderer.attachEventListener();  
+            
+            
+            // add sort eventlisteners mine vagter
+            document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "shift-date") {
+                    myShifts.sort("formattedDate");
+                } else if (targetId === "shifts-shift-time") {
+                    myShifts.sort("convertedShiftStart");
+                } else if (targetId === "shift-hours") {
+                    myShifts.sort("timeDifference");
+                }
+            });    
+            
+                        // add sort eventlisteners ledige vagter
+                        document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
+                            const targetId = event.target.id;
+                            if (targetId === "shift-date") {
+                                availableShiftsSubstitutes.sort("formattedDate");
+                            } else if (targetId === "available-shift-time") {
+                                availableShiftsSubstitutes.sort("convertedShiftStart");
+                            }
+                        });   
         }
     });
+
+
 
     // initTabs();
     initViews();
