@@ -39,7 +39,7 @@ async function createNewShift(event) {
         document.querySelector("#dialog-create-new-shift").close();
 
         // Probably needs to be changed to updateList or something like that
-        initApp();
+        // initApp();
     }
 }
 

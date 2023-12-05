@@ -59,7 +59,7 @@ async function createNewSubstitute(event) {
         document.querySelector("#dialog-create-new-substitute").close();
 
         // Probably needs to be changed to updateList or something like that
-        initApp();
+        // initApp();
     }
 }
 
