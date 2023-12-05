@@ -13,11 +13,15 @@ import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 // import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
-import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
+import {
+    createNewSubstituteClicked,
+    createNewSubstitute,
+    closeCreateNewSubstituteDialog,
+} from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
-import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
+import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
@@ -44,14 +48,13 @@ async function initApp() {
         event.preventDefault(); // Prevent the default form submission behavior
         document.querySelector("#editLoginInfo-dialog").close();
     });
-        
-        document.querySelector("#close-passwords-dialog").addEventListener("click", function(){
-            document.querySelector("#not-matching-passwords").close();            
-        });
-        document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function(){
-            document.querySelector("#existing-shiftInterest-entry").close();            
-        });
 
+    document.querySelector("#close-passwords-dialog").addEventListener("click", function () {
+        document.querySelector("#not-matching-passwords").close();
+    });
+    document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
+        document.querySelector("#existing-shiftInterest-entry").close();
+    });
 
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -82,10 +85,18 @@ async function initApp() {
             shiftsAdminList.render();
 
             const availableShiftsListAdmin = shifts.filter((shift) => !shift.ShiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminAvaliableShiftRenderer);
+            const adminAvaliableShiftList = new ListRenderer(
+                availableShiftsListAdmin,
+                "#availableShifts-admin-tbody",
+                adminAvaliableShiftRenderer
+            );
             adminAvaliableShiftList.render();
 
-            const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);
+            const userListForAdmin = new ListRenderer(
+                substitutes,
+                "#substitutes-list-admin-tbody",
+                substitutesForAdminRenderer
+            );
             userListForAdmin.render();
         } else if (!employee.IsAdmin) {
             // console.log(`logged in as: substitute`);
@@ -128,15 +139,20 @@ async function initApp() {
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
     shiftInterests = await getShiftInterestData();
-    
+
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
-    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
-    
+    document
+        .querySelector("#form-create-new-substitute-cancel-btn")
+        .addEventListener("click", closeCreateNewSubstituteDialog);
+
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
-    document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift)
+    document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
+    document
+        .querySelector("#form-create-new-shift-cancel-btn")
+        .addEventListener("click", closeCreateNewShiftDialog);
 }
 
 export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };

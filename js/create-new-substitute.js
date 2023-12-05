@@ -60,10 +60,18 @@ async function createNewSubstitute(event) {
 
         // Probably needs to be changed to updateList or something like that
         // initApp();
+    } else {
+        document.querySelector("#dialog-error-message-create-substitute").showModal();
+        document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);
     }
 }
 
-// Close dialog
+// Close error message
+function closeErrorMessageInCreateSubstitute() {
+    document.querySelector("#dialog-error-message-create-substitute").close();
+}
+
+// Close dialog window
 function closeCreateNewSubstituteDialog() {
     console.log("close create new substitute dialog");
     document.querySelector("#dialog-create-new-substitute").close();

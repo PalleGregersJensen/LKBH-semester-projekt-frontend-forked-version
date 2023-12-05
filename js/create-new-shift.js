@@ -40,7 +40,21 @@ async function createNewShift(event) {
 
         // Probably needs to be changed to updateList or something like that
         // initApp();
+    } else {
+        document.querySelector("#dialog-error-message-create-shift").showModal();
+        document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);
     }
 }
 
-export { createNewShiftClicked, createNewShift };
+// Close error message
+function closeErrorMessageInCreateShift() {
+    document.querySelector("#dialog-error-message-create-shift").close();
+}
+
+// Close dialog window
+function closeCreateNewShiftDialog() {
+    console.log("close create new substitute dialog");
+    document.querySelector("#dialog-create-new-shift").close();
+}
+
+export { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog };
