@@ -60,6 +60,8 @@
             <!-- admin shifts list -->
             <section id="shifts-view-section-admin" class="view-content">
                 <p>Shifts list admin</p>
+                <!-- create new vacant shift button -->
+                <button id="create-new-shift-btn">Opret ny vagt</button>
                 <div class="shifts-tables">
                     <div id="tabs-admin">
                         <h2 data-tab-show="shifts-tab-admin">Vagter</h2>
@@ -203,27 +205,39 @@
                 <legend>Opret ny medarbejder</legend>
                 <form id="form-create-new-substitute" action="" method="dialog">
                     <label for="form-create-new-substitute-firstname">Fornavn</label>
-                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" />
+                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" required/>
                     <label for="form-create-new-substitute-lastname"> Efternavn</label>
-                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" />
+                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" required/>
                     <label for="form-create-new-substitute-date-of-birth">Fødselsdato</label>
-                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" />
+                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" required/>
                     <label for="form-create-new-substitute-mail">E-mail</label>
-                    <input type="mail" name="mail" id="form-create-new-substitute-mail" />
+                    <input type="mail" name="mail" id="form-create-new-substitute-mail" required/>
                     <label for="form-create-new-substitute-number">Telefonnummner</label>
-                    <input type="number" name="phone-number" id="form-create-new-substitute-number" />
+                    <input type="number" name="phone-number" id="form-create-new-substitute-number" required/>
                     <fieldset>
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
                         <label for="form-create-new-substitute-is-admin">Ja</label>
-                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-admin" value="is-admin" />
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-admin"
+                            value="is-admin"
+                            required
+                        />
                         <label for="form-create-new-substitute-is-not-admin">Nej</label>
-                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-not-admin" value="is-not-admin" />
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-not-admin"
+                            value="is-not-admin"
+                            required
+                        />
                     </fieldset>
                     <label for="form-create-new-substitute-username">Brugernavn</label>
-                    <input type="text" name="username" id="form-create-new-substitute-username" />
+                    <input type="text" name="username" id="form-create-new-substitute-username" required/>
                     <label for="form-create-new-substitute-password">Password</label>
-                    <input type="text" name="password" id="form-create-new-substitute-password" />
+                    <input type="text" name="password" id="form-create-new-substitute-password" required/>
                     <button type="submit" value="submit">Submit</button>
                     <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Cancel</button>
                 </form>
@@ -269,11 +283,11 @@
                 <legend>Opret ny ledig vagt</legend>
                 <form id="form-create-new-shift" action="" method="dialog">
                     <label for="form-create-new-shift-date">Dato</label>
-                    <input type="date" name="shift-date" id="form-create-new-shift-date" />
+                    <input type="date" name="shift-date" id="form-create-new-shift-date" required/>
                     <label for="form-create-new-shift-start">Vagt starter</label>
-                    <input type="time" name="shift-start" id="form-create-new-shift-start" />
+                    <input type="datetime-local" name="shift-start" id="form-create-new-shift-start" required/>
                     <label for="form-create-new-shift-end">Vagt slutter</label>
-                    <input type="time" name="shift-end" id="form-create-new-shift-end" />
+                    <input type="datetime-local" name="shift-end" id="form-create-new-shift-end" required/>
                     <button type="submit" value="submit">Submit</button>
                     <button type="button" value="cancel" id="form-create-new-shift-cancel-btn">Cansel</button>
                 </form>
