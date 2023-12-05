@@ -1,3 +1,5 @@
+import { updateRequestedShiftsList } from "./main.js";
+
 const endpoint = "http://localhost:3333";
 
 // get Json-data
@@ -27,6 +29,7 @@ async function getRequestedShifts() {
     return data;
 }
 
+//Opdatere ttildeling af vagt
 async function assignSubstitute(event) {
     event.preventDefault();
     const form = event.target;
@@ -34,7 +37,6 @@ async function assignSubstitute(event) {
     const shiftID = Number(form.formAssignShiftID.value);
     const employeeID = Number(form.formAssignSubstituteID.value);
     const bodyToUpdate = { EmployeeID: employeeID, ShiftID: shiftID };
-    console.log(bodyToUpdate);
 
     const response = await fetch(`${endpoint}/shifts/${shiftID}`, {
         method: "put",
@@ -44,6 +46,7 @@ async function assignSubstitute(event) {
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
+    updateRequestedShiftsList(); // opdater liste... virker ikke og flere lister skal også opdateres
     return response;
 }
 

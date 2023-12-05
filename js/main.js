@@ -138,4 +138,4 @@ async function updateRequestedShiftsList() {
     requestedShiftsList = data.map(requestedshift.construct);
 }
 
-export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };

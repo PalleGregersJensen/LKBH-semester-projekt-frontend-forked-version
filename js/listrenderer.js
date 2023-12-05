@@ -13,7 +13,7 @@ export class ListRenderer {
 
             if (this.itemRenderer.postRenderer) {
                 const element = this.container.lastElementChild;
-                const button = element.querySelector("#assign-btn"); //id kan måske styres med parameter/argument så det kan genbruges...
+                const button = element.querySelector("#assign-btn"); //button id kan måske styres med parameter/argument så det kan genbruges...
                 this.itemRenderer.postRenderer(button, item);
             }
         }
