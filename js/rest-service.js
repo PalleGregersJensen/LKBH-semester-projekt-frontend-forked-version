@@ -31,18 +31,20 @@ async function assignSubstitute(event) {
     event.preventDefault();
     const form = event.target;
 
-    const shiftID = form.formAssignShiftID.value;
-    const employeeID = form.formAssignSubstituteID.value;
+    const shiftID = Number(form.formAssignShiftID.value);
+    const employeeID = Number(form.formAssignSubstituteID.value);
     const bodyToUpdate = { EmployeeID: employeeID, ShiftID: shiftID };
     console.log(bodyToUpdate);
 
     const response = await fetch(`${endpoint}/shifts/${shiftID}`, {
-        method: "PUT",
+        method: "put",
         headers: { "content-type": "application/json" },
-        body: bodyToUpdate,
+        // Convert body to JSON string before sending it to the API
+        body: JSON.stringify(bodyToUpdate),
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
     return response;
 }
+
 export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute };
