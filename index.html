@@ -269,7 +269,7 @@
         <dialog id="dialog-delete-substitute">
             <form action="" id="form-delete-substitute" method="dialog">
                 <h3>Slet: <span id="name-to-delete"></span>?</h3>
-                <input type="text" name="formDeleteEmployeeID">
+                <input type="text" name="formDeleteEmployeeID" hidden />
                 <button type="submit">Bekræft</button>
                 <button id="form-cancel-delete-substitute" type="button">Annuler</button>
             </form>
@@ -322,8 +322,8 @@
                     </select>
                     <br />
                     <!-- gemte id'er -->
-                    <input type="text" name="formAssignShiftID" />
-                    <input type="text" name="formAssignSubstituteID" />
+                    <input type="text" name="formAssignShiftID" hidden />
+                    <input type="text" name="formAssignSubstituteID" hidden />
                     <button type="submit">Tildel?</button>
                 </form>
             </fieldset>

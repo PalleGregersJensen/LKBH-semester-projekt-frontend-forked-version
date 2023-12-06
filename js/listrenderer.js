@@ -13,6 +13,7 @@ export class ListRenderer {
             const html = this.itemRenderer.render(item);
             this.container.insertAdjacentHTML("beforeend", html);
 
+            // tjekker om itemRenderen har en postRenderer funktion og kalder den med button id'er og item(objekt) som argumenter
             if (this.itemRenderer.postRenderer) {
                 const element = this.container.lastElementChild;
                 const button1 = element.querySelector(this.buttonID1);

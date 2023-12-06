@@ -52,12 +52,12 @@ async function assignSubstitute(event) {
 
 // Slet vikar
 async function deleteSubstitute(event) {
+    // forhindre default adfærd der refresher siden
     event.preventDefault();
     const form = event.target;
 
     const employeeID = Number(form.formDeleteEmployeeID.value);
     const bodyToUpdate = { EmployeeID: employeeID };
-    console.log(bodyToUpdate);
 
     const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
         method: "DELETE",
