@@ -22,7 +22,7 @@ import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
 import * as requestedshift from "./model/requested-shift.js";
-import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
+import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
@@ -161,6 +161,7 @@ async function initApp() {
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
+    document.querySelector("#form-create-new-shift-cancel-btn").addEventListener("click", closeCreateNewShiftDialog);
 }
 
 async function updateRequestedShiftsList() {
