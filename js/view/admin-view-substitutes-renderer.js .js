@@ -20,7 +20,23 @@ export class AdminViewSubstitutesRenderer {
     postRenderer(substitute, button1, button2) {
         //tilføjer event listener ti "opdater"(button1) knap
         button1.addEventListener("click", () => {
-            console.log("update substitute clicked");
+            const form = document.querySelector("#form-admin-update-substitute");
+            console.log(substitute.isAdmin);
+            
+            form.formUpdateEmployeeID.value = substitute.id;
+            form.firstname.value = substitute.firstName;
+            form.lastname.value = substitute.lastName;
+            form.dateofbirth.value = substitute.formBirthdate;
+            form.mail.value = substitute.mail;
+            form.phonennumber.value = substitute.number;
+            if (substitute.isAdmin === 1) {
+                form.querySelector("#form-admin-update-substitute-is-admin").checked = true;
+            } else {
+                form.querySelector("#form-admin-update-substitute-is-not-admin").checked = true;
+            }
+            form.username.value = substitute.userName;
+
+            document.querySelector("#dialog-admin-update-substitute").showModal();
         });
 
         //tilføjer event listener til "fjern"(button2) knap

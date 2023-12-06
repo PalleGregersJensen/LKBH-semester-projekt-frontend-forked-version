@@ -75,4 +75,37 @@ async function deleteSubstitute(event) {
     //opdater buildListe ----> ?
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, deleteSubstitute };
+// opdater vikar
+async function updateSubstitute(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const id = form.formUpdateEmployeeID.value;
+    const firstName = form.firstname.value;
+    const lastName = form.lastname.value;
+    const birthdate = form.dateofbirth.value;
+    const mail = form.mail.value;
+    const number = form.phonennumber.value;
+    const isAdmin = form.querySelector("#form-admin-update-substitute-is-admin").checked;
+    const userName = form.username.value;
+    // if (substitute.isAdmin === 1) {
+    //     form.querySelector("#form-admin-update-substitute-is-admin").checked = true;
+    // } else {
+    //     form.querySelector("#form-admin-update-substitute-is-not-admin").checked = true;
+    // }
+    const bodyToUpdate = { EmployeeID: id, FirstName: firstName, LastName: lastName, DateOfBirth: birthdate, Mail: mail, Number: number, IsAdmin: isAdmin, Username: userName }
+    
+    const response = fetch(`${endpoint}/substitutes/${id}`, {
+        method: "PUT",
+        headers: { "content:type", "application/json"},
+        body: JSON.stringify(bodyToUpdate)
+    });
+
+    if (response.ok) {
+        console.log("Brugeren er opdateret med succes!")
+    } else {
+        console.log("Noget gik galt, brugeren blev ikke opdateret!")
+    }
+}
+
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute };

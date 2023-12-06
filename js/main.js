@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked, isLoggedIn } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute, deleteSubstitute } from "./rest-service.js";
+import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -171,6 +171,7 @@ function applyEventListeners() {
 
     //eventlisteners
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
+    document.querySelector("#form-admin-update-substitute").addEventListener("submit", updateSubstitute);
     document.querySelector("#form-delete-substitute").addEventListener("submit", deleteSubstitute);
     document.querySelector("#form-cancel-delete-substitute").addEventListener("click", cancelDeleteSubstitute);
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
