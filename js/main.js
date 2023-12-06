@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked, isLoggedIn } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute } from "./rest-service.js";
+import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute, deleteSubstitute } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -154,6 +154,10 @@ async function buildSubstitutesList() {
     console.log(substitutes);
 }
 
+function cancelDeleteSubstitute() {
+    document.querySelector("#dialog-delete-substitute").close();
+}
+
 function applyEventListeners() {
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
@@ -167,7 +171,10 @@ function applyEventListeners() {
 
     //eventlisteners
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
+    document.querySelector("#form-delete-substitute").addEventListener("submit", deleteSubstitute);
+    document.querySelector("#form-cancel-delete-substitute").addEventListener("click", cancelDeleteSubstitute);
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
+
     document.querySelector("#denyInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
     });

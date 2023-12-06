@@ -1,4 +1,4 @@
-import { buildShiftsList, buildRequestedShiftsList, } from "./main.js";
+import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
 
 const endpoint = "http://localhost:3333";
 
@@ -50,4 +50,29 @@ async function assignSubstitute(event) {
     buildShiftsList(); // opdater liste... virker ikke før logud og login påny
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute };
+// Slet vikar
+async function deleteSubstitute(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const employeeID = Number(form.formDeleteEmployeeID.value);
+    const bodyToUpdate = { EmployeeID: employeeID };
+    console.log(bodyToUpdate);
+
+    const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToUpdate),
+    });
+
+    if (response.ok) {
+        console.log("Vikar slettet!");
+    } else {
+        console.log("Noget gik galt, vikaren er IKKE slettet!");
+    }
+
+    document.querySelector("#dialog-delete-substitute").close();
+    //opdater buildListe ----> ?
+}
+
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, deleteSubstitute };

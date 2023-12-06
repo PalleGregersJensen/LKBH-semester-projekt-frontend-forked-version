@@ -8,11 +8,16 @@ export function construct(originalData) {
         isAdmin: originalData.IsAdmin,
         userName: originalData.Username,
         passwordHash: originalData.PasswordHash,
-        get dateOfBirth(){
+        
+        get dateOfBirth() {
             const options = {day: "numeric", month: "short", year: "numeric" };
             const date = new Date(originalData.DateOfBirth);
             return date.toLocaleString("da", options);
           
+        },
+
+        get fullName() {
+            return `${this.firstName} ${this.lastName}`
         }
     };
     return substituteObject;

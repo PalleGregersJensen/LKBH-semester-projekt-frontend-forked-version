@@ -1,12 +1,12 @@
 export class AdminViewSubstitutesRenderer {
     render(substitute) {
-        const fullnName = `${substitute.firstName} ${substitute.lastName}`;
+        const fullName = `${substitute.firstName} ${substitute.lastName}`;
         const memberNumber = substitute.id;
         const phoneNumber = String(substitute.number);
 
         const html = /*html*/ `
             <tr>
-                <td>${fullnName}</td>
+                <td>${fullName}</td>
                 <td>${memberNumber}</td>
                 <td>${phoneNumber}</td>
                 <td><button id="update-substitute-btn" class="btnStyling">Opdater</button></td>
@@ -23,7 +23,15 @@ export class AdminViewSubstitutesRenderer {
         });
         
         button2.addEventListener("click", () => {
-            console.log("delete substitute clicked")
+            // console.log("delete substitute clicked");
+            console.log(substitute);
+
+            const form = document.querySelector("#form-delete-substitute");
+
+            form.querySelector("#name-to-delete").textContent = substitute.fullName;
+            form.formDeleteEmployeeID.value = substitute.id;
+
+            document.querySelector("#dialog-delete-substitute").showModal();
         });
     }
 }
