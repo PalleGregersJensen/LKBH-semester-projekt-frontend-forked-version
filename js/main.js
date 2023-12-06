@@ -23,6 +23,7 @@ import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shi
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
 import * as requestedshift from "./model/requested-shift.js";
 import * as shift from "./model/myshifts.js";
+import * as substitute from "./model/substitute.js"
 import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
@@ -61,7 +62,7 @@ async function initApp() {
             const substitutesForAdminRenderer = new SubstitutesForAdminRenderer();
 
             //filtering substitutes-list for everyone but the user logged in
-            const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
+            const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
             //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
             const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
             substitute.render();
@@ -92,7 +93,7 @@ async function initApp() {
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
-            const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
+            const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
             const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
@@ -132,8 +133,9 @@ async function initApp() {
     // initTabs();
     initViews();
     applyEventListeners();
-    substitutes = await getSubstitutesData();
     await buildShiftsList();
+    await buildSubstitutesList();
+
     shiftInterests = await getShiftInterestData();
 }
 
@@ -145,6 +147,12 @@ async function updateRequestedShiftsList() {
 async function buildShiftsList(){
     const originalData = await getShiftData();
     shifts = originalData.map(shift.construct);
+}
+
+async function buildSubstitutesList(){
+    const originalData = await getSubstitutesData();
+    substitutes = originalData.map(substitute.construct);
+    console.log(substitutes);
 }
 
 function applyEventListeners(){

@@ -8,37 +8,36 @@ export class Substituterenderer {
 
     render(substitute) {
       this.substitute = substitute;
-        const formattedDateOfBirth = formatShiftDate(substitute.DateOfBirth);
       let html = `
         <h1>Personlige Oplysninger</h1>
-        <table class="substitute-table" data-substitute-id="${substitute.EmployeeID}">
+        <table class="substitute-table" data-substitute-id="${substitute.id}">
           <tr>
             <td>Navn: </td>
-            <td>${substitute.FirstName} ${substitute.LastName}</td>
+            <td>${substitute.firstName} ${substitute.lastName}</td>
           </tr>
           <tr>
             <td>Fødselsdato: </td>
-            <td>${formattedDateOfBirth}</td>
+            <td>${substitute.dateOfBirth}</td>
           </tr>
           <tr>
             <td>E-Mail:</td>
-            <td>${substitute.Mail}</td>
+            <td>${substitute.mail}</td>
           </tr>
           <tr>
             <td>Telefon: </td>
-            <td>${substitute.Number}</td>
+            <td>${substitute.number}</td>
           </tr>
         </table>
         
         <h1>Login Oplysninger</h1>
-        <table class="substitute-table" data-substitute-id="${substitute.EmployeeID}">
+        <table class="substitute-table" data-substitute-id="${substitute.id}">
           <tr>
             <td>Brugernavn: </td>
-            <td>${substitute.Username} <button class="editLoginInfo-btn" data-username="${substitute.Username}">Rediger</button></td>
+            <td>${substitute.userName} <button class="editLoginInfo-btn" data-username="${substitute.userName}">Rediger</button></td>
           </tr>
           <tr>
             <td>Password: </td>
-            <td>${substitute.PasswordHash} <button class="editLoginInfo-btn" data-username="${substitute.Username}">Rediger</button></td>
+            <td>${substitute.passwordHash} <button class="editLoginInfo-btn" data-username="${substitute.userName}">Rediger</button></td>
           </tr>
         </table>      `;
       return html;
@@ -75,7 +74,7 @@ export class Substituterenderer {
   editLoginInfo() {
       // Check if 'this.substitute' is not null before accessing its properties
       if (this.substitute) {
-          const username = this.substitute.Username;
+          const username = this.substitute.username;
           document.querySelector("#edit-username").value = username;
           document.querySelector("#editLoginInfo-dialog").showModal();
       }
@@ -83,11 +82,6 @@ export class Substituterenderer {
 
 }
 
-function formatShiftDate(dateString) {
-  const options = {day: "numeric", month: "short", year: "numeric" };
-  const date = new Date(dateString);
-  return date.toLocaleString("da", options);
-}
 
 
 
