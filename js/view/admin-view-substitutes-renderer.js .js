@@ -21,9 +21,8 @@ export class AdminViewSubstitutesRenderer {
         //tilføjer event listener ti "opdater"(button1) knap
         button1.addEventListener("click", () => {
             const form = document.querySelector("#form-admin-update-substitute");
-            console.log(substitute.isAdmin);
-            
-            form.formUpdateEmployeeID.value = substitute.id;
+
+            form.formUpdateEmployeeID.value = substitute.id; // hidden
             form.firstname.value = substitute.firstName;
             form.lastname.value = substitute.lastName;
             form.dateofbirth.value = substitute.formBirthdate;

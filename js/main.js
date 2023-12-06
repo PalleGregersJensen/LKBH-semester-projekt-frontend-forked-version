@@ -6,7 +6,15 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked, isLoggedIn } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute } from "./rest-service.js";
+import {
+    getShiftData,
+    getShiftInterestData,
+    getSubstitutesData,
+    getRequestedShifts,
+    assignSubstitute,
+    updateSubstitute,
+    deleteSubstitute,
+} from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -158,6 +166,10 @@ function cancelDeleteSubstitute() {
     document.querySelector("#dialog-delete-substitute").close();
 }
 
+function cancelUpdateSubstitute() {
+    document.querySelector("#dialog-admin-update-substitute").close();
+}
+
 function applyEventListeners() {
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
@@ -169,11 +181,18 @@ function applyEventListeners() {
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
     document.querySelector("#form-create-new-shift-cancel-btn").addEventListener("click", closeCreateNewShiftDialog);
 
-    //eventlisteners
+    // eventlisteners for assign substitute
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
+
+    // eventlisteners for update substitute
     document.querySelector("#form-admin-update-substitute").addEventListener("submit", updateSubstitute);
+    document.querySelector("#form-admin-update-substitute-cancel-btn").addEventListener("click", cancelUpdateSubstitute);
+
+    // eventlisteners for delete substitute
     document.querySelector("#form-delete-substitute").addEventListener("submit", deleteSubstitute);
     document.querySelector("#form-cancel-delete-substitute").addEventListener("click", cancelDeleteSubstitute);
+
+    // eventlistener for logout
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
 
     document.querySelector("#denyInterest-btn").addEventListener("click", function () {

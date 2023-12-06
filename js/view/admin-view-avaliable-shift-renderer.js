@@ -19,7 +19,7 @@ export class AdminViewAvaliableShiftRenderer {
             const form = document.querySelector("#form-admin-assign-shift");
             const selectElement = document.querySelector("#select-substitute");
             selectElement.innerHTML = "";
-            console.log(shift);
+            // console.log(shift);
 
             //option elementer tilføjes
             if (shift.fullName && shift.fullName.length > 0) {
