@@ -97,7 +97,7 @@ async function updateSubstitute(event) {
     
     const response = fetch(`${endpoint}/substitutes/${id}`, {
         method: "PUT",
-        headers: { "content:type", "application/json"},
+        headers: { "content:type": "application/json"},
         body: JSON.stringify(bodyToUpdate)
     });
 
