@@ -1,3 +1,6 @@
+import { substitutes } from "../main.js";
+
+
 export function construct(originalData) {
   const shiftObject = {
       id: originalData.ShiftID,
@@ -36,7 +39,18 @@ export function construct(originalData) {
           const minutes = Math.floor((timeDifferenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
 
           return { hours, minutes };
-      }
+      },
+      get fullName(){
+      let fullName;
+
+      const matchingSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === originalData.EmployeeID);
+      // console.log(matchingSubstitute);
+  
+      if (matchingSubstitute[0]) {
+          return (fullName = `${matchingSubstitute[0].FirstName} ${matchingSubstitute[0].LastName}`);
+      } else {
+          return "...";
+      }}
   };
 
   return shiftObject;

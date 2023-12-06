@@ -37,24 +37,6 @@ async function initApp() {
     //hiding logout button
     document.querySelector("#logout-btn").classList.add("hidden");
 
-    //eventlisteners
-    document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
-    document.querySelector("#logout-btn").addEventListener("click", logOutView);
-    document.querySelector("#denyInterest-btn").addEventListener("click", function () {
-        document.querySelector("#shiftInterest-dialog").close();
-    });
-    document.querySelector("#reject-new-login-info").addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        document.querySelector("#editLoginInfo-dialog").close();
-    });
-
-    document.querySelector("#close-passwords-dialog").addEventListener("click", function () {
-        document.querySelector("#not-matching-passwords").close();
-    });
-    document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
-        document.querySelector("#existing-shiftInterest-entry").close();
-    });
-
     document.querySelector("#login-form").addEventListener("submit", async (event) => {
         event.preventDefault();
         employee = await loginClicked();
@@ -141,18 +123,10 @@ async function initApp() {
 
     // initTabs();
     initViews();
+    applyEventListeners();
     substitutes = await getSubstitutesData();
     await buildShiftsList();
     shiftInterests = await getShiftInterestData();
-
-    // eventlisteners for create new substitute
-    document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
-    document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
-    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
-
-    // eventlisteners for create new shift
-    document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
-    document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
 }
 
 async function updateRequestedShiftsList() {
@@ -163,5 +137,35 @@ async function updateRequestedShiftsList() {
 async function buildShiftsList(){
     const originalData = await getShiftData();
     shifts = originalData.map(shift.construct);
+}
+
+function applyEventListeners(){
+    // eventlisteners for create new substitute
+    document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
+    document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
+    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
+
+    // eventlisteners for create new shift
+    document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
+    document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
+
+        //eventlisteners
+        document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
+        document.querySelector("#logout-btn").addEventListener("click", logOutView);
+        document.querySelector("#denyInterest-btn").addEventListener("click", function () {
+            document.querySelector("#shiftInterest-dialog").close();
+        });
+        document.querySelector("#reject-new-login-info").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            document.querySelector("#editLoginInfo-dialog").close();
+        });
+    
+        document.querySelector("#close-passwords-dialog").addEventListener("click", function () {
+            document.querySelector("#not-matching-passwords").close();
+        });
+        document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
+            document.querySelector("#existing-shiftInterest-entry").close();
+        });
+    
 }
 export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };
