@@ -49,7 +49,7 @@ async function initApp() {
 
         if (employee.IsAdmin) {
             // console.log(`logged in as: admin`);
-            await updateRequestedShiftsList();
+            await buildRequestedShiftsList();
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
@@ -68,10 +68,21 @@ async function initApp() {
             shiftsAdminList.render();
 
             const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer);
+            const adminAvaliableShiftList = new ListRenderer(
+                availableShiftsListAdmin,
+                "#availableShifts-admin-tbody",
+                adminViewAvaliableShiftRenderer,
+                "#assign-btn"
+            );
             adminAvaliableShiftList.render();
 
-            const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", adminViewSubstitutesRenderer);
+            const userListForAdmin = new ListRenderer(
+                substitutes,
+                "#substitutes-list-admin-tbody",
+                adminViewSubstitutesRenderer,
+                "#update-substitute-btn",
+                "#delete-substitute-btn"
+            );
             userListForAdmin.render();
         } else if (!employee.IsAdmin) {
             // Create an instance of Renderers
@@ -127,7 +138,7 @@ async function initApp() {
     shiftInterests = await getShiftInterestData();
 }
 
-async function updateRequestedShiftsList() {
+async function buildRequestedShiftsList() {
     const data = await getRequestedShifts();
     requestedShiftsList = data.map(requestedshift.construct);
 }
@@ -172,4 +183,4 @@ function applyEventListeners() {
         document.querySelector("#existing-shiftInterest-entry").close();
     });
 }
-export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, buildShiftsList, buildRequestedShiftsList };

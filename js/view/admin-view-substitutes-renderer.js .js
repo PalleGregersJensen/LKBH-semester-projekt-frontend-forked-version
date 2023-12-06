@@ -15,4 +15,15 @@ export class AdminViewSubstitutesRenderer {
         `;
         return html;
     }
+
+    postRenderer(substitute, button1, button2) {
+        //adding event listener to "update"(button1) button
+        button1.addEventListener("click", () => {
+            console.log("update substitute clicked")
+        });
+        
+        button2.addEventListener("click", () => {
+            console.log("delete substitute clicked")
+        });
+    }
 }

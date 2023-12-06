@@ -14,18 +14,19 @@ export class AdminViewAvaliableShiftRenderer {
     }
 
     //postRenderer til at sætte eventlistener på button samt tilføje html option elementer til dialog mm.
-    postRenderer(button, shift) {
+    postRenderer(shift, button) {
         button.addEventListener("click", () => {
             const form = document.querySelector("#form-admin-assign-shift");
             const selectElement = document.querySelector("#select-substitute");
             selectElement.innerHTML = "";
+            console.log(shift);
 
             //option elementer tilføjes
-            if (shift.fullname && shift.fullname.length > 0) {
-                for (let i = 0; i < shift.fullname.length; i++) {
+            if (shift.fullName && shift.fullName.length > 0) {
+                for (let i = 0; i < shift.fullName.length; i++) {
                     const option = document.createElement("option");
-                    option.value = shift.fullname[i];
-                    option.text = shift.fullname[i];
+                    option.value = shift.fullName[i];
+                    option.text = shift.fullName[i];
                     selectElement.appendChild(option);
                 }
             }
@@ -35,7 +36,7 @@ export class AdminViewAvaliableShiftRenderer {
             form.formAssignShiftID.value = shift.shiftID; //hidden
 
             //sætter vikar id til første navn på options default navn
-            if (shift.fullname) {
+            if (shift.fullName) {
                 form.formAssignSubstituteID.value = shift.interestedEmployeeIDs[0]; //hidden
             } else {
                 form.formAssignSubstituteID.value = null;
@@ -43,9 +44,9 @@ export class AdminViewAvaliableShiftRenderer {
 
             //hvis man vælger et andet navn så sættes det respektive id også i formen
             selectElement.addEventListener("change", () => {
-                if (shift.fullname) {
-                    for (let i = 0; i < shift.fullname.length; i++) {
-                        if (shift.fullname[i] === selectElement.value) {
+                if (shift.fullName) {
+                    for (let i = 0; i < shift.fullName.length; i++) {
+                        if (shift.fullName[i] === selectElement.value) {
                             form.formAssignSubstituteID.value = shift.interestedEmployeeIDs[i];
                         }
                     }

@@ -1,4 +1,4 @@
-import { updateRequestedShiftsList } from "./main.js";
+import { buildShiftsList, buildRequestedShiftsList, } from "./main.js";
 
 const endpoint = "http://localhost:3333";
 
@@ -46,8 +46,8 @@ async function assignSubstitute(event) {
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
-    updateRequestedShiftsList(); // opdater liste... virker ikke og flere lister skal også opdateres
-    return response;
+    buildRequestedShiftsList(); // opdater liste... virker ikke før logud og login påny
+    buildShiftsList(); // opdater liste... virker ikke før logud og login påny
 }
 
 export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute };
