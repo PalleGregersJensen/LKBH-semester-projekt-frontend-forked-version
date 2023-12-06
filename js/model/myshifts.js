@@ -43,11 +43,11 @@ export function construct(originalData) {
       get fullName(){
       let fullName;
 
-      const matchingSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === originalData.EmployeeID);
+      const matchingSubstitute = substitutes.filter((substitute) => substitute.id === originalData.EmployeeID);
       // console.log(matchingSubstitute);
   
       if (matchingSubstitute[0]) {
-          return (fullName = `${matchingSubstitute[0].FirstName} ${matchingSubstitute[0].LastName}`);
+          return (fullName = `${matchingSubstitute[0].firstName} ${matchingSubstitute[0].lastName}`);
       } else {
           return "...";
       }}
