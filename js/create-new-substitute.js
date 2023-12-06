@@ -45,6 +45,7 @@ async function createNewSubstitute(event) {
         PasswordHash: password,
     };
     const userAsJson = JSON.stringify(user);
+    // console.log(userAsJson);
     const response = await fetch(`${endpoint}/substitutes/`, {
         method: "POST",
         body: userAsJson,

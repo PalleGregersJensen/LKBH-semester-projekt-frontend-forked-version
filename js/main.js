@@ -24,7 +24,7 @@ import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
 import * as requestedshift from "./model/requested-shift.js";
 import * as shift from "./model/myshifts.js";
 import * as substitute from "./model/substitute.js"
-import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
+import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
