@@ -72,4 +72,4 @@ function setLoginUsername() {
     document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
 }
 
-export { loginClicked};
+export { loginClicked, isLoggedIn};
