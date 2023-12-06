@@ -78,6 +78,7 @@ function logOutView() {
     document.querySelector(".substitute-view").classList.remove("active");
     document.querySelector(".view-content-admin").classList.remove("active");
     setActiveLink(hashLink);
+    localStorage.clear();
 }
 
 export { initViews, viewChange, logOutView };

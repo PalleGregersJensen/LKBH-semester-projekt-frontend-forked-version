@@ -7,6 +7,8 @@ let isAdmin;
 // console.log(isAdmin);
 // employee is the object of the employee logged in
 let employee;
+let storedEmployee;
+
 
 // login clicked
 async function loginClicked() {
@@ -18,6 +20,9 @@ async function loginClicked() {
     // console.log(password);
     let employeeData = await checkUsernameAndPassword(userName, password);
     employee = employeeData.employee;
+
+    let storedEmployee = localStorage.setItem("employee", JSON.stringify(employee));
+    console.log(storedEmployee);
     // console.log(employee);
     // console.log(employee.IsAdmin);
     // Checks if user logged in is admin or substitute
@@ -28,9 +33,17 @@ async function loginClicked() {
     }
     // console.log(isAdmin);
     setLoginUsername();
-
-    viewChange(employee);
-    return employee
+    storedEmployee = JSON.parse(localStorage.getItem("employee"));
+    if (employee) {
+        viewChange(employee);
+    } else {
+        viewChange(storedEmployee);
+    }
+    if (employee) {
+        return employee;
+    } else {
+        return storedEmployee;
+    }
 }
 
 // Post response to backend to see, if entered username and password is correct
@@ -66,10 +79,16 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
         console.error("An error occurred:", error);
     }
 }
+storedEmployee = JSON.parse(localStorage.getItem("employee"));
 
+console.log(storedEmployee);
 function setLoginUsername() {
-    // console.log(employee);
-    document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
+    console.log(employee);
+    if (employee) {
+        document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
+    } else {
+        document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${storedEmployee.Username}`;
+    }
 }
 
-export { loginClicked, isLoggedIn};
+export { loginClicked, storedEmployee, setLoginUsername, isLoggedIn };
