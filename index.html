@@ -78,7 +78,7 @@
                                 <tbody id="shifts-admin-tbody"></tbody>
                             </table>
                         </div>
-                        
+
                         <div id="availableShifts-tab-admin" class="hidden">
                             <table>
                                 <thead id="table-headers">
@@ -113,94 +113,90 @@
                 </div>
             </section>
 
-                    <!-- Vikar section -->
-                    <section id="substitute-page" class="substitute-view">
-                      <!--Navbar for vikarer-->
-                      <div class="navbar-container">
-                          <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
-                          <a href="#shifts" class="view-link navbar-content">Vagter</a>
-                          <a href="#schema" class="view-link navbar-content">Skema</a>
-                      </div>
-                  </section>
+            <!-- Vikar section -->
+            <section id="substitute-page" class="substitute-view">
+                <!--Navbar for vikarer-->
+                <div class="navbar-container">
+                    <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
+                    <a href="#shifts" class="view-link navbar-content">Vagter</a>
+                    <a href="#schema" class="view-link navbar-content">Skema</a>
+                </div>
+            </section>
 
-                  <section id="mypage" class="view-content">
-                    <div class="my-info"></div>
-                    <!-- Dialog til at redigere login informationer for vikarer-->
-                    <dialog id="editLoginInfo-dialog">
-                      <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
-                      <form action="">
+            <section id="mypage" class="view-content">
+                <div class="my-info"></div>
+                <!-- Dialog til at redigere login informationer for vikarer-->
+                <dialog id="editLoginInfo-dialog">
+                    <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
+                    <form action="">
                         <label for="edit-username">Brugernavn:</label>
-                        <input name="edit-username" id="edit-username" type="text">
+                        <input name="edit-username" id="edit-username" type="text" />
                         <label for="edit-password">Nyt kodeord:</label>
-                        <input name="edit-password" id="edit-password" type="password">
+                        <input name="edit-password" id="edit-password" type="password" />
                         <label for="confirm-new-password">Bekræft nyt kodeord:</label>
-                        <input name="confirm-new-password" id="confirm-new-password" type="password">
+                        <input name="confirm-new-password" id="confirm-new-password" type="password" />
                         <button id="confirm-new-login-info">Bekræft</button>
                         <button id="reject-new-login-info">Fortryd</button>
-                      </form>
-                    </dialog>
+                    </form>
+                </dialog>
 
-                    <dialog id="not-matching-passwords">
-                        <p id="not-matching-passwords-text">Passwords stemmer ikke overens!</p>
-                        <button id="close-passwords-dialog">Ok</button>
-                    </dialog>
-                  </section>
+                <dialog id="not-matching-passwords">
+                    <p id="not-matching-passwords-text">Passwords stemmer ikke overens!</p>
+                    <button id="close-passwords-dialog">Ok</button>
+                </dialog>
+            </section>
 
-                  <section id="shifts" class="view-content">
-                      <div class="shifts-tables">
-                          <div id="tabs-substitute">
-                              <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
-                              <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
-                              <div id="myShifts-tab" class="hidden">
-                                  <table>
-                                      <thead id="shifts-table-headers">
-                                          <tr>
-                                              <th id="shift-date">Dato</th>
-                                              <th id="shifts-shift-time">Tidspunkt</th>
-                                              <th id="shift-hours">Antal Timer</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody id="myShifts"></tbody>
-                                  </table>
-                              </div>
+            <section id="shifts" class="view-content">
+                <div class="shifts-tables">
+                    <div id="tabs-substitute">
+                        <h2 data-tab-show="myShifts-tab">Mine Vagter</h2>
+                        <h2 data-tab-show="availableShifts-tab">Ledige Vagter</h2>
+                        <div id="myShifts-tab" class="hidden">
+                            <table>
+                                <thead id="shifts-table-headers">
+                                    <tr>
+                                        <th id="shift-date">Dato</th>
+                                        <th id="shifts-shift-time">Tidspunkt</th>
+                                        <th id="shift-hours">Antal Timer</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myShifts"></tbody>
+                            </table>
+                        </div>
 
-                              <div id="availableShifts-tab" class="hidden">
-                                  <table>
-                                      <thead id="available-shifts-table-headers">
-                                          <tr>
-                                              <th id="shift-date">Dato</th>
-                                              <th id="available-shift-time">Tidspunkt</th>
-                                              <th id="shift-button">Byd på vagter</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody id="availableShifts"></tbody>
-                                  </table>
-                                  <dialog id="shiftInterest-dialog">
-                                    <p id="confirmInterestText"></p>
-                                    <button id="confirmInterest-btn">Ja</button>
-                                    <button id="denyInterest-btn">Nej</button>
-                              </dialog>
-                              <dialog id="existing-shiftInterest-entry">
+                        <div id="availableShifts-tab" class="hidden">
+                            <table>
+                                <thead id="available-shifts-table-headers">
+                                    <tr>
+                                        <th id="shift-date">Dato</th>
+                                        <th id="available-shift-time">Tidspunkt</th>
+                                        <th id="shift-button">Byd på vagter</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="availableShifts"></tbody>
+                            </table>
+                            <dialog id="shiftInterest-dialog">
+                                <p id="confirmInterestText"></p>
+                                <button id="confirmInterest-btn">Ja</button>
+                                <button id="denyInterest-btn">Nej</button>
+                            </dialog>
+                            <dialog id="existing-shiftInterest-entry">
                                 <p id="existing-shiftInterest-entry-text">Du har allerede budt på denne vagt</p>
                                 <button id="close-shiftInterest-dialog-btn">Ok</button>
-                              </dialog>
+                            </dialog>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                              </div>
-                          </div>
-                      </div>
-                  </section>
-
-                  <section id="schema" class="view-content">
-                      <div class="schema-data">
-                          <h2>Kontakt</h2>
-                          <p>Stillehavsvej 123</p>
-                          <p>2000, Frederiksberg</p>
-                          <p>Tlf: +45 98765432</p>
-                      </div>
-                  </section>
-
-            
-
+            <section id="schema" class="view-content">
+                <div class="schema-data">
+                    <h2>Kontakt</h2>
+                    <p>Stillehavsvej 123</p>
+                    <p>2000, Frederiksberg</p>
+                    <p>Tlf: +45 98765432</p>
+                </div>
+            </section>
         </main>
 
         <!-- admin create new substitue  -->
@@ -209,39 +205,27 @@
                 <legend>Opret ny medarbejder</legend>
                 <form id="form-create-new-substitute" action="" method="dialog">
                     <label for="form-create-new-substitute-firstname">Fornavn</label>
-                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" required/>
+                    <input type="text" name="firstname" id="form-create-new-substitute-firstname" required />
                     <label for="form-create-new-substitute-lastname"> Efternavn</label>
-                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" required/>
+                    <input type="text" name="lastname" id="form-create-new-substitute-lastname" required />
                     <label for="form-create-new-substitute-date-of-birth">Fødselsdato</label>
-                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" required/>
+                    <input type="date" name="date-of-birth" id="form-create-new-substitute-date-of-birth" required />
                     <label for="form-create-new-substitute-mail">E-mail</label>
-                    <input type="mail" name="mail" id="form-create-new-substitute-mail" required/>
+                    <input type="mail" name="mail" id="form-create-new-substitute-mail" required />
                     <label for="form-create-new-substitute-number">Telefonnummner</label>
-                    <input type="number" name="phone-number" id="form-create-new-substitute-number" required/>
+                    <input type="number" name="phone-number" id="form-create-new-substitute-number" required />
                     <fieldset>
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
                         <label for="form-create-new-substitute-is-admin">Ja</label>
-                        <input
-                            type="radio"
-                            name="admin-status"
-                            id="form-create-new-substitute-is-admin"
-                            value="is-admin"
-                            required
-                        />
+                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-admin" value="is-admin" required />
                         <label for="form-create-new-substitute-is-not-admin">Nej</label>
-                        <input
-                            type="radio"
-                            name="admin-status"
-                            id="form-create-new-substitute-is-not-admin"
-                            value="is-not-admin"
-                            required
-                        />
+                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-not-admin" value="is-not-admin" required />
                     </fieldset>
                     <label for="form-create-new-substitute-username">Brugernavn</label>
-                    <input type="text" name="username" id="form-create-new-substitute-username" required/>
+                    <input type="text" name="username" id="form-create-new-substitute-username" required />
                     <label for="form-create-new-substitute-password">Password</label>
-                    <input type="text" name="password" id="form-create-new-substitute-password" required/>
+                    <input type="text" name="password" id="form-create-new-substitute-password" required />
                     <button type="submit" value="submit">Submit</button>
                     <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Cancel</button>
                 </form>
@@ -267,19 +251,9 @@
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
                         <label for="form-admin-update-substitute-is-admin">Ja</label>
-                        <input
-                            type="radio"
-                            name="admin-status"
-                            id="form-admin-update-substitute-is-admin"
-                            value="is-admin"
-                        />
+                        <input type="radio" name="admin-status" id="form-admin-update-substitute-is-admin" value="is-admin" />
                         <label for="form-admin-update-substitute-is-not-admin">Nej</label>
-                        <input
-                            type="radio"
-                            name="admin-status"
-                            id="form-admin-update-substitute-is-not-admin"
-                            value="is-not-admin"
-                        />
+                        <input type="radio" name="admin-status" id="form-admin-update-substitute-is-not-admin" value="is-not-admin" />
                     </fieldset>
                     <label for="form-admin-update-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-admin-update-substitute-username" />
@@ -297,11 +271,11 @@
                 <legend>Opret ny ledig vagt</legend>
                 <form id="form-create-new-shift" action="" method="dialog">
                     <label for="form-create-new-shift-date">Dato</label>
-                    <input type="date" name="shift-date" id="form-create-new-shift-date" required/>
+                    <input type="date" name="shift-date" id="form-create-new-shift-date" required />
                     <label for="form-create-new-shift-start">Vagt starter</label>
-                    <input type="datetime-local" name="shift-start" id="form-create-new-shift-start" required/>
+                    <input type="datetime-local" name="shift-start" id="form-create-new-shift-start" required />
                     <label for="form-create-new-shift-end">Vagt slutter</label>
-                    <input type="datetime-local" name="shift-end" id="form-create-new-shift-end" required/>
+                    <input type="datetime-local" name="shift-end" id="form-create-new-shift-end" required />
                     <button type="submit" value="submit">Submit</button>
                     <button type="button" value="cancel" id="form-create-new-shift-cancel-btn">Cansel</button>
                 </form>
@@ -325,6 +299,26 @@
             </fieldset>
         </dialog>
 
+        <!-- admin assign substitute to shift -->
+        <dialog id="dialog-admin-assign-shift">
+            <fieldset>
+                <legend>Tildel vagt</legend>
+                <form id="form-admin-assign-shift" action="" method="dialog">
+                    <h3 id="form-assign-shift-header"></h3>
+                    <br />
+                    <label for="">Vælg vikar</label>
+                    <select name="" id="select-substitute">
+                        <!-- options inserted in  -->
+                    </select>
+                    <br />
+                    <!-- gemte id'er -->
+                    <input type="text" name="formAssignShiftID" />
+                    <input type="text" name="formAssignSubstituteID" />
+                    <button type="submit">Tildel?</button>
+                </form>
+            </fieldset>
+        </dialog>
+
         <!-- substitute update own information -->
         <!-- perhaps only update password is needed -->
         <dialog id="dialog-substitue-update-own-information">
@@ -340,9 +334,7 @@
                     <label for="form-substitue-update-own-number">Opdater telefonnummer:</label>
                     <input type="number" name="update-own-number" id="form-substitue-update-own-number" />
                     <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">
-                        Cancel
-                    </button>
+                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">Cancel</button>
                 </form>
             </fieldset>
         </dialog>

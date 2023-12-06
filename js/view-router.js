@@ -26,9 +26,9 @@ function viewChange(user) {
         } else {
             hashLink = "#substitute-page";
             // console.log(`user is: ${user.Username} (Admin: ${user.IsAdmin})`);
-            document.querySelector("#logout-btn").classList.remove("hidden");
-            
+            document.querySelector("#logout-btn").classList.remove("hidden");  
         }
+
     }
 
     // Hide all views

@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { loginClicked } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts } from "./rest-service.js";
+import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -19,14 +19,15 @@ import {
     closeCreateNewSubstituteDialog,
 } from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
-import { AdminAvaliableShiftRenderer } from "./adminAvaliableShiftRenderer.js";
+import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
-import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
+import * as requestedshift from "./model/requested-shift.js";
+import { createNewShiftClicked, createNewShift } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
 //Definer globale variabler
-let requestedShiftsList;
+let requestedShiftsList = [];
 let substitutes = [];
 let shifts = [];
 let employee = [];
@@ -40,6 +41,7 @@ async function initApp() {
     document.querySelector("#logout-btn").classList.add("hidden");
 
     //eventlisteners
+    document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
     document.querySelector("#denyInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
@@ -67,11 +69,12 @@ async function initApp() {
 
         if (employee.IsAdmin) {
             // console.log(`logged in as: admin`);
+            await updateRequestedShiftsList();
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
             const adminShiftRenderer = new AdminShiftRenderer();
-            const adminAvaliableShiftRenderer = new AdminAvaliableShiftRenderer();
+            const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
             const substitutesForAdminRenderer = new SubstitutesForAdminRenderer();
 
             //filtering substitutes-list for everyone but the user logged in
@@ -84,12 +87,8 @@ async function initApp() {
             const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
             shiftsAdminList.render();
 
-            const availableShiftsListAdmin = shifts.filter((shift) => !shift.ShiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(
-                availableShiftsListAdmin,
-                "#availableShifts-admin-tbody",
-                adminAvaliableShiftRenderer
-            );
+            const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
+            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer);
             adminAvaliableShiftList.render();
 
             const userListForAdmin = new ListRenderer(
@@ -99,7 +98,6 @@ async function initApp() {
             );
             userListForAdmin.render();
         } else if (!employee.IsAdmin) {
-            // console.log(`logged in as: substitute`);
 
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -107,35 +105,50 @@ async function initApp() {
             const availableShiftsRenderer = new AvailableShiftsRenderer();
 
             // Convert shift.EmployeeID to string before comparison
-            const shiftsOfLoggedInEmployee = shifts.filter(
-                (shift) => String(shift.EmployeeID) === String(loggedInEmployeeID)
-            );
-            // console.log(shiftsOfLoggedInEmployee);
+            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.EmployeeID) === String(loggedInEmployeeID));
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
             const specificSubstitute = substitutes.filter((substitute) => substitute.EmployeeID === loggedInEmployeeID);
-            // console.log(specificSubstitute);
             const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
             substitute.render();
             substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.ShiftIsTaken);
-            // console.log(displayAvailableShifts);
-            const availableShiftsSubstitutes = new ListRenderer(
-                displayAvailableShifts,
-                "#availableShifts",
-                availableShiftsRenderer
-            );
+            const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
+            availableShiftsRenderer.attachEventListener();  
+            
+            
+            // add sort eventlisteners mine vagter
+            document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "shift-date") {
+                    myShifts.sort("formattedDate");
+                } else if (targetId === "shifts-shift-time") {
+                    myShifts.sort("convertedShiftStart");
+                } else if (targetId === "shift-hours") {
+                    myShifts.sort("timeDifference");
+                }
+            });    
+            
+                        // add sort eventlisteners ledige vagter
+                        document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
+                            const targetId = event.target.id;
+                            if (targetId === "shift-date") {
+                                availableShiftsSubstitutes.sort("formattedDate");
+                            } else if (targetId === "available-shift-time") {
+                                availableShiftsSubstitutes.sort("convertedShiftStart");
+                            }
+                        });   
             availableShiftsRenderer.attachEventListener();
         }
     });
 
+
+
     // initTabs();
     initViews();
-    requestedShiftsList = await getRequestedShifts();
-    // console.log(requestedShiftsList);
     substitutes = await getSubstitutesData();
     shifts = await getShiftData();
     shiftInterests = await getShiftInterestData();
@@ -143,16 +156,16 @@ async function initApp() {
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
-    document
-        .querySelector("#form-create-new-substitute-cancel-btn")
-        .addEventListener("click", closeCreateNewSubstituteDialog);
+    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
 
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
-    document
-        .querySelector("#form-create-new-shift-cancel-btn")
-        .addEventListener("click", closeCreateNewShiftDialog);
 }
 
-export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList };
+async function updateRequestedShiftsList() {
+    const data = await getRequestedShifts();
+    requestedShiftsList = data.map(requestedshift.construct);
+}
+
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };
