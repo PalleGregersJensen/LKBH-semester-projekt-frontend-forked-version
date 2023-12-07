@@ -1,4 +1,4 @@
-import { updateRequestedShiftsList } from "./main.js";
+import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
 
 const endpoint = "http://localhost:3333";
 
@@ -46,8 +46,72 @@ async function assignSubstitute(event) {
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
-    updateRequestedShiftsList(); // opdater liste... virker ikke og flere lister skal også opdateres
-    return response;
+    buildRequestedShiftsList(); // opdater liste... virker ikke før logud og login påny
+    buildShiftsList(); // opdater liste... virker ikke før logud og login påny
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute };
+// Slet vikar
+async function deleteSubstitute(event) {
+    // forhindre default adfærd der refresher siden
+    event.preventDefault();
+    const form = event.target;
+
+    const employeeID = Number(form.formDeleteEmployeeID.value);
+    const bodyToUpdate = { EmployeeID: employeeID };
+
+    const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToUpdate),
+    });
+
+    if (response.ok) {
+        console.log("Vikar slettet!");
+    } else {
+        console.log("Noget gik galt, vikaren er IKKE slettet!");
+    }
+
+    document.querySelector("#dialog-delete-substitute").close();
+    //opdater buildListe ----> ?
+}
+
+// opdater vikar
+async function updateSubstitute(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const firstName = form.firstname.value;
+    const lastName = form.lastname.value;
+    const birthdate = form.dateofbirth.value;
+    const mail = form.mail.value;
+    const number = Number(form.phonennumber.value);
+    // const isAdmin = form.querySelector("#form-admin-update-substitute-is-admin").checked;
+    const userName = form.username.value;
+    const id = Number(form.formUpdateEmployeeID.value);
+ 
+    const bodyToUpdate = {
+        FirstName: firstName,
+        LastName: lastName,
+        DateOfBirth: birthdate,
+        Mail: mail,
+        Number: number,
+        Username: userName,
+        EmployeeID: id
+    };
+
+    console.log(bodyToUpdate);
+    
+    const response = await fetch(`${endpoint}/substitutes/admins/${id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json"},
+        body: JSON.stringify(bodyToUpdate)
+    });
+
+    if (response.ok) {
+        console.log("Brugeren er opdateret med succes!")
+    } else {
+        console.log("Noget gik galt, brugeren blev ikke opdateret!")
+    }
+}
+
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute };

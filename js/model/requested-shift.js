@@ -6,7 +6,7 @@ export function construct(dataObject) {
         shiftEnd: dataObject.ShiftEnd,
         employeeID: dataObject.EmployeeID,
         shiftIsTaken: dataObject.ShiftIsTaken,
-        fullname: dataObject.FullName,
+        fullName: dataObject.FullName,
         interestedEmployeeIDs: dataObject.InterestedEmployeeIDs,
 
         get timeDK() {
@@ -30,15 +30,15 @@ export function construct(dataObject) {
         },
 
         get numberOfRequests() {
-            if (this.fullname) {
-                return String(this.fullname.length);
+            if (this.fullName) {
+                return String(this.fullName.length);
             } else {
                 return "0";
             }
         },
 
-        // get fullname() {
-        //     return `${this.fullname}`;
+        // get fullName() {
+        //     return `${this.fullName}`;
         // },
     };
 
