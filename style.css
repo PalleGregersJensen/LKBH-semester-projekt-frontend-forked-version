@@ -247,7 +247,7 @@ h1 {
   right: 3px;
 }
 
-#shiftinterestbutton:hover, #create-substitute-btn:hover {
+.shift-interest-button:hover, #create-substitute-btn:hover {
   background-color: #43597a;
 }
 
