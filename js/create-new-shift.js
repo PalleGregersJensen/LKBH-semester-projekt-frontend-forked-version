@@ -50,11 +50,11 @@ function closeErrorMessageInCreateShift() {
     document.querySelector("#dialog-error-message-create-shift").close();
 }
 
-// // Close dialog window
-// function closeCreateNewShiftDialog() {
-//     console.log("close create new substitute dialog");
-//     document.querySelector("#dialog-create-new-shift").close();
-// }
+// Close dialog window
+function closeCreateNewShiftDialog() {
+    console.log("close create new substitute dialog");
+    document.querySelector("#dialog-create-new-shift").close();
+}
 
 // Format date-time to 'YYYY-MM-DD HH:mm:ss'
 const formatDateTime = (dateTime) => {
@@ -68,4 +68,4 @@ const formatDateTime = (dateTime) => {
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
-export { createNewShiftClicked, createNewShift };
+export { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog };
