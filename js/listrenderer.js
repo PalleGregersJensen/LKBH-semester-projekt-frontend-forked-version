@@ -1,6 +1,7 @@
 export class ListRenderer {
     constructor(list, container, itemRenderer) {
-        this.items = list;
+      this.items = list;
+      console.log(this.items);
         this.container = document.querySelector(container);
         this.itemRenderer = itemRenderer;
     }
