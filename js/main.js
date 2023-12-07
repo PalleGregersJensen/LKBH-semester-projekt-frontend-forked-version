@@ -4,26 +4,16 @@
 const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
-import { loginClicked, isLoggedIn, storedEmployee, setLoginUsername, clearLocalStorageByLogOut } from "./login.js";
+import { loginClicked, isLoggedIn, storedEmployee, setLoginUsername, clearLocalStorage } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import {
-    getShiftData,
-    getShiftInterestData,
-    getSubstitutesData,
-    getRequestedShifts,
-    assignSubstitute,
-} from "./rest-service.js";
+import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./availableshiftsrenderer.js";
 // import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
-import {
-    createNewSubstituteClicked,
-    createNewSubstitute,
-    closeCreateNewSubstituteDialog,
-} from "./create-new-substitute.js";
+import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { SubstitutesForAdminRenderer } from "./substitutesforadminrenderer.js";
@@ -54,7 +44,7 @@ async function initApp() {
     if (!localStorage.getItem("employee")) {
         document.querySelector("#login-form").addEventListener("submit", async (event) => {
             event.preventDefault();
-            employee = await loginClicked();
+            employee = await loginClicked(event);
             // console.log(employee);
 
             // Get the EmployeeID of the logged-in user
@@ -82,18 +72,10 @@ async function initApp() {
                 shiftsAdminList.render();
 
                 const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-                const adminAvaliableShiftList = new ListRenderer(
-                    availableShiftsListAdmin,
-                    "#availableShifts-admin-tbody",
-                    adminViewAvaliableShiftRenderer
-                );
+                const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer);
                 adminAvaliableShiftList.render();
 
-                const userListForAdmin = new ListRenderer(
-                    substitutes,
-                    "#substitutes-list-admin-tbody",
-                    substitutesForAdminRenderer
-                );
+                const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);
                 userListForAdmin.render();
             } else if (!employee.IsAdmin) {
                 // Create an instance of Renderers
@@ -102,24 +84,18 @@ async function initApp() {
                 const availableShiftsRenderer = new AvailableShiftsRenderer();
 
                 // Convert shift.id to string before comparison
-                const shiftsOfLoggedInEmployee = shifts.filter(
-                    (shift) => String(shift.employeeID) === String(loggedInEmployeeID)
-                );
+                const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
                 const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
                 myShifts.render();
 
                 specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
                 const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
-                console.log(substitute);
+                // console.log(substitute);
                 substitute.render();
                 substituteRenderer.attachEventListener(substitute);
 
                 const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-                const availableShiftsSubstitutes = new ListRenderer(
-                    displayAvailableShifts,
-                    "#availableShifts",
-                    availableShiftsRenderer
-                );
+                const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
                 availableShiftsSubstitutes.render();
                 availableShiftsRenderer.attachEventListener();
 
@@ -148,8 +124,8 @@ async function initApp() {
         });
 
         // initTabs();
-        console.log(storedEmployee);
-        console.log(specificSubstitute);
+        // console.log(storedEmployee);
+        // console.log(specificSubstitute);
 
         initViews();
 
@@ -163,12 +139,12 @@ async function initApp() {
     } else if (localStorage.getItem("employee")) {
         // storedEmployee = localStorage.getItem("employee");
         specificSubstitute = storedEmployee;
-        console.log(specificSubstitute);
+        // console.log(specificSubstitute);
         initViews(specificSubstitute);
         setLoginUsername();
         // Get the EmployeeID of the logged-in user
         employee = specificSubstitute;
-        console.log(employee);
+        // console.log(employee);
         loggedInEmployeeID = employee.EmployeeID;
         // console.log(loggedInEmployeeID);
 
@@ -178,7 +154,7 @@ async function initApp() {
 
             // Create an instance of "item"Renderers for admin
             const substituteRenderer = new Substituterenderer();
-            console.log(substituteRenderer);
+            // console.log(substituteRenderer);
             const adminShiftRenderer = new AdminShiftRenderer();
             const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
             const substitutesForAdminRenderer = new SubstitutesForAdminRenderer();
@@ -195,18 +171,10 @@ async function initApp() {
             shiftsAdminList.render();
 
             const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(
-                availableShiftsListAdmin,
-                "#availableShifts-admin-tbody",
-                adminViewAvaliableShiftRenderer
-            );
+            const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer);
             adminAvaliableShiftList.render();
 
-            const userListForAdmin = new ListRenderer(
-                substitutes,
-                "#substitutes-list-admin-tbody",
-                substitutesForAdminRenderer
-            );
+            const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", substitutesForAdminRenderer);
             userListForAdmin.render();
         } else if (!employee.IsAdmin) {
             // Create an instance of Renderers
@@ -215,9 +183,7 @@ async function initApp() {
             const availableShiftsRenderer = new AvailableShiftsRenderer();
 
             // Convert shift.id to string before comparison
-            const shiftsOfLoggedInEmployee = shifts.filter(
-                (shift) => String(shift.employeeID) === String(loggedInEmployeeID)
-            );
+            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
             const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
             myShifts.render();
 
@@ -227,11 +193,7 @@ async function initApp() {
             substituteRenderer.attachEventListener(substitute);
 
             const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-            const availableShiftsSubstitutes = new ListRenderer(
-                displayAvailableShifts,
-                "#availableShifts",
-                availableShiftsRenderer
-            );
+            const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
             availableShiftsSubstitutes.render();
             availableShiftsRenderer.attachEventListener();
 
@@ -283,16 +245,14 @@ async function buildShiftsList() {
 async function buildSubstitutesList() {
     const originalData = await getSubstitutesData();
     substitutes = originalData.map(substitute.construct);
-    console.log(substitutes);
+    // console.log(substitutes);
 }
 
 function applyEventListeners() {
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
-    document
-        .querySelector("#form-create-new-substitute-cancel-btn")
-        .addEventListener("click", closeCreateNewSubstituteDialog);
+    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
 
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
@@ -301,7 +261,7 @@ function applyEventListeners() {
 
     //eventlisteners
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
-    document.querySelector("#logout-btn").addEventListener("click", logOutView);
+    // document.querySelector("#logout-btn").addEventListener("click", logOutView);
     document.querySelector("#denyInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
     });
@@ -317,16 +277,7 @@ function applyEventListeners() {
         document.querySelector("#existing-shiftInterest-entry").close();
     });
     // Clear localstorage by pressing logout-button
-    document.querySelector("#logout-btn").addEventListener("click", clearLocalStorageByLogOut);
+    document.querySelector("#logout-btn").addEventListener("click", clearLocalStorage);
 }
 
-export {
-    endpoint,
-    initApp,
-    employee,
-    loggedInEmployeeID,
-    shiftInterests,
-    substitutes,
-    requestedShiftsList,
-    updateRequestedShiftsList,
-};
+export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, updateRequestedShiftsList };

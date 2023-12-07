@@ -1,5 +1,5 @@
 import { endpoint, initApp } from "./main.js";
-import { viewChange } from "./view-router.js";
+import { viewChange, logOutView } from "./view-router.js";
 
 let isLoggedIn;
 // console.log(isLoggedIn);
@@ -11,7 +11,7 @@ let storedEmployee;
 
 
 // login clicked
-async function loginClicked() {
+async function loginClicked(event) {
     // console.log("login clicked");
     const form = event.target;
     const userName = form.username.value;
@@ -19,21 +19,22 @@ async function loginClicked() {
     const password = form.password.value;
     // console.log(password);
     let employeeData = await checkUsernameAndPassword(userName, password);
+    console.log(employeeData)
     employee = employeeData.employee;
+    console.log(employee)
 
-    let storedEmployee = localStorage.setItem("employee", JSON.stringify(employee));
-    console.log(storedEmployee);
+    localStorage.setItem("employee", JSON.stringify(employee));
     // console.log(employee);
     // console.log(employee.IsAdmin);
     // Checks if user logged in is admin or substitute
-    if (Number(employee.IsAdmin) === 1) {
-        isAdmin = true;
-    } else {
-        isAdmin = false;
-    }
+    // if (Number(employee.IsAdmin) === 1) {
+    //     isAdmin = true;
+    // } else {
+    //     isAdmin = false;
+    // }
     // console.log(isAdmin);
     setLoginUsername();
-    storedEmployee = JSON.parse(localStorage.getItem("employee"));
+    let storedEmployee = JSON.parse(localStorage.getItem("employee"));
     if (employee) {
         viewChange(employee);
     } else {
@@ -81,9 +82,9 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
 }
 storedEmployee = JSON.parse(localStorage.getItem("employee"));
 
-console.log(storedEmployee);
+// console.log(storedEmployee);
 function setLoginUsername() {
-    console.log(employee);
+    // console.log(employee);
     if (employee) {
         document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
     } else {
@@ -91,9 +92,10 @@ function setLoginUsername() {
     }
 }
 
-function clearLocalStorageByLogOut() {
+function clearLocalStorage() {
     console.log("Clear localstorage"); 
     localStorage.clear();
+    logOutView();
 }
 
-export { loginClicked, storedEmployee, setLoginUsername, isLoggedIn, clearLocalStorageByLogOut };
+export { loginClicked, storedEmployee, setLoginUsername, isLoggedIn, clearLocalStorage };
