@@ -91,4 +91,9 @@ function setLoginUsername() {
     }
 }
 
-export { loginClicked, storedEmployee, setLoginUsername, isLoggedIn };
+function clearLocalStorageByLogOut() {
+    console.log("Clear localstorage"); 
+    localStorage.clear();
+}
+
+export { loginClicked, storedEmployee, setLoginUsername, isLoggedIn, clearLocalStorageByLogOut };
