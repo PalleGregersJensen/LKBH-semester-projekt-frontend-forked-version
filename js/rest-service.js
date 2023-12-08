@@ -1,4 +1,5 @@
 import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
+import { viewChange } from "./view-router.js";
 
 const endpoint = "http://localhost:3333";
 
@@ -57,12 +58,12 @@ async function deleteSubstitute(event) {
     const form = event.target;
 
     const employeeID = Number(form.formDeleteEmployeeID.value);
-    const bodyToUpdate = { EmployeeID: employeeID };
+    const bodyToDelete = { EmployeeID: employeeID };
 
     const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(bodyToUpdate),
+        body: JSON.stringify(bodyToDelete),
     });
 
     if (response.ok) {
@@ -72,7 +73,8 @@ async function deleteSubstitute(event) {
     }
 
     document.querySelector("#dialog-delete-substitute").close();
-    //opdater buildListe ----> ?
+    
+    viewChange();
 }
 
 // opdater vikar
@@ -112,6 +114,10 @@ async function updateSubstitute(event) {
     } else {
         console.log("Noget gik galt, brugeren blev ikke opdateret!")
     }
+
+    document.querySelector("#dialog-admin-update-substitute").close();
+
+    viewChange();
 }
 
 export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute };

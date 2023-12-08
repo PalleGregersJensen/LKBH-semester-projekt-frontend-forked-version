@@ -35,26 +35,14 @@ let shiftInterests = [];
 async function initApp() {
     console.log("JavaScript is live! 🎉");
 
-    //hiding logout button
-    // document.querySelector("#logout-btn").classList.add("hide");
-    // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    // if (currentUser) {
-    //     console.log("viewChange called with with currentUser");
-    //     viewChange();
-    // } else {
-    //     console.log("viewChange called with no user");
-    //     viewChange();
-    // }
-
+    await buildShiftsList();
+    await buildSubstitutesList();
+    shiftInterests = await getShiftInterestData();
+    
     applyEventListeners();
 
     initViews();
     // initTabs();
-    // await buildShiftsList();
-    // await buildSubstitutesList();
-
-    shiftInterests = await getShiftInterestData();
     // console.log(shiftInterests);
 }
 
@@ -125,9 +113,11 @@ function applyEventListeners() {
     });
 }
 
-function loginAsAdmin() {
+async function loginAsAdmin() {
     // console.log(`logged in as: admin`);
-    buildRequestedShiftsList();
+    await buildSubstitutesList();
+    await buildShiftsList();
+    await buildRequestedShiftsList();
 
     // Create an instance of "item"Renderers for admin
     const substituteRenderer = new Substituterenderer();

@@ -1,4 +1,5 @@
 import { initTabs } from "./tabs.js";
+import { loginAsAdmin, loginAsSubstitute } from "./main.js";
 
 function initViews() {
     // Add hashchange event listener only once during initialization
@@ -91,7 +92,7 @@ function adminViewMypage(hashLink) {
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    
+    loginAsAdmin();
 }
 
 function adminViewShifts(hashLink) {
@@ -100,12 +101,14 @@ function adminViewShifts(hashLink) {
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    loginAsAdmin();
 }
 function adminViewSubstitutes(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    loginAsAdmin();
 }
 
 function substituteViewMypage(hashLink) {

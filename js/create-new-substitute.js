@@ -1,4 +1,5 @@
 import { endpoint, initApp } from "./main.js";
+import { viewChange } from "./view-router.js";
 
 // Create new substitute clicked
 function createNewSubstituteClicked() {
@@ -61,6 +62,7 @@ async function createNewSubstitute(event) {
 
         // Probably needs to be changed to updateList or something like that
         // initApp();
+        viewChange();
     } else {
         document.querySelector("#dialog-error-message-create-substitute").showModal();
         document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);

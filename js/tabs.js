@@ -22,11 +22,11 @@ function selectTab(event) {
         // unselect last tab - if any
         if (selectedTab) {
             selectedTab.classList.remove("selected");
-            document.querySelector(`#${selectedTab.dataset.tabShow}`).classList.add("hidden");
+            document.querySelector(`#${selectedTab.dataset.tabShow}`).classList.add("hide");
         }
         // select this tab
         tab.classList.add("selected");
-        document.querySelector(`#${tab.dataset.tabShow}`).classList.remove("hidden");
+        document.querySelector(`#${tab.dataset.tabShow}`).classList.remove("hide");
 
         // remember the selected tab
         selectedTab = tab;
