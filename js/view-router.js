@@ -58,6 +58,7 @@ function viewChange() {
         adminViewMypage(hashLink);
         setLoggedInAs(currentUser);
     } else if (location.hash === "#shifts-view-section-admin") {
+        initTabs();
         adminViewShifts(hashLink);
         setLoggedInAs(currentUser);
     } else if (location.hash === "#substitutes-view-section-admin") {
@@ -96,12 +97,12 @@ function adminViewMypage(hashLink) {
 }
 
 function adminViewShifts(hashLink) {
-    initTabs();
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
     loginAsAdmin();
+    // initTabs();
 }
 function adminViewSubstitutes(hashLink) {
     document.querySelector(hashLink).classList.add("active");
@@ -115,6 +116,7 @@ function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    loginAsSubstitute();
 }
 
 function substituteViewShifts(hashLink) {
@@ -122,12 +124,14 @@ function substituteViewShifts(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    loginAsSubstitute();
 }
 
 function substituteViewSchema(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    loginAsSubstitute();
 }
 
 // function setActiveLink(view) {

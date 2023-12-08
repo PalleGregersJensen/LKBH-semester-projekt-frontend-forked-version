@@ -38,7 +38,7 @@ async function initApp() {
     await buildShiftsList();
     await buildSubstitutesList();
     shiftInterests = await getShiftInterestData();
-    
+
     applyEventListeners();
 
     initViews();
@@ -115,6 +115,9 @@ function applyEventListeners() {
 
 async function loginAsAdmin() {
     // console.log(`logged in as: admin`);
+    loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(loggedInEmployeeID);
+
     await buildSubstitutesList();
     await buildShiftsList();
     await buildRequestedShiftsList();
@@ -126,7 +129,7 @@ async function loginAsAdmin() {
     const adminViewSubstitutesRenderer = new AdminViewSubstitutesRenderer();
 
     //filtering substitutes-list for everyone but the user logged in
-    const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
+    const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
     //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
     const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
     substitute.render();
@@ -144,17 +147,20 @@ async function loginAsAdmin() {
 }
 
 function loginAsSubstitute() {
+    loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(loggedInEmployeeID);
+
     // Create an instance of Renderers
     const substituteRenderer = new Substituterenderer();
     const MyShiftsrenderer = new MyShiftsRenderer();
     const availableShiftsRenderer = new AvailableShiftsRenderer();
 
     // Convert shift.id to string before comparison
-    const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
+    const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
     const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
     myShifts.render();
 
-    const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
+    const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
     const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
     substitute.render();
     substituteRenderer.attachEventListener(substitute);

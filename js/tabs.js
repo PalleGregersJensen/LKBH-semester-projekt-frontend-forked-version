@@ -2,7 +2,7 @@ let selectedTab = null;
 
 function initTabs() {
     // setup tab-toggling
-    console.log("tabs initializing...");
+    // console.log("tabs initializing...");
     document.querySelectorAll("#tabs-admin h2").forEach((tab) => tab.addEventListener("click", selectTab));
     document.querySelectorAll("#tabs-substitute h2").forEach((tab) => tab.addEventListener("click", selectTab));
     // click the first tab to enable everything
