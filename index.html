@@ -15,7 +15,7 @@
     </head>
     <body>
         <header>
-            <button id="logout-btn" class="hidden" type="button">Log ud</button>
+            <button id="logout-btn" class="hide" type="button">Log ud</button>
             <img id="header-logo" src="Dokumentation/img/LKbh - logo.jpg" alt="" />
             <p id="username-logged-in"></p>
         </header>
@@ -54,7 +54,8 @@
 
             <!-- admin mypage -->
             <section id="mypage-admin" class="view-content">
-                <div id="admin-user-info"></div>
+                <div id="admin-user-info">  </div>
+                <p>dfljhgds</p>
             </section>
 
             <!-- admin shifts list -->
@@ -114,7 +115,7 @@
             </section>
 
             <!-- Vikar section -->
-            <section id="substitute-page" class="substitute-view">
+            <section id="substitute-navbar" class="view-content-substitute">
                 <!--Navbar for vikarer-->
                 <div class="navbar-container">
                     <a href="#mypage" id="redirectToMyPage" class="view-link navbar-content">Min Side</a>
@@ -124,6 +125,7 @@
             </section>
 
             <section id="mypage" class="view-content">
+                <p>ljdfgdsjg</p>
                 <div class="my-info"></div>
                 <!-- Dialog til at redigere login informationer for vikarer-->
                 <dialog id="editLoginInfo-dialog">
@@ -139,7 +141,7 @@
                         <button id="reject-new-login-info">Fortryd</button>
                     </form>
                 </dialog>
-
+                
                 <dialog id="not-matching-passwords">
                     <p id="not-matching-passwords-text">Passwords stemmer ikke overens!</p>
                     <button id="close-passwords-dialog">Ok</button>
