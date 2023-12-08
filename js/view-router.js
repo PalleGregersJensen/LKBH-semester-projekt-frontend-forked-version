@@ -27,11 +27,10 @@ function viewChange() {
             // hashLink = "#admin-page";
             // location.hash = hashLink;
             location.hash = "#mypage-admin";
-            document.querySelector(".view-content-admin").classList.add("active")
-            
+            document.querySelector(".view-content-admin").classList.add("active");
+
             document.querySelector("#logout-btn").classList.remove("hide");
-            setLoggedInAs(currentUser)
-            
+            setLoggedInAs(currentUser);
         } else if (!currentUser.IsAdmin && !currentUser.loggedIn) {
             currentUser.loggedIn = true;
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -53,6 +52,15 @@ function viewChange() {
         setLoggedInAs(currentUser);
     } else if (location.hash === "#schema") {
         substituteViewSchema(hashLink);
+        setLoggedInAs(currentUser);
+    } else if (location.hash === "#mypage-admin") {
+        adminViewMypage(hashLink);
+        setLoggedInAs(currentUser);
+    } else if (location.hash === "#shifts-view-section-admin") {
+        adminViewShifts(hashLink);
+        setLoggedInAs(currentUser);
+    } else if (location.hash === "#substitutes-view-section-admin") {
+        adminViewSubstitutes(hashLink);
         setLoggedInAs(currentUser);
     }
     // Hide all views
@@ -79,27 +87,42 @@ function setLoggedInAs(currentUser) {
 }
 
 function adminViewMypage(hashLink) {
+    document.querySelector(hashLink).classList.add("active");
+    document.querySelector(".view-content-admin").classList.add("active");
+    document.querySelector(".view-content-substitute").classList.remove("active");
+    document.querySelector("#logout-btn").classList.remove("hide");
     
+}
+
+function adminViewShifts(hashLink) {
+    initTabs();
+    document.querySelector(hashLink).classList.add("active");
+    document.querySelector(".view-content-admin").classList.add("active");
+    document.querySelector(".view-content-substitute").classList.remove("active");
+    document.querySelector("#logout-btn").classList.remove("hide");
+}
+function adminViewSubstitutes(hashLink) {
+    document.querySelector(hashLink).classList.add("active");
+    document.querySelector(".view-content-admin").classList.add("active");
+    document.querySelector(".view-content-substitute").classList.remove("active");
+    document.querySelector("#logout-btn").classList.remove("hide");
 }
 
 function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
-    // document.querySelector("#mypage").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
 }
 
 function substituteViewShifts(hashLink) {
     initTabs();
     document.querySelector(hashLink).classList.add("active");
-    // document.querySelector("#substitute-page").classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
 }
 
 function substituteViewSchema(hashLink) {
     document.querySelector(hashLink).classList.add("active");
-    // document.querySelector("#schema").classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
 }
