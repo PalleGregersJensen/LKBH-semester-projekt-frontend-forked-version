@@ -93,6 +93,16 @@ async function initApp() {
             );
             userListForAdmin.render();
 
+             // add sort eventlisteners vikarer -- admin
+             document.querySelector("#admin-substitutesList-table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "substitute-name") {
+                    userListForAdmin.sort("fullName");
+                } else if (targetId === "substitute-employeeID") {
+                    userListForAdmin.sort("id");
+                }
+            });
+
 
              // add sort eventlisteners vagter -- admin
              document.querySelector("#table-headers").addEventListener("click", (event) => {
@@ -106,7 +116,7 @@ async function initApp() {
                 }
             });
 
-                         // add sort eventlisteners vagter -- admin
+                         // add sort eventlisteners ledige vagter -- admin
             document.querySelector("#admin-available-shifts-table-headers").addEventListener("click", (event) => {
                 const targetId = event.target.id;
                 if (targetId === "shift-date") {
