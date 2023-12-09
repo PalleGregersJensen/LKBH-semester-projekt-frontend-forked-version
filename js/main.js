@@ -92,6 +92,31 @@ async function initApp() {
                 "#delete-substitute-btn"
             );
             userListForAdmin.render();
+
+
+             // add sort eventlisteners vagter -- admin
+             document.querySelector("#table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "shift-date") {
+                    shiftsAdminList.sort("date");
+                } else if (targetId === "shift-time") {
+                    shiftsAdminList.sort("shiftStart");
+                } else if (targetId === "shift-employee") {
+                    shiftsAdminList.sort("fullName");
+                }
+            });
+
+                         // add sort eventlisteners vagter -- admin
+            document.querySelector("#admin-available-shifts-table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "shift-date") {
+                    adminAvaliableShiftList.sort("timeDK");
+                    } else if (targetId === "shift-time") {
+                    adminAvaliableShiftList.sort("hoursStartEnd");
+                    } else if (targetId === "shift-requested-by") {
+                    adminAvaliableShiftList.sort("numberOfRequests");
+                    }
+                });
         } else if (!employee.IsAdmin) {
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -209,5 +234,6 @@ function applyEventListeners() {
     document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
         document.querySelector("#existing-shiftInterest-entry").close();
     });
+
 }
 export { endpoint, initApp, employee, loggedInEmployeeID, shiftInterests, substitutes, requestedShiftsList, buildShiftsList, buildRequestedShiftsList };
