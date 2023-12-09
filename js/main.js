@@ -42,8 +42,6 @@ async function initApp() {
     applyEventListeners();
 
     initViews();
-    // initTabs();
-    // console.log(shiftInterests);
 }
 
 async function buildRequestedShiftsList() {
@@ -155,15 +153,15 @@ function loginAsSubstitute() {
     const MyShiftsrenderer = new MyShiftsRenderer();
     const availableShiftsRenderer = new AvailableShiftsRenderer();
 
-    // Convert shift.id to string before comparison
-    const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
-    const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
-    myShifts.render();
-
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
     const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
     substitute.render();
     substituteRenderer.attachEventListener(substitute);
+    
+    // Convert shift.id to string before comparison
+    const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
+    const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
+    myShifts.render();
 
     const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
     const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);

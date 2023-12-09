@@ -17,8 +17,6 @@ async function login(event) {
         const confirmedUser = user.employee;
 
         localStorage.setItem("currentUser", JSON.stringify(confirmedUser));
-        // const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        // console.log(currentUser);
 
         viewChange();
 

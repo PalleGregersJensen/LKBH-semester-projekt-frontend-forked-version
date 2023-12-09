@@ -6,14 +6,11 @@ function initViews() {
     window.addEventListener("hashchange", viewChange);
     document.querySelector("#logout-btn").classList.add("hide");
 
-    viewChange();
     // Call viewChange function on initialization
-    // viewChange();
+    viewChange();
 }
 
 function viewChange() {
-    // console.log("viewchange called");
-
     // Get the current hashLink
     let hashLink = location.hash || "#login-page";
 
@@ -164,6 +161,13 @@ function logOutView() {
     // setActiveLink(hashLink);
     location.hash = hashLink;
     localStorage.clear();
+    document.querySelector("#admin-user-info").innerHTML = "";
+    document.querySelector("#shifts-admin-tbody").innerHTML = "";
+    document.querySelector("#availableShifts-admin-tbody").innerHTML = "";
+    document.querySelector("#substitutes-list-admin-tbody").innerHTML = "";
+    document.querySelector(".my-info").innerHTML = "";
+    document.querySelector("#myShifts").innerHTML = "";
+    document.querySelector("#availableShifts").innerHTML = "";
 }
 
 export { initViews, viewChange, logOutView };
