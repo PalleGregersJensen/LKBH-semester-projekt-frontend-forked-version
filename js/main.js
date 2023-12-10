@@ -35,135 +35,6 @@ let shiftInterests = [];
 async function initApp() {
     console.log("JavaScript is live! 🎉");
 
-    //hiding logout button
-    document.querySelector("#logout-btn").classList.add("hidden");
-
-    document.querySelector("#login-form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        employee = await loginClicked();
-        // console.log(employee);
-
-        // Get the EmployeeID of the logged-in user
-        loggedInEmployeeID = employee.EmployeeID;
-        // console.log(loggedInEmployeeID);
-
-        if (employee.IsAdmin) {
-            // console.log(`logged in as: admin`);
-            await buildRequestedShiftsList();
-
-            // Create an instance of "item"Renderers for admin
-            const substituteRenderer = new Substituterenderer();
-            const adminShiftRenderer = new AdminShiftRenderer();
-            const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
-            const adminViewSubstitutesRenderer = new AdminViewSubstitutesRenderer();
-
-            //filtering substitutes-list for everyone but the user logged in
-            const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
-            //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
-            const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
-            substitute.render();
-
-            //New instance of Listrenderer for shifts (admin view)
-            const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
-            shiftsAdminList.render();
-
-            const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-            const adminAvaliableShiftList = new ListRenderer(
-                availableShiftsListAdmin,
-                "#availableShifts-admin-tbody",
-                adminViewAvaliableShiftRenderer,
-                "#assign-btn"
-            );
-            adminAvaliableShiftList.render();
-
-            const userListForAdmin = new ListRenderer(
-                substitutes,
-                "#substitutes-list-admin-tbody",
-                adminViewSubstitutesRenderer,
-                "#update-substitute-btn",
-                "#delete-substitute-btn"
-            );
-            userListForAdmin.render();
-
-             // add sort eventlisteners vikarer -- admin
-             document.querySelector("#admin-substitutesList-table-headers").addEventListener("click", (event) => {
-                const targetId = event.target.id;
-                if (targetId === "substitute-name") {
-                    userListForAdmin.sort("fullName");
-                } else if (targetId === "substitute-employeeID") {
-                    userListForAdmin.sort("id");
-                }
-            });
-
-
-             // add sort eventlisteners vagter -- admin
-             document.querySelector("#table-headers").addEventListener("click", (event) => {
-                const targetId = event.target.id;
-                if (targetId === "shift-date") {
-                    shiftsAdminList.sort("date");
-                } else if (targetId === "shift-time") {
-                    shiftsAdminList.sort("shiftStart");
-                } else if (targetId === "shift-employee") {
-                    shiftsAdminList.sort("fullName");
-                }
-            });
-
-                         // add sort eventlisteners ledige vagter -- admin
-            document.querySelector("#admin-available-shifts-table-headers").addEventListener("click", (event) => {
-                const targetId = event.target.id;
-                if (targetId === "shift-date") {
-                    adminAvaliableShiftList.sort("timeDK");
-                    } else if (targetId === "shift-time") {
-                    adminAvaliableShiftList.sort("hoursStartEnd");
-                    } else if (targetId === "shift-requested-by") {
-                    adminAvaliableShiftList.sort("numberOfRequests");
-                    }
-                });
-        } else if (!employee.IsAdmin) {
-            // Create an instance of Renderers
-            const substituteRenderer = new Substituterenderer();
-            const MyShiftsrenderer = new MyShiftsRenderer();
-            const availableShiftsRenderer = new AvailableShiftsRenderer();
-
-            // Convert shift.id to string before comparison
-            const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
-            const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
-            myShifts.render();
-
-            const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
-            const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
-            substitute.render();
-            substituteRenderer.attachEventListener(substitute);
-
-            const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-            const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
-            availableShiftsSubstitutes.render();
-            availableShiftsRenderer.attachEventListener();
-
-            // add sort eventlisteners mine vagter
-            document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
-                const targetId = event.target.id;
-                if (targetId === "shift-date") {
-                    myShifts.sort("date");
-                } else if (targetId === "shifts-shift-time") {
-                    myShifts.sort("shiftStart");
-                } else if (targetId === "shift-hours") {
-                    myShifts.sort("shiftLength");
-                }
-            });
-
-            // add sort eventlisteners ledige vagter
-            document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
-                const targetId = event.target.id;
-                if (targetId === "shift-date") {
-                    availableShiftsSubstitutes.sort("date");
-                } else if (targetId === "available-shift-time") {
-                    availableShiftsSubstitutes.sort("shiftStart");
-                }
-            });
-        }
-    });
-
     // initTabs();
     initViews();
     applyEventListeners();
@@ -275,6 +146,40 @@ async function loginAsAdmin() {
 
     const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", adminViewSubstitutesRenderer, "#update-substitute-btn", "#delete-substitute-btn");
     userListForAdmin.render();
+
+    // add sort eventlisteners vikarer -- admin
+    document.querySelector("#admin-substitutesList-table-headers").addEventListener("click", (event) => {
+        const targetId = event.target.id;
+        if (targetId === "substitute-name") {
+            userListForAdmin.sort("fullName");
+        } else if (targetId === "substitute-employeeID") {
+            userListForAdmin.sort("id");
+        }
+    });
+
+    // add sort eventlisteners vagter -- admin
+    document.querySelector("#table-headers").addEventListener("click", (event) => {
+        const targetId = event.target.id;
+        if (targetId === "shift-date") {
+            shiftsAdminList.sort("date");
+        } else if (targetId === "shift-time") {
+            shiftsAdminList.sort("shiftStart");
+        } else if (targetId === "shift-employee") {
+            shiftsAdminList.sort("fullName");
+        }
+    });
+
+    // add sort eventlisteners ledige vagter -- admin
+    document.querySelector("#admin-available-shifts-table-headers").addEventListener("click", (event) => {
+        const targetId = event.target.id;
+        if (targetId === "shift-date") {
+            adminAvaliableShiftList.sort("timeDK");
+        } else if (targetId === "shift-time") {
+            adminAvaliableShiftList.sort("hoursStartEnd");
+        } else if (targetId === "shift-requested-by") {
+            adminAvaliableShiftList.sort("numberOfRequests");
+        }
+    });
 }
 
 function loginAsSubstitute() {
@@ -322,6 +227,7 @@ function loginAsSubstitute() {
             availableShiftsSubstitutes.sort("shiftStart");
         }
     });
+    
 }
 
 // function testSomething() {
