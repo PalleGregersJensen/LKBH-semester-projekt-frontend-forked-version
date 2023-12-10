@@ -127,6 +127,13 @@ async function initApp() {
                     adminAvaliableShiftList.sort("numberOfRequests");
                     }
                 });
+
+                  // add filter eventlistener
+                  document.querySelector("#admin-shifts-filter").addEventListener("change", () => {
+                    shiftsAdminList.filter(document.querySelector("#admin-shifts-filter").value);
+                    adminAvaliableShiftList.filter(document.querySelector("#admin-shifts-filter").value);
+                });
+                
         } else if (!employee.IsAdmin) {
             // Create an instance of Renderers
             const substituteRenderer = new Substituterenderer();
@@ -189,6 +196,7 @@ async function buildRequestedShiftsList() {
 async function buildShiftsList() {
     const originalData = await getShiftData();
     shifts = originalData.map(shift.construct);
+    console.log(shifts);
 }
 
 async function buildSubstitutesList() {

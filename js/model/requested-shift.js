@@ -36,6 +36,11 @@ export function construct(dataObject) {
                 return "0";
             }
         },
+        get monthFilter() {
+            const date = new Date(dataObject.Date);
+            const monthNumber = date.getMonth() + 1; // Months are 0-indexed, so we add 1
+            return monthNumber;
+        }
 
         // get fullName() {
         //     return `${this.fullName}`;

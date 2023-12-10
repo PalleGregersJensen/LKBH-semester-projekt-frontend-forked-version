@@ -62,6 +62,23 @@
                 <p>Shifts list admin</p>
                 <!-- create new vacant shift button -->
                 <button id="create-new-shift-btn">Opret ny vagt</button>
+                <p>Vis: </p>
+                <select name="admin-shifts-filter" id="admin-shifts-filter">
+                    <option value="monthFilter:all">Alle</option>
+                    <option value="monthFilter:1">Januar</option>
+                    <option value="monthFilter:2">Februar</option>
+                    <option value="monthFilter:3">Marts</option>
+                    <option value="monthFilter:4">April</option>
+                    <option value="monthFilter:5">Maj</option>
+                    <option value="monthFilter:6">Juni</option>
+                    <option value="monthFilter:7">Juli</option>
+                    <option value="monthFilter:8">August</option>
+                    <option value="monthFilter:9">September</option>
+                    <option value="monthFilter:10">Oktober</option>
+                    <option value="monthFilter:11">November</option>
+                    <option value="monthFilter:12">December</option>
+                  </select>
+            
                 <div class="shifts-tables">
                     <div id="tabs-admin">
                         <h2 data-tab-show="shifts-tab-admin">Vagter</h2>
