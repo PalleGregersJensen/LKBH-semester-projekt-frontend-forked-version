@@ -61,10 +61,12 @@ export class ListRenderer {
     extractSortValue(item, sortBy) {
         // Extract the value based on the sortBy parameter
         if (sortBy === "date") {
-            return new Date(item.Date);
+            return new Date(item.date);
         } else if (sortBy === "shiftStart") {
             return this.convertToMinutes(item.shiftStart);
-        } else {
+        } else if (sortBy === "timeDK"){
+          return new Date(item.timeDK);
+        }else {
             // Default to sorting by the property key
             return item[sortBy];
         }

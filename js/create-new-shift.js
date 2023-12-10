@@ -13,16 +13,15 @@ async function createNewShift(event) {
     const form = event.target;
     // console.log(form);
     const shiftDate = form.elements["shift-date"].value;
-    // console.log(shiftDate);
     const shiftStart = form.elements["shift-start"].value;
-    // console.log(shiftStart);
     const shiftEnd = form.elements["shift-end"].value;
-    // console.log(shiftEnd);
 
+    const convertedShiftStart = formatDateTime(shiftStart);
+    const convertedShiftEnd = formatDateTime(shiftEnd);
     const newShift = {
         Date: shiftDate,
-        ShiftStart: shiftStart,
-        ShiftEnd: shiftEnd,
+        ShiftStart: convertedShiftStart,
+        ShiftEnd: convertedShiftEnd,
     };
     // console.log(newShift);
     const newShiftAsJson = JSON.stringify(newShift);
@@ -57,4 +56,16 @@ function closeCreateNewShiftDialog() {
     document.querySelector("#dialog-create-new-shift").close();
 }
 
+// Format date-time to 'YYYY-MM-DD HH:mm:ss'
+const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = (date.getHours()+1).toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
 export { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog };

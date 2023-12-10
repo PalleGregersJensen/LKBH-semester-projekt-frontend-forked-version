@@ -272,9 +272,14 @@ h1 {
     right: 3px;
 }
 
+<<<<<<< HEAD
 #shiftinterestbutton:hover,
 #create-substitute-btn:hover {
     background-color: #43597a;
+=======
+.shift-interest-button:hover, #create-substitute-btn:hover {
+  background-color: #43597a;
+>>>>>>> main
 }
 
 #myShifts-tab,
