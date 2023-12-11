@@ -59,7 +59,8 @@ async function updateLoginInfo(username, password, EmployeeID) {
         },
         body: newLoginInfoJSON,
     });
-    return response;
+  console.log(response);
+  return response;
 }
 
 export { createShiftInterest, updateLoginInfo };

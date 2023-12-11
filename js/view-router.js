@@ -113,6 +113,7 @@ function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
+    // console.log("læses dette");
     loginAsSubstitute();
 }
 
