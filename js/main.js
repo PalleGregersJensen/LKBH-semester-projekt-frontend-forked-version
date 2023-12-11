@@ -197,10 +197,7 @@ function loginAsSubstitute() {
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
     const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
     substitute.render();
-    console.log(specificSubstitute[0]);
-    const newSpecificSubstitute = specificSubstitute[0];
-    console.log(newSpecificSubstitute);
-    substituteRenderer.attachEventListener(newSpecificSubstitute[0]);
+    substituteRenderer.attachEventListener(specificSubstitute[0]);
     
     // Convert shift.id to string before comparison
     const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
