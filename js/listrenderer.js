@@ -67,8 +67,6 @@ export class ListRenderer {
         this.filterValue = filterValue;
       }
 
-      console.log(`filter: property: ${this.filterProperty} value: ${this.filterValue}`);
-
       this.render()
     }
   
