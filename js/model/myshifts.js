@@ -11,6 +11,11 @@ export function construct(originalData) {
           const date = new Date(originalData.Date);
           return date.toLocaleString("da", options);
       },
+      get monthFilter() {
+        const date = new Date(originalData.Date);
+        const monthNumber = date.getMonth() + 1; // Months are 0-indexed, so we add 1
+        return monthNumber;
+    },
       get shiftStart() {
           const dateTime = new Date(originalData.ShiftStart);
           const hours = dateTime.getHours();
