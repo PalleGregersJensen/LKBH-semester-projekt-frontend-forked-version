@@ -1,4 +1,5 @@
 import { endpoint, initApp } from "./main.js";
+import { viewChange } from "./view-router.js";
 
 // Create new shift clicked
 function createNewShiftClicked() {
@@ -39,6 +40,7 @@ async function createNewShift(event) {
 
         // Probably needs to be changed to updateList or something like that
         // initApp();
+        viewChange();
     } else {
         document.querySelector("#dialog-error-message-create-shift").showModal();
         document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);

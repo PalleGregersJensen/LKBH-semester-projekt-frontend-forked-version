@@ -60,11 +60,12 @@ export class Substituterenderer {
         const password = document.querySelector("#edit-password").value;
         const confirmPassword = document.querySelector("#confirm-new-password").value;
         const EmployeeID = employee.EmployeeID;
+        console.log(employee);
         if (password !== confirmPassword) {
           document.querySelector("#not-matching-passwords").showModal();  
           return;          
         }
-        
+        console.log(EmployeeID);
         await updateLoginInfo(username, password, EmployeeID);
       
         document.querySelector("#editLoginInfo-dialog").close();

@@ -47,8 +47,9 @@ async function assignSubstitute(event) {
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
-    buildRequestedShiftsList(); // opdater liste... virker ikke før logud og login påny
-    buildShiftsList(); // opdater liste... virker ikke før logud og login påny
+    // buildRequestedShiftsList(); // opdater liste... virker ikke før logud og login påny
+    // buildShiftsList(); // opdater liste... virker ikke før logud og login påny
+    viewChange();
 }
 
 // Slet vikar

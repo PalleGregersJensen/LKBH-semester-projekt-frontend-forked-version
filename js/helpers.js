@@ -46,7 +46,8 @@ async function createShiftInterest(ShiftID, EmployeeID, callback) {
 
 
 
-async function updateLoginInfo(username, password, EmployeeID){
+async function updateLoginInfo(username, password, EmployeeID) {
+  console.log(EmployeeID);
     const newLoginInfo = {Username: username, PasswordHash: password};
 
     const newLoginInfoJSON = JSON.stringify(newLoginInfo);
