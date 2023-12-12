@@ -61,23 +61,23 @@
             <section id="shifts-view-section-admin" class="view-content">
                 <!-- create new vacant shift button -->
                 <button id="create-new-shift-btn">Opret ny vagt</button>
-                <p>Vis: </p>
+                <p>Vis:</p>
                 <select name="admin-shifts-filter" id="admin-shifts-filter">
-                    <option  value="monthFilter:all">Alle</option>
-                    <option  value="monthFilter:1">Januar</option>
-                    <option  value="monthFilter:2">Februar</option>
-                    <option  value="monthFilter:3">Marts</option>
-                    <option  value="monthFilter:4">April</option>
-                    <option  value="monthFilter:5">Maj</option>
-                    <option  value="monthFilter:6">Juni</option>
-                    <option  value="monthFilter:7">Juli</option>
-                    <option  value="monthFilter:8">August</option>
-                    <option  value="monthFilter:9">September</option>
-                    <option  value="monthFilter:10">Oktober</option>
-                    <option  value="monthFilter:11">November</option>
-                    <option  value="monthFilter:12">December</option>
-                  </select>
-            
+                    <option value="monthFilter:all">Alle</option>
+                    <option value="monthFilter:1">Januar</option>
+                    <option value="monthFilter:2">Februar</option>
+                    <option value="monthFilter:3">Marts</option>
+                    <option value="monthFilter:4">April</option>
+                    <option value="monthFilter:5">Maj</option>
+                    <option value="monthFilter:6">Juni</option>
+                    <option value="monthFilter:7">Juli</option>
+                    <option value="monthFilter:8">August</option>
+                    <option value="monthFilter:9">September</option>
+                    <option value="monthFilter:10">Oktober</option>
+                    <option value="monthFilter:11">November</option>
+                    <option value="monthFilter:12">December</option>
+                </select>
+
                 <div class="shifts-tables">
                     <div id="tabs-admin">
                         <h2 data-tab-show="shifts-tab-admin">Vagter</h2>
@@ -141,25 +141,6 @@
 
             <section id="mypage" class="view-content">
                 <div class="my-info"></div>
-                <!-- Dialog til at redigere login informationer for vikarer-->
-                <dialog id="editLoginInfo-dialog">
-                    <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
-                    <form action="">
-                        <label for="edit-username">Brugernavn:</label>
-                        <input name="edit-username" id="edit-username" type="text" />
-                        <label for="edit-password">Nyt kodeord:</label>
-                        <input name="edit-password" id="edit-password" type="password" />
-                        <label for="confirm-new-password">Bekræft nyt kodeord:</label>
-                        <input name="confirm-new-password" id="confirm-new-password" type="password" />
-                        <button id="confirm-new-login-info">Bekræft</button>
-                        <button id="reject-new-login-info">Fortryd</button>
-                    </form>
-                </dialog>
-
-                <dialog id="not-matching-passwords">
-                    <p id="not-matching-passwords-text">Passwords stemmer ikke overens!</p>
-                    <button id="close-passwords-dialog">Ok</button>
-                </dialog>
             </section>
 
             <section id="shifts" class="view-content">
@@ -362,6 +343,26 @@
                     <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">Cancel</button>
                 </form>
             </fieldset>
+        </dialog>
+
+        <dialog id="editLoginInfo-dialog">
+            <p id="editLoginInfo-dialogheader">Rediger login-oplysninger</p>
+            <form id="form-editLoginInfo-dialog" action="" method="dialog">
+                <input type="text" name="userID" />
+                <label for="edit-username">Nyt brugernavn:</label>
+                <input name="editUsername" id="edit-username" type="text" />
+                <label for="edit-password">Nyt kodeord:</label>
+                <input name="editPassword" id="edit-password" type="password" />
+                <label for="confirm-new-password">Bekræft nyt kodeord:</label>
+                <input name="confirmNewPassword" id="confirm-new-password" type="password" />
+                <button type="submit" id="confirm-new-login-info">Bekræft</button>
+                <button type="button" id="reject-new-login-info">Fortryd</button>
+            </form>
+        </dialog>
+
+        <dialog id="not-matching-passwords">
+            <p id="not-matching-passwords-text">Passwords stemmer ikke overens!</p>
+            <button id="close-passwords-dialog">Ok</button>
         </dialog>
 
         <!-- dialog error message create new shift -->

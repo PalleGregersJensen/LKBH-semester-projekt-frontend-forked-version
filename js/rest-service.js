@@ -30,6 +30,36 @@ async function getRequestedShifts() {
     return data;
 }
 
+async function updateLoginInfo() {
+    const form = document.querySelector("#form-editLoginInfo-dialog");
+    const employeeID = form.userID.value;
+    const userName = form.editUsername.value;
+    const passwordNew = form.editPassword.value;
+    const passwordNewConfirm = form.confirmNewPassword.value;
+
+    console.log(userName);
+    console.log(passwordNew);
+
+    if (passwordNew !== passwordNewConfirm) {
+        console.log("password ikke ens");
+        document.querySelector("#not-matching-passwords").showModal();
+    } else {
+        const bodyToUpdate = { Username: userName, PasswordHash: passwordNew, EmployeeID: employeeID };
+
+        const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyToUpdate),
+        });
+
+        if (response.ok) {
+            console.log("Dit password er nu ændret!");
+        } else {
+            console.log("Noget gik galt, dit password er IKKE ændret!");
+        }
+    }
+}
+
 async function createShiftRequest(substituteID, shiftID) {
     const employeeID = substituteID;
     const requestedShiftID = shiftID;
@@ -141,4 +171,4 @@ async function updateSubstitute(event) {
     viewChange();
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, createShiftRequest, assignSubstitute, updateSubstitute, deleteSubstitute };
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, updateLoginInfo, createShiftRequest, assignSubstitute, updateSubstitute, deleteSubstitute };

@@ -6,7 +6,16 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { login } from "./login.js";
 import { initViews, logOutView, viewChange } from "./view-router.js";
-import { getShiftData, getShiftInterestData, getSubstitutesData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute } from "./rest-service.js";
+import {
+    getShiftData,
+    getShiftInterestData,
+    getSubstitutesData,
+    getRequestedShifts,
+    updateLoginInfo,
+    assignSubstitute,
+    updateSubstitute,
+    deleteSubstitute,
+} from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
@@ -14,7 +23,7 @@ import { MyShiftsRenderer } from "./myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
 // import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
-import { AdminShiftRenderer } from "./adminshiftrenderer.js";
+import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
 import * as requestedshift from "./model/requested-shift.js";
@@ -68,8 +77,11 @@ function cancelUpdateSubstitute() {
 }
 
 function applyEventListeners() {
-    //
+    // eventlistener for login form
     document.querySelector("#login-form").addEventListener("submit", login);
+
+    // eventlistener for submit myinfo
+    document.querySelector("#form-editLoginInfo-dialog").addEventListener("submit", updateLoginInfo);
 
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
@@ -118,30 +130,31 @@ async function loginAsAdmin() {
     await buildShiftsList();
     await buildRequestedShiftsList();
 
-    // Create an instance of "item"Renderers for admin
+    // ADMIN: Create an instance of "item"Renderers for admin
     const substituteRenderer = new Substituterenderer();
     const adminShiftRenderer = new AdminShiftRenderer();
     const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
     const adminViewSubstitutesRenderer = new AdminViewSubstitutesRenderer();
 
-    //filtering substitutes-list for everyone but the user logged in
+    // ADMIN: MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
-    const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
+    const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
     substitute.render();
 
-    //New instance of Listrenderer for shifts (admin view)
+    // ADMIN: shifts, new instance of Listrenderer for shifts (admin view)
     const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
     shiftsAdminList.render();
 
+    // ADMIN: avaliable shifts
     const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
     const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer, "#assign-btn");
     adminAvaliableShiftList.render();
 
+    // ADMIN: substitutes
     const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", adminViewSubstitutesRenderer, "#update-substitute-btn", "#delete-substitute-btn");
     userListForAdmin.render();
 
-    // add sort eventlisteners vikarer -- admin
+    // ADMIN: add sort eventlisteners vikarer
     document.querySelector("#admin-substitutesList-table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
         if (targetId === "substitute-name") {
@@ -151,7 +164,7 @@ async function loginAsAdmin() {
         }
     });
 
-    // add sort eventlisteners vagter -- admin
+    // ADMIN: add sort eventlisteners vagter
     document.querySelector("#table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
         if (targetId === "shift-date") {
@@ -163,7 +176,7 @@ async function loginAsAdmin() {
         }
     });
 
-    // add sort eventlisteners ledige vagter -- admin
+    // ADMIN: add sort eventlisteners ledige vagter -- admin
     document.querySelector("#admin-available-shifts-table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
         if (targetId === "shift-date") {
@@ -175,7 +188,7 @@ async function loginAsAdmin() {
         }
     });
 
-    // add filter eventlistener
+    // ADMIN: add filter eventlistener
     document.querySelector("#admin-shifts-filter").addEventListener("change", () => {
         shiftsAdminList.filter(document.querySelector("#admin-shifts-filter").value);
         adminAvaliableShiftList.filter(document.querySelector("#admin-shifts-filter").value);
@@ -191,12 +204,11 @@ async function loginAsSubstitute() {
     const availableShiftsRenderer = new AvailableShiftsRenderer();
     await buildSubstitutesList();
 
-
     // MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
+    const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
     substitute.render();
-    substituteRenderer.attachEventListener(specificSubstitute[0]);
+    // substituteRenderer.attachEventListener(specificSubstitute[0]);
 
     // Convert shift.id to string before comparison
     const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));

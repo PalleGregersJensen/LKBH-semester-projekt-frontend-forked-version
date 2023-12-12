@@ -1,5 +1,5 @@
-import { createShiftInterest } from "../helpers.js";
-import { loggedInEmployeeID } from "../main.js";
+// import { createShiftInterest } from "../helpers.js";
+// import { loggedInEmployeeID } from "../main.js";
 import { createShiftRequest } from "../rest-service.js";
 
 export class AvailableShiftsRenderer {
