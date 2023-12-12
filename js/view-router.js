@@ -22,8 +22,6 @@ function viewChange() {
             currentUser.loggedIn = true;
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-            // hashLink = "#admin-page";
-            // location.hash = hashLink;
             location.hash = "#mypage-admin";
             document.querySelector(".view-content-admin").classList.add("active");
 
@@ -33,8 +31,6 @@ function viewChange() {
             currentUser.loggedIn = true;
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-            // hashLink = "#substitute-page";
-            // location.hash = hashLink;
             location.hash = "#mypage";
 
             document.querySelector("#logout-btn").classList.remove("hide");
@@ -55,7 +51,6 @@ function viewChange() {
         adminViewMypage(hashLink);
         setLoggedInAs(currentUser);
     } else if (location.hash === "#shifts-view-section-admin") {
-        initTabs();
         adminViewShifts(hashLink);
         setLoggedInAs(currentUser);
     } else if (location.hash === "#substitutes-view-section-admin") {
@@ -66,19 +61,9 @@ function viewChange() {
     hideAllViews();
 
     // Display the active one
-    // const activeView = document.querySelector(hashLink);
     if (hashLink) {
         document.querySelector(hashLink).classList.add("active");
     }
-
-    // // Update the hash link in case it was modified
-    // if (window.location.hash !== hashLink) {
-    //     window.location.hash = hashLink;
-    // }
-
-    // if (hashLink === "#shifts-view-section-admin" || hashLink === "#shifts") {
-    //     initTabs();
-    // }
 }
 
 function setLoggedInAs(currentUser) {
@@ -99,7 +84,7 @@ function adminViewShifts(hashLink) {
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
     loginAsAdmin();
-    // initTabs();
+    initTabs();
 }
 function adminViewSubstitutes(hashLink) {
     document.querySelector(hashLink).classList.add("active");
@@ -113,16 +98,15 @@ function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    // console.log("læses dette");
     loginAsSubstitute();
 }
 
 function substituteViewShifts(hashLink) {
-    initTabs();
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
     loginAsSubstitute();
+    initTabs();
 }
 
 function substituteViewSchema(hashLink) {
@@ -131,16 +115,6 @@ function substituteViewSchema(hashLink) {
     document.querySelector("#logout-btn").classList.remove("hide");
     loginAsSubstitute();
 }
-
-// function setActiveLink(view) {
-//     //sætter link variabel til at være det samme som hashLink/location.hash, altså den URL man er på
-//     const link = document.querySelector(`a.view-link[href="${view}"]`);
-
-//     //sætter link/den side man er på til at være aktiv
-//     if (link) {
-//         link.classList.add("active");
-//     }
-// }
 
 function hideAllViews() {
     document.querySelectorAll(".view-content").forEach((link) => link.classList.remove("active"));
@@ -159,7 +133,6 @@ function logOutView() {
     document.querySelector("#username-logged-in").textContent = "";
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector(".view-content-admin").classList.remove("active");
-    // setActiveLink(hashLink);
     location.hash = hashLink;
     localStorage.clear();
     document.querySelector("#admin-user-info").innerHTML = "";
