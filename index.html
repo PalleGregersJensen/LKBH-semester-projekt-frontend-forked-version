@@ -59,24 +59,23 @@
 
             <!-- admin shifts list -->
             <section id="shifts-view-section-admin" class="view-content">
-                <p>Shifts list admin</p>
                 <!-- create new vacant shift button -->
                 <button id="create-new-shift-btn">Opret ny vagt</button>
                 <p>Vis: </p>
                 <select name="admin-shifts-filter" id="admin-shifts-filter">
-                    <option value="monthFilter:all">Alle</option>
-                    <option value="monthFilter:1">Januar</option>
-                    <option value="monthFilter:2">Februar</option>
-                    <option value="monthFilter:3">Marts</option>
-                    <option value="monthFilter:4">April</option>
-                    <option value="monthFilter:5">Maj</option>
-                    <option value="monthFilter:6">Juni</option>
-                    <option value="monthFilter:7">Juli</option>
-                    <option value="monthFilter:8">August</option>
-                    <option value="monthFilter:9">September</option>
-                    <option value="monthFilter:10">Oktober</option>
-                    <option value="monthFilter:11">November</option>
-                    <option value="monthFilter:12">December</option>
+                    <option  value="monthFilter:all">Alle</option>
+                    <option  value="monthFilter:1">Januar</option>
+                    <option  value="monthFilter:2">Februar</option>
+                    <option  value="monthFilter:3">Marts</option>
+                    <option  value="monthFilter:4">April</option>
+                    <option  value="monthFilter:5">Maj</option>
+                    <option  value="monthFilter:6">Juni</option>
+                    <option  value="monthFilter:7">Juli</option>
+                    <option  value="monthFilter:8">August</option>
+                    <option  value="monthFilter:9">September</option>
+                    <option  value="monthFilter:10">Oktober</option>
+                    <option  value="monthFilter:11">November</option>
+                    <option  value="monthFilter:12">December</option>
                   </select>
             
                 <div class="shifts-tables">
@@ -119,9 +118,9 @@
                 <div id="substitutes-list-admin">
                     <table>
                         <thead id="admin-substitutesList-table-headers">
-                            <th id="substitute-name">Navn</th>
-                            <th id="substitute-employeeID">MedlemsNr.</th>
-                            <th id="substitute-phonenumber">telefon</th>
+                            <th id="substitute-name">Navn↕</th>
+                            <th id="substitute-employeeID">Medlemsnr.↕</th>
+                            <th id="substitute-phonenumber">Telefon</th>
                             <th id="substitute-update-btn">Opdater</th>
                             <th id="substitute-delete-btn">Slet</th>
                         </thead>
@@ -243,8 +242,8 @@
                     <input type="text" name="username" id="form-create-new-substitute-username" required />
                     <label for="form-create-new-substitute-password">Password</label>
                     <input type="text" name="password" id="form-create-new-substitute-password" required />
-                    <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Cancel</button>
+                    <button type="submit" value="submit" id="form-create-new-substitute-confirm-btn">Bekræft</button>
+                    <button type="button" value="cancel" id="form-create-new-substitute-cancel-btn">Annuller</button>
                 </form>
             </fieldset>
         </dialog>
@@ -275,8 +274,8 @@
                     <label for="form-admin-update-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-admin-update-substitute-username" />
                     <input type="text" name="formUpdateEmployeeID" hidden />
-                    <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-admin-update-substitute-cancel-btn">Cancel</button>
+                    <button type="submit" value="submit" id="form-admin-update-substitute-confirm-btn">Bekræft</button>
+                    <button type="button" value="cancel" id="form-admin-update-substitute-cancel-btn">Annuller</button>
                 </form>
             </fieldset>
         </dialog>
@@ -284,10 +283,10 @@
         <!-- admin confirm delete substitute -->
         <dialog id="dialog-delete-substitute">
             <form action="" id="form-delete-substitute" method="dialog">
-                <h3>Slet: <span id="name-to-delete"></span>?</h3>
+                <h3>Vil du slette <span id="name-to-delete"></span>?</h3>
                 <input type="text" name="formDeleteEmployeeID" hidden />
-                <button type="submit">Bekræft</button>
-                <button id="form-cancel-delete-substitute" type="button">Annuler</button>
+                <button type="submit" id="form-confirm-delete-substitute">Bekræft</button>
+                <button id="form-cancel-delete-substitute" type="button">Annuller</button>
             </form>
         </dialog>
 
@@ -302,8 +301,8 @@
                     <input type="datetime-local" name="shift-start" id="form-create-new-shift-start" required />
                     <label for="form-create-new-shift-end">Vagt slutter</label>
                     <input type="datetime-local" name="shift-end" id="form-create-new-shift-end" required />
-                    <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-create-new-shift-cancel-btn">Cancel</button>
+                    <button type="submit" value="submit" id="form-create-new-shift-submit-btn">Bekræft</button>
+                    <button type="button" value="cancel" id="form-create-new-shift-cancel-btn">Annuller</button>
                 </form>
             </fieldset>
         </dialog>
@@ -332,7 +331,7 @@
                 <form id="form-admin-assign-shift" action="" method="dialog">
                     <h3 id="form-assign-shift-header"></h3>
                     <br />
-                    <label for="">Vælg vikar</label>
+                    <label for="">Vælg vikar: </label>
                     <select name="" id="select-substitute">
                         <!-- options inserted in  -->
                     </select>
@@ -340,7 +339,7 @@
                     <!-- gemte id'er -->
                     <input type="text" name="formAssignShiftID" hidden />
                     <input type="text" name="formAssignSubstituteID" hidden />
-                    <button type="submit">Tildel?</button>
+                    <button type="submit" id="assign-shift-btn">Tildel</button>
                 </form>
             </fieldset>
         </dialog>
