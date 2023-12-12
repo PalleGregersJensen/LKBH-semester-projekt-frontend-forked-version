@@ -58,6 +58,7 @@ async function updateLoginInfo() {
             console.log("Noget gik galt, dit password er IKKE ændret!");
         }
     }
+    viewChange();
 }
 
 async function createShiftRequest(substituteID, shiftID) {
