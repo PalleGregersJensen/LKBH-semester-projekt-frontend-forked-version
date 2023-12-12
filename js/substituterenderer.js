@@ -1,5 +1,6 @@
 import { updateLoginInfo } from "./helpers.js";
-import { employee } from "./main.js";
+import { employee, loginAsAdmin, loginAsSubstitute } from "./main.js";
+import { initViews, viewChange } from "./view-router.js";
 
 export class Substituterenderer {
   constructor() {
@@ -44,7 +45,7 @@ export class Substituterenderer {
     }
 
     
-    attachEventListener() {
+    attachEventListener(employee) {
       document.querySelectorAll(".editLoginInfo-btn").forEach(button => {
           button.addEventListener("click", function () {
               // 'this' refers to the button that was clicked
@@ -59,13 +60,14 @@ export class Substituterenderer {
         const username = document.querySelector("#edit-username").value;
         const password = document.querySelector("#edit-password").value;
         const confirmPassword = document.querySelector("#confirm-new-password").value;
-        const EmployeeID = employee.EmployeeID;
+        const EmployeeID = employee.id;
         if (password !== confirmPassword) {
           document.querySelector("#not-matching-passwords").showModal();  
           return;          
         }
-        
+        // console.log(EmployeeID);
         await updateLoginInfo(username, password, EmployeeID);
+        viewChange();
       
         document.querySelector("#editLoginInfo-dialog").close();
       });
