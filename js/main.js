@@ -112,9 +112,7 @@ function applyEventListeners() {
 }
 
 async function loginAsAdmin() {
-    // console.log(`logged in as: admin`);
     loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(loggedInEmployeeID);
 
     await buildSubstitutesList();
     await buildShiftsList();

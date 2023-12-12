@@ -20,14 +20,13 @@ export class AvailableShiftsRenderer {
         return html;
     }
 
-  postRenderer(shift, button) {
-    button.addEventListener("click", () => {
-      const shiftID = shift.id
-      const substituteID = JSON.parse(localStorage.getItem("currentUser")).EmployeeID;
+    postRenderer(shift, button) {
+        button.addEventListener("click", () => {
+            const shiftID = shift.id;
+            const substituteID = JSON.parse(localStorage.getItem("currentUser")).EmployeeID;
 
-      createShiftRequest(substituteID, shiftID);
-    });
-    
+            createShiftRequest(substituteID, shiftID);
+        });
     }
 }
 

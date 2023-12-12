@@ -34,7 +34,6 @@ async function createShiftRequest(substituteID, shiftID) {
     const employeeID = substituteID;
     const requestedShiftID = shiftID;
     const bodyToPost = { ShiftID: requestedShiftID, EmployeeID: employeeID };
-    console.log(bodyToPost);
 
     const response = await fetch(`${endpoint}/shiftInterests`, {
         method: "POST",
@@ -42,15 +41,13 @@ async function createShiftRequest(substituteID, shiftID) {
         body: JSON.stringify(bodyToPost),
     });
 
-    // console.log(response);
-
     if (response.ok) {
         console.log("Dit bud er registreret!");
     } else {
         console.log("Dit bud blev ikke registreret! (måske har du allerede budt?)");
     }
 
-    viewChange();
+    // viewChange();
 }
 
 //Opdatere ttildeling af vagt
