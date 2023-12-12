@@ -47,11 +47,10 @@ function waitForShiftInterests() {
 }
 
 async function updateLoginInfo(username, password, EmployeeID) {
-    console.log(EmployeeID);
     const newLoginInfo = { Username: username, PasswordHash: password };
 
     const newLoginInfoJSON = JSON.stringify(newLoginInfo);
-    console.log(newLoginInfoJSON);
+
     const response = await fetch(`${endpoint}/substitutes/${EmployeeID}`, {
         method: "PUT",
         headers: {
@@ -59,8 +58,7 @@ async function updateLoginInfo(username, password, EmployeeID) {
         },
         body: newLoginInfoJSON,
     });
-  console.log(response);
-  return response;
+    return response;
 }
 
 export { createShiftInterest, updateLoginInfo };
