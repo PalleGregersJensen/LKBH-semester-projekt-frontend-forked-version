@@ -221,6 +221,10 @@ async function loginAsSubstitute() {
     availableShiftsSubstitutes.render();
     // availableShiftsRenderer.attachEventListener();
 
+    const calendar = new ListRenderer(shiftsOfLoggedInEmployee, "#calendarBody", calendarRenderer);
+    calendar.render();
+
+
     // add sort eventlisteners mine vagter
     document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
