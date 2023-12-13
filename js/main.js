@@ -4,10 +4,10 @@
 const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
-import { login } from "./login.js";
-import { initViews, logOutView } from "./view-router.js";
+import { login } from "./controller/login.js";
+import { initViews, logOutView } from "./controller/view-router.js";
 import { MyInfoRenderer } from "./view/myinfo-renderer.js";
-import { ListRenderer } from "./listrenderer.js";
+import { ListRenderer } from "./controller/listrenderer.js";
 import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
 import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
@@ -28,7 +28,7 @@ import {
     createNewSubstitute,
     deleteSubstitute,
     createNewShift,
-} from "./rest-service.js";
+} from "./controller/rest-service.js";
 // import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);

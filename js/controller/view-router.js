@@ -1,5 +1,5 @@
 import { initTabs } from "./tabs.js";
-import { loginAsAdmin, loginAsSubstitute } from "./main.js";
+import { loginAsAdmin, loginAsSubstitute } from "../main.js";
 
 function initViews() {
     // Add hashchange event listener only once during initialization

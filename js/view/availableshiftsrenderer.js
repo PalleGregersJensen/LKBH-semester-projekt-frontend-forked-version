@@ -1,6 +1,6 @@
 // import { createShiftInterest } from "../helpers.js";
 // import { loggedInEmployeeID } from "../main.js";
-import { createShiftRequest } from "../rest-service.js";
+import { createShiftRequest } from "../controller/rest-service.js";
 
 export class AvailableShiftsRenderer {
     render(shift) {

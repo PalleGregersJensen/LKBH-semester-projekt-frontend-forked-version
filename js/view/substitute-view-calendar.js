@@ -8,7 +8,7 @@ export class CalendarRenderer {
             // Calculate the column index in the calendar based on the day index
             const columnIndex = (dayIndex + 6) % 7; // Adjust to start the week from Monday
 
-            const html = /*html*/`
+            const html = /*html*/ `
                 <tr data-week="${shift.weekNumber}" data-date="${shift.date}">
                     <td colspan="${columnIndex}"></td>
                     <td>Kl.: ${shift.shiftStart} - ${shift.shiftEnd}</td>

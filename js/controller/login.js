@@ -1,4 +1,4 @@
-import { endpoint } from "./main.js";
+import { endpoint } from "../main.js";
 import { viewChange } from "./view-router.js";
 
 async function login(event) {
