@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
         <!-- Links -->
-        <link rel="icon" href="Dokumentation/img/favicon-16x16.png" />
+        <link rel="icon" href="./Img/favicon-16x16.png" />
 
         <!-- Styles -->
         <link rel="stylesheet" href="style.css" />
@@ -16,7 +16,7 @@
     <body>
         <header>
             <button id="logout-btn" class="hide" type="button">Log ud</button>
-            <img id="header-logo" src="Dokumentation/img/LKbh - logo.jpg" alt="" />
+            <img id="header-logo" src="./Img/LKbh - logo.jpg" />
             <p id="username-logged-in"></p>
         </header>
 
@@ -228,9 +228,21 @@
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
                         <label for="form-create-new-substitute-is-admin">Ja</label>
-                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-admin" value="is-admin" required />
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-admin"
+                            value="is-admin"
+                            required
+                        />
                         <label for="form-create-new-substitute-is-not-admin">Nej</label>
-                        <input type="radio" name="admin-status" id="form-create-new-substitute-is-not-admin" value="is-not-admin" required />
+                        <input
+                            type="radio"
+                            name="admin-status"
+                            id="form-create-new-substitute-is-not-admin"
+                            value="is-not-admin"
+                            required
+                        />
                     </fieldset>
                     <label for="form-create-new-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-create-new-substitute-username" required />
@@ -261,9 +273,19 @@
                         <legend>Skal bruger have administratorrettigheder?</legend>
                         <br />
                         <label for="form-admin-update-substitute-is-admin">Ja</label>
-                        <input type="radio" name="adminstatus" id="form-admin-update-substitute-is-admin" value="is-admin" />
+                        <input
+                            type="radio"
+                            name="adminstatus"
+                            id="form-admin-update-substitute-is-admin"
+                            value="is-admin"
+                        />
                         <label for="form-admin-update-substitute-is-not-admin">Nej</label>
-                        <input type="radio" name="adminstatus" id="form-admin-update-substitute-is-not-admin" value="is-not-admin" />
+                        <input
+                            type="radio"
+                            name="adminstatus"
+                            id="form-admin-update-substitute-is-not-admin"
+                            value="is-not-admin"
+                        />
                     </fieldset>
                     <label for="form-admin-update-substitute-username">Brugernavn</label>
                     <input type="text" name="username" id="form-admin-update-substitute-username" />
@@ -353,7 +375,9 @@
                     <label for="form-substitue-update-own-number">Opdater telefonnummer:</label>
                     <input type="number" name="update-own-number" id="form-substitue-update-own-number" />
                     <button type="submit" value="submit">Submit</button>
-                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">Cancel</button>
+                    <button type="button" value="cancel" id="form-substitue-update-own-information-cancel-btn">
+                        Cancel
+                    </button>
                 </form>
             </fieldset>
         </dialog>
