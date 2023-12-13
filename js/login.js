@@ -1,7 +1,5 @@
-import { endpoint, loginAsAdmin, loginAsSubstitute, buildRequestedShiftsList, initApp, buildShiftsList } from "./main.js";
+import { endpoint } from "./main.js";
 import { viewChange } from "./view-router.js";
-
-// let isLoggedIn;
 
 async function login(event) {
     event.preventDefault();
@@ -19,45 +17,8 @@ async function login(event) {
         localStorage.setItem("currentUser", JSON.stringify(confirmedUser));
 
         viewChange();
-
-        // if (currentUser.IsAdmin) {
-        //     console.log("logging in as admin");
-        //     viewChange();
-                        
-        //     // buildRequestedShiftsList();
-        //     // buildShiftsList();
-        //     loginAsAdmin();
-        // } else if (!currentUser.IsAdmin) {
-        //     console.log("logging in as user");
-            
-        //     viewChange();
-
-        //     loginAsSubstitute();
-        // }
     }
 }
-
-// login clicked
-// async function loginClicked() {
-//     const form = event.target;
-//     const userName = form.username.value;
-//     const password = form.password.value;
-//     let employeeData = await checkUsernameAndPassword(userName, password);
-//     employee = employeeData.employee;
-//     // console.log(employee);
-//     // console.log(employee.IsAdmin);
-//     // Checks if user logged in is admin or substitute
-//     if (Number(employee.IsAdmin) === 1) {
-//         isAdmin = true;
-//     } else {
-//         isAdmin = false;
-//     }
-//     // console.log(isAdmin);
-//     setLoginUsername();
-
-//     viewChange(employee);
-//     return employee;
-// }
 
 // Post response to backend to see, if entered username and password is correct
 async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
@@ -72,12 +33,7 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
         });
 
         if (response.ok) {
-            // if response ok, set isLoggedIn = true and return JSON data
-            // isLoggedIn = true;
-            // console.log(isLoggedIn);
-            // retrieve JSON-data from backend and returns it
             const data = response.json();
-            // console.log(data);
             return data;
         } else {
             console.log("Login fejlede");
@@ -86,10 +42,5 @@ async function checkUsernameAndPassword(enteredUserName, enteredPassword) {
         console.error("An error occurred:", error);
     }
 }
-
-// function setLoginUsername() {
-//     // console.log(employee);
-//     document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${employee.Username}`;
-// }
 
 export { login };

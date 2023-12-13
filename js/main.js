@@ -5,7 +5,18 @@ const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
 import { login } from "./login.js";
-import { initViews, logOutView, viewChange } from "./view-router.js";
+import { initViews, logOutView } from "./view-router.js";
+import { Substituterenderer } from "./view/substituterenderer.js";
+import { ListRenderer } from "./listrenderer.js";
+import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
+import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
+import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
+import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
+import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
+import { CalendarRenderer } from "./view/substitute-view-calendar.js";
+import * as requestedshift from "./model/requested-shift.js";
+import * as shift from "./model/myshifts.js";
+import * as substitute from "./model/substitute.js";
 import {
     getShiftData,
     getShiftInterestData,
@@ -16,21 +27,9 @@ import {
     updateSubstitute,
     createNewSubstitute,
     deleteSubstitute,
+    createNewShift,
 } from "./rest-service.js";
-import { Substituterenderer } from "./substituterenderer.js";
-import { ListRenderer } from "./listrenderer.js";
-import { initTabs } from "./tabs.js";
-import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
-import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
-// import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
-import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
-import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
-import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
-import { CalendarRenderer } from "./view/substitute-view-calendar.js";
-import * as requestedshift from "./model/requested-shift.js";
-import * as shift from "./model/myshifts.js";
-import * as substitute from "./model/substitute.js";
-import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
+// import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
@@ -84,6 +83,21 @@ function closeErrorMessageInCreateSubstitute() {
     document.querySelector("#dialog-error-message-create-substitute").close();
 }
 
+// create shift show dialog
+function createNewShiftClicked() {
+    document.querySelector("#dialog-create-new-shift").showModal();
+}
+
+// create shift close dialog
+function closeCreateNewShiftDialog() {
+    document.querySelector("#dialog-create-new-shift").close();
+}
+
+// create shift close error dialog
+function closeErrorMessageInCreateShift() {
+    document.querySelector("#dialog-error-message-create-shift").close();
+}
+
 function cancelDeleteSubstitute() {
     document.querySelector("#dialog-delete-substitute").close();
 }
@@ -109,6 +123,7 @@ function applyEventListeners() {
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
     document.querySelector("#form-create-new-shift-cancel-btn").addEventListener("click", closeCreateNewShiftDialog);
+    document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);
 
     // eventlisteners for assign substitute
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);

@@ -224,4 +224,61 @@ async function updateSubstitute(event) {
     viewChange();
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, updateLoginInfo, createShiftRequest, assignSubstitute, updateSubstitute, createNewSubstitute, deleteSubstitute };
+async function createNewShift(event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const shiftDate = form.elements["shift-date"].value;
+    const shiftStart = form.elements["shift-start"].value;
+    const shiftEnd = form.elements["shift-end"].value;
+
+    const convertedShiftStart = formatDateTime(shiftStart);
+    const convertedShiftEnd = formatDateTime(shiftEnd);
+    const newShift = {
+        Date: shiftDate,
+        ShiftStart: convertedShiftStart,
+        ShiftEnd: convertedShiftEnd,
+    };
+    const newShiftAsJson = JSON.stringify(newShift);
+    const response = await fetch(`${endpoint}/shifts/`, {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: newShiftAsJson,
+    });
+    if (response.ok) {
+        // if success, close dialog window
+        document.querySelector("#dialog-create-new-shift").close();
+
+        viewChange();
+    } else {
+        document.querySelector("#dialog-error-message-create-shift").showModal();
+        document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);
+    }
+}
+
+const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = (date.getHours() + 1).toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
+export {
+    getShiftData,
+    getSubstitutesData,
+    getShiftInterestData,
+    getRequestedShifts,
+    updateLoginInfo,
+    createShiftRequest,
+    assignSubstitute,
+    updateSubstitute,
+    createNewSubstitute,
+    deleteSubstitute,
+    createNewShift,
+};
