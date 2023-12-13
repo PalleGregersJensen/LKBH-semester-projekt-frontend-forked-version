@@ -155,7 +155,7 @@ function applyEventListeners() {
     });
 }
 
-async function loginAsAdmin() {
+async function generateAdminData() {
     loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
 
     await buildSubstitutesList();
@@ -227,7 +227,7 @@ async function loginAsAdmin() {
     });
 }
 
-async function loginAsSubstitute() {
+async function generateSubstituteData() {
     loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
 
     // Create an instance of itemRenderers
@@ -388,8 +388,8 @@ async function loginAsSubstitute() {
 export {
     endpoint,
     initApp,
-    loginAsAdmin,
-    loginAsSubstitute,
+    generateAdminData,
+    generateSubstituteData,
     employee,
     loggedInEmployeeID,
     shiftInterests,

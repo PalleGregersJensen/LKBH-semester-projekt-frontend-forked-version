@@ -1,5 +1,5 @@
 import { initTabs } from "./tabs.js";
-import { loginAsAdmin, loginAsSubstitute } from "../main.js";
+import { generateAdminData, generateSubstituteData } from "../main.js";
 
 function initViews() {
     // Add hashchange event listener only once during initialization
@@ -79,7 +79,7 @@ function adminViewMypage(hashLink) {
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsAdmin();
+    generateAdminData();
 }
 
 // secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
@@ -88,7 +88,7 @@ function adminViewShifts(hashLink) {
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsAdmin();
+    generateAdminData();
     initTabs();
 }
 
@@ -98,7 +98,7 @@ function adminViewSubstitutes(hashLink) {
     document.querySelector(".view-content-admin").classList.add("active");
     document.querySelector(".view-content-substitute").classList.remove("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsAdmin();
+    generateAdminData();
 }
 
 // secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
@@ -106,7 +106,7 @@ function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsSubstitute();
+    generateSubstituteData();
 }
 
 // secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
@@ -114,7 +114,7 @@ function substituteViewShifts(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsSubstitute();
+    generateSubstituteData();
     initTabs();
 }
 
@@ -123,7 +123,7 @@ function substituteViewSchema(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
     document.querySelector("#logout-btn").classList.remove("hide");
-    loginAsSubstitute();
+    generateSubstituteData();
 }
 
 //hiding all views
