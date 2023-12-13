@@ -262,7 +262,8 @@ h1 {
 }
 
 .shift-interest-button,
-#create-substitute-btn, #admin-shifts-filter, #assign-shift-btn, #select-substitute {
+#create-substitute-btn, #admin-shifts-filter, #assign-shift-btn, #select-substitute,
+#next-week-btn, #prev-week-btn {
     background-color: rgb(155, 24, 24);
     color: #fff;
     padding: 10px 20px;
@@ -294,7 +295,8 @@ label{
   margin-bottom: 1%;
 }
 
-.shift-interest-button:hover, #create-substitute-btn:hover, #assign-shift-btn:hover,  #admin-shifts-filter:hover, #select-substitute:hover {
+.shift-interest-button:hover, #create-substitute-btn:hover, #assign-shift-btn:hover,  #admin-shifts-filter:hover, #select-substitute:hover,
+#next-week-btn:hover, #prev-week-btn:hover {
   background-color: #43597a;
 }
 
@@ -440,4 +442,47 @@ legend {
 #shift-date:hover, #available-shift-time:hover, #shifts-shift-time:hover, #shift-hours:hover, #substitute-name:hover, #substitute-employeeID:hover,
 #shift-date:hover, #shift-time:hover, #shift-requested-by:hover, #shift-employee:hover {
   cursor: pointer;
+}
+
+/* Styling for calendar */
+
+#calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+#calendar-th, #calendar-td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#calendar-th {
+  background-color: #f2f2f2;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.schema-data{
+  margin-right: 10%;
+}
+
+#calendar-year{
+  margin-top: 40px;
+  margin-bottom: 60px;
+  font-weight: bold;
+}
+
+#calendarBody {
+  background-color: white;
+  width: 100%; /* Make #calendarBody same width as the table */
+  height: 300px; /* Set a fixed height for #calendarBody */
+  overflow: auto; /* Add overflow: auto to enable scrolling if content exceeds the fixed height */
+  text-align: center;
 }

@@ -29,6 +29,7 @@ import {
 import { AdminShiftRenderer } from "./adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
+import { CalendarRenderer } from "./substitute-view-calendar.js";
 import * as requestedshift from "./model/requested-shift.js";
 import * as shift from "./model/myshifts.js";
 import * as substitute from "./model/substitute.js";
@@ -43,6 +44,7 @@ let shifts = [];
 let employee = [];
 let loggedInEmployeeID = [];
 let shiftInterests = [];
+let shiftsOfLoggedInEmployee = [];
 
 async function initApp() {
     console.log("JavaScript is live! 🎉");
@@ -218,40 +220,47 @@ async function loginAsSubstitute() {
     const substituteRenderer = new Substituterenderer();
     const MyShiftsrenderer = new MyShiftsRenderer();
     const availableShiftsRenderer = new AvailableShiftsRenderer();
+    const calendarRenderer = new CalendarRenderer();
     await buildSubstitutesList();
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
     const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
     substitute.render();
     substituteRenderer.attachEventListener(specificSubstitute[0]);
-
+    
     // Convert shift.id to string before comparison
-    const shiftsOfLoggedInEmployee = shifts.filter(
+    shiftsOfLoggedInEmployee = shifts.filter(
         (shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID)
-    );
-    const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
-    myShifts.render();
+        );
+        console.log(shiftsOfLoggedInEmployee);
+        const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
+        myShifts.render();
+        
+        const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
+        const availableShiftsSubstitutes = new ListRenderer(
+            displayAvailableShifts,
+            "#availableShifts",
+            availableShiftsRenderer
+            );
+            availableShiftsSubstitutes.render();
+            availableShiftsRenderer.attachEventListener();
+            
+            
+            const calendar = new ListRenderer(shiftsOfLoggedInEmployee, "#calendarBody", calendarRenderer);
+            calendar.render();
 
-    const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-    const availableShiftsSubstitutes = new ListRenderer(
-        displayAvailableShifts,
-        "#availableShifts",
-        availableShiftsRenderer
-    );
-    availableShiftsSubstitutes.render();
-    availableShiftsRenderer.attachEventListener();
-
-    // add sort eventlisteners mine vagter
-    document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
-        const targetId = event.target.id;
-        if (targetId === "shift-date") {
-            myShifts.sort("date");
-        } else if (targetId === "shifts-shift-time") {
-            myShifts.sort("shiftStart");
-        } else if (targetId === "shift-hours") {
-            myShifts.sort("shiftLength");
-        }
-    });
-
+            
+            // add sort eventlisteners mine vagter
+            document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
+                const targetId = event.target.id;
+                if (targetId === "shift-date") {
+                    myShifts.sort("date");
+                } else if (targetId === "shifts-shift-time") {
+                    myShifts.sort("shiftStart");
+                } else if (targetId === "shift-hours") {
+                    myShifts.sort("shiftLength");
+                }
+            });
+            
     // add sort eventlisteners ledige vagter
     document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
@@ -261,6 +270,117 @@ async function loginAsSubstitute() {
             availableShiftsSubstitutes.sort("shiftStart");
         }
     });
+
+    function updateCalendar(currentWeek) {
+        const calendarBody = document.getElementById("calendarBody");
+        calendarBody.innerHTML = ""; // Clear existing content
+    
+        // Filter shifts for the current week
+        const shiftsForCurrentWeek = shiftsOfLoggedInEmployee.filter(shift => shift.weekNumber === currentWeek);
+    
+        // Render each shift for the current week
+        shiftsForCurrentWeek.forEach(shift => {
+            const html = calendarRenderer.render(shift, currentWeek);
+            calendarBody.innerHTML += html;
+        });
+    }
+
+// Function to navigate to the previous week
+function prevWeek() {
+    // Update the week number and call the updateCalendar function
+    if(currentWeek===1){
+        currentWeek=52;
+        currentYear--;
+     } else{
+            currentWeek--;}
+    updateCalendar(currentWeek);
+    updateWeekHeader(currentWeek);
+}
+
+// Function to navigate to the next week
+function nextWeek() {
+    // Update the week number and call the updateCalendar function
+    if(currentWeek===52){
+        currentWeek=1;
+        currentYear++;
+    }else{
+        currentWeek++;
+    }
+    updateCalendar(currentWeek);
+    updateWeekHeader(currentWeek);
+}
+
+// Function to update the week header
+function updateWeekHeader(weekNumber) {
+    document.getElementById("currentWeek").textContent = `Uge ${currentWeek}`;
+    document.getElementById("calendar-year").textContent = `Min Kalender ${currentYear}`;
+
+        // Get the start date of the specified week
+        const startDate = getStartDateOfWeek(currentYear, weekNumber);
+    
+        // Get the table header row
+        const headerRow = document.getElementById("calendar-th").querySelector("tr");
+    
+        // Loop through each day of the week
+        for (let i = 0; i < 7; i++) {
+
+            const currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + i);
+    
+            // Update the inner HTML of the corresponding table header cell
+            const cell = headerRow.children[i];
+            cell.innerHTML = `${getWeekday(currentDate)}<br>${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+            // Inside the loop where you're creating table header cells
+            const row = document.createElement('tr');
+            row.dataset.week = currentWeek;
+            row.dataset.date = `${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+
+        }
+    };
+
+
+// Get the current date
+const currentDate = new Date();
+let currentYear = 2023;
+
+// Calculate the current week number
+let currentWeek = getWeekNumber(currentDate);
+
+// Function to calculate the week number
+function getWeekNumber(date) {
+    const d = new Date(date);
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+    const yearStart = new Date(d.getFullYear(), 0, 1);
+    return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+}
+
+function getStartDateOfWeek(year, weekNumber) {
+    const januaryFirst = new Date(year, 0, 1);
+    const daysToFirstMonday = (8 - januaryFirst.getDay()) % 7;
+    const daysToTargetWeek = (weekNumber - 1) * 7;
+
+    const startDate = new Date(januaryFirst);
+    startDate.setDate(januaryFirst.getDate() + daysToFirstMonday + daysToTargetWeek);
+
+    return startDate;
+}
+
+// Function to get the weekday based on a date
+function getWeekday(date) {
+    const daysOfWeek = [ 'Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
+    const dayIndex = date.getDay();
+    return daysOfWeek[dayIndex];
+}
+
+// Initial calendar update
+updateCalendar(currentWeek);
+updateWeekHeader(currentWeek);
+
+document.querySelector("#prev-week-btn").addEventListener("click", prevWeek);
+document.querySelector("#next-week-btn").addEventListener("click", nextWeek);
+
+
 }
 
 // function testSomething() {
@@ -350,6 +470,7 @@ export {
     shiftInterests,
     substitutes,
     requestedShiftsList,
+    shiftsOfLoggedInEmployee,
     buildShiftsList,
-    buildRequestedShiftsList,
+    buildRequestedShiftsList
 };
