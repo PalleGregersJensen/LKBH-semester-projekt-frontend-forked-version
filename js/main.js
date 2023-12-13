@@ -6,7 +6,7 @@ const endpoint = "http://localhost:3333";
 // ===== IMPORTS ===== \\
 import { login } from "./login.js";
 import { initViews, logOutView } from "./view-router.js";
-import { Substituterenderer } from "./view/substituterenderer.js";
+import { MyInfoRenderer } from "./view/myinfo-renderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
@@ -163,14 +163,14 @@ async function loginAsAdmin() {
     await buildRequestedShiftsList();
 
     // ADMIN: Create an instance of "item"Renderers for admin
-    const substituteRenderer = new Substituterenderer();
+    const myInfoRenderer = new MyInfoRenderer();
     const adminShiftRenderer = new AdminShiftRenderer();
     const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
     const adminViewSubstitutesRenderer = new AdminViewSubstitutesRenderer();
 
     // ADMIN: MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
+    const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", myInfoRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
     substitute.render();
 
     // ADMIN: shifts, new instance of Listrenderer for shifts (admin view)
@@ -231,7 +231,7 @@ async function loginAsSubstitute() {
     loggedInEmployeeID = JSON.parse(localStorage.getItem("currentUser"));
 
     // Create an instance of itemRenderers
-    const substituteRenderer = new Substituterenderer();
+    const myInfoRenderer = new MyInfoRenderer();
     const MyShiftsrenderer = new MyShiftsRenderer();
     const availableShiftsRenderer = new AvailableShiftsRenderer();
     const calendarRenderer = new CalendarRenderer();
@@ -239,9 +239,8 @@ async function loginAsSubstitute() {
 
     // MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
+    const substitute = new ListRenderer(specificSubstitute, ".my-info", myInfoRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
     substitute.render();
-    // substituteRenderer.attachEventListener(specificSubstitute[0]);
 
     // Convert shift.id to string before comparison
     const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
@@ -386,83 +385,6 @@ async function loginAsSubstitute() {
     document.querySelector("#next-week-btn").addEventListener("click", nextWeek);
 }
 
-// function testSomething() {
-//     if (employee.IsAdmin) {
-//             // // console.log(`logged in as: admin`);
-//             // buildRequestedShiftsList();
-
-//             // // Create an instance of "item"Renderers for admin
-//             // const substituteRenderer = new Substituterenderer();
-//             // const adminShiftRenderer = new AdminShiftRenderer();
-//             // const adminViewAvaliableShiftRenderer = new AdminViewAvaliableShiftRenderer();
-//             // const adminViewSubstitutesRenderer = new AdminViewSubstitutesRenderer();
-
-//             // //filtering substitutes-list for everyone but the user logged in
-//             // const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
-//             // //Making a variable/object that holds a new instance of a Listrenderer with parameters for info on the user logged in
-//             // const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", substituteRenderer);
-//             // substitute.render();
-
-//             // //New instance of Listrenderer for shifts (admin view)
-//             // const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
-//             // shiftsAdminList.render();
-
-//             // const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-//             // const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer, "#assign-btn");
-//             // adminAvaliableShiftList.render();
-
-//             // const userListForAdmin = new ListRenderer(
-//             //     substitutes,
-//             //     "#substitutes-list-admin-tbody",
-//             //     adminViewSubstitutesRenderer,
-//             //     "#update-substitute-btn",
-//             //     "#delete-substitute-btn"
-//             // );
-//             // userListForAdmin.render();
-//         } else if (!employee.IsAdmin) {
-//             // // Create an instance of Renderers
-//             // const substituteRenderer = new Substituterenderer();
-//             // const MyShiftsrenderer = new MyShiftsRenderer();
-//             // const availableShiftsRenderer = new AvailableShiftsRenderer();
-
-//             // // Convert shift.id to string before comparison
-//             // const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID));
-//             // const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
-//             // myShifts.render();
-
-//             // const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID);
-//             // const substitute = new ListRenderer(specificSubstitute, ".my-info", substituteRenderer);
-//             // substitute.render();
-//             // substituteRenderer.attachEventListener(substitute);
-
-//             // const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-//             // const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer);
-//             // availableShiftsSubstitutes.render();
-//             // availableShiftsRenderer.attachEventListener();
-
-//             // // add sort eventlisteners mine vagter
-//             // document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
-//             //     const targetId = event.target.id;
-//             //     if (targetId === "shift-date") {
-//             //         myShifts.sort("date");
-//             //     } else if (targetId === "shifts-shift-time") {
-//             //         myShifts.sort("shiftStart");
-//             //     } else if (targetId === "shift-hours") {
-//             //         myShifts.sort("shiftLength");
-//             //     }
-//             // });
-
-//             // // add sort eventlisteners ledige vagter
-//             // document.querySelector("#available-shifts-table-headers").addEventListener("click", (event) => {
-//             //     const targetId = event.target.id;
-//             //     if (targetId === "shift-date") {
-//             //         availableShiftsSubstitutes.sort("date");
-//             //     } else if (targetId === "available-shift-time") {
-//             //         availableShiftsSubstitutes.sort("shiftStart");
-//             //     }
-//             // });
-//         }
-// }
 export {
     endpoint,
     initApp,

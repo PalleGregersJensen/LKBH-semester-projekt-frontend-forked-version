@@ -1,4 +1,4 @@
-export class Substituterenderer {
+export class MyInfoRenderer {
     render(substitute) {
         let html = /*html*/ `
               <h1>Personlige Oplysninger</h1>
