@@ -29,7 +29,6 @@ import {
     deleteSubstitute,
     createNewShift,
 } from "./controller/rest-service.js";
-// import { createNewShiftClicked, createNewShift, closeCreateNewShiftDialog } from "./create-new-shift.js";
 
 window.addEventListener("load", initApp);
 
