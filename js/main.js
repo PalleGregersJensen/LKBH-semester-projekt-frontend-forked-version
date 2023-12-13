@@ -1,7 +1,7 @@
 "use strict";
 
 //Endpoint
-const endpoint = "http://localhost:3333";
+const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
 
 // ===== IMPORTS ===== \\
 import { login } from "./controller/login.js";
@@ -115,8 +115,12 @@ function applyEventListeners() {
     // eventlisteners for create new substitute
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
-    document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
-    document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);
+    document
+        .querySelector("#form-create-new-substitute-cancel-btn")
+        .addEventListener("click", closeCreateNewSubstituteDialog);
+    document
+        .querySelector("#error-message-create-substitute-btn")
+        .addEventListener("click", closeErrorMessageInCreateSubstitute);
 
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
@@ -129,7 +133,9 @@ function applyEventListeners() {
 
     // eventlisteners for update substitute
     document.querySelector("#form-admin-update-substitute").addEventListener("submit", updateSubstitute);
-    document.querySelector("#form-admin-update-substitute-cancel-btn").addEventListener("click", cancelUpdateSubstitute);
+    document
+        .querySelector("#form-admin-update-substitute-cancel-btn")
+        .addEventListener("click", cancelUpdateSubstitute);
 
     // eventlisteners for delete substitute
     document.querySelector("#form-delete-substitute").addEventListener("submit", deleteSubstitute);
@@ -169,7 +175,13 @@ async function generateAdminData() {
 
     // ADMIN: MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    const substitute = new ListRenderer(specificSubstitute, "#admin-user-info", myInfoRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
+    const substitute = new ListRenderer(
+        specificSubstitute,
+        "#admin-user-info",
+        myInfoRenderer,
+        "#edit-myinfo-btn1",
+        "#edit-myinfo-btn2"
+    );
     substitute.render();
 
     // ADMIN: shifts, new instance of Listrenderer for shifts (admin view)
@@ -178,11 +190,22 @@ async function generateAdminData() {
 
     // ADMIN: avaliable shifts
     const availableShiftsListAdmin = requestedShiftsList.filter((shift) => !shift.shiftIsTaken);
-    const adminAvaliableShiftList = new ListRenderer(availableShiftsListAdmin, "#availableShifts-admin-tbody", adminViewAvaliableShiftRenderer, "#assign-btn");
+    const adminAvaliableShiftList = new ListRenderer(
+        availableShiftsListAdmin,
+        "#availableShifts-admin-tbody",
+        adminViewAvaliableShiftRenderer,
+        "#assign-btn"
+    );
     adminAvaliableShiftList.render();
 
     // ADMIN: substitutes
-    const userListForAdmin = new ListRenderer(substitutes, "#substitutes-list-admin-tbody", adminViewSubstitutesRenderer, "#update-substitute-btn", "#delete-substitute-btn");
+    const userListForAdmin = new ListRenderer(
+        substitutes,
+        "#substitutes-list-admin-tbody",
+        adminViewSubstitutesRenderer,
+        "#update-substitute-btn",
+        "#delete-substitute-btn"
+    );
     userListForAdmin.render();
 
     // ADMIN: add sort eventlisteners vikarer
@@ -238,16 +261,29 @@ async function generateSubstituteData() {
 
     // MyInfo
     const specificSubstitute = substitutes.filter((substitute) => substitute.id === loggedInEmployeeID.EmployeeID);
-    const substitute = new ListRenderer(specificSubstitute, ".my-info", myInfoRenderer, "#edit-myinfo-btn1", "#edit-myinfo-btn2");
+    const substitute = new ListRenderer(
+        specificSubstitute,
+        ".my-info",
+        myInfoRenderer,
+        "#edit-myinfo-btn1",
+        "#edit-myinfo-btn2"
+    );
     substitute.render();
 
     // Convert shift.id to string before comparison
-    const shiftsOfLoggedInEmployee = shifts.filter((shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID));
+    const shiftsOfLoggedInEmployee = shifts.filter(
+        (shift) => String(shift.employeeID) === String(loggedInEmployeeID.EmployeeID)
+    );
     const myShifts = new ListRenderer(shiftsOfLoggedInEmployee, "#myShifts", MyShiftsrenderer);
     myShifts.render();
 
     const displayAvailableShifts = shifts.filter((shift) => !shift.shiftIsTaken);
-    const availableShiftsSubstitutes = new ListRenderer(displayAvailableShifts, "#availableShifts", availableShiftsRenderer, "#request-shift-btn");
+    const availableShiftsSubstitutes = new ListRenderer(
+        displayAvailableShifts,
+        "#availableShifts",
+        availableShiftsRenderer,
+        "#request-shift-btn"
+    );
     availableShiftsSubstitutes.render();
     // availableShiftsRenderer.attachEventListener();
 

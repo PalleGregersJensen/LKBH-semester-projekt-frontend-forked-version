@@ -1,6 +1,6 @@
 import { viewChange } from "./view-router.js";
 
-const endpoint = "http://localhost:3333";
+const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
 
 // get Json-data
 async function getSubstitutesData() {
@@ -149,7 +149,9 @@ async function createNewSubstitute(event) {
         viewChange();
     } else {
         document.querySelector("#dialog-error-message-create-substitute").showModal();
-        document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);
+        document
+            .querySelector("#error-message-create-substitute-btn")
+            .addEventListener("click", closeErrorMessageInCreateSubstitute);
     }
 }
 
@@ -252,7 +254,9 @@ async function createNewShift(event) {
         viewChange();
     } else {
         document.querySelector("#dialog-error-message-create-shift").showModal();
-        document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);
+        document
+            .querySelector("#error-message-create-shift-btn")
+            .addEventListener("click", closeErrorMessageInCreateShift);
     }
 }
 
