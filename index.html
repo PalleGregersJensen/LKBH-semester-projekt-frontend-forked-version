@@ -187,11 +187,33 @@
             </section>
 
             <section id="schema" class="view-content">
+                <h1 id="calendar-year">Min Kalender</h1>
                 <div class="schema-data">
-                    <h2>Kontakt</h2>
-                    <p>Stillehavsvej 123</p>
-                    <p>2000, Frederiksberg</p>
-                    <p>Tlf: +45 98765432</p>
+                    <div class="navigation">
+                        <button id="prev-week-btn">Forrige Uge</button>
+                        <h2 id="currentWeek">Uge X</h2>
+                        <button id="next-week-btn">Næste Uge</button>
+                    </div>
+                    <table id="calendar-table">
+                        <thead id="calendar-th">
+                        <tr>
+                            <!-- <th>Time</th> -->
+                            <th>Mandag</th>
+                            <th>Tirsdag</th>
+                            <th>Onsdag</th>
+                            <th>Torsdag</th>
+                            <th>Fredag</th>
+                            <th>Lørdag</th>
+                            <th>Søndag</th>
+                        </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                            <!-- Calendar content will be inserted here -->
+                        </tbody>
+                        <!-- <tbody id="calendar-time">
+                            Time labels will be inserted here 
+                        </tbody>  -->
+                    </table>
                 </div>
             </section>
         </main>
