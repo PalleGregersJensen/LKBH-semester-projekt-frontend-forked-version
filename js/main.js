@@ -26,6 +26,7 @@ import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstitu
 import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
+import { CalendarRenderer } from "./view/substitute-view-calendar.js";
 import * as requestedshift from "./model/requested-shift.js";
 import * as shift from "./model/myshifts.js";
 import * as substitute from "./model/substitute.js";
