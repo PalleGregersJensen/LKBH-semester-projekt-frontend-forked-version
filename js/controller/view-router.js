@@ -17,6 +17,7 @@ function viewChange() {
     // get currentUser from localStorage if any
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+    // directs user to mypage after login 
     if (currentUser && !currentUser.loggedIn) {
         if (currentUser.IsAdmin) {
             currentUser.loggedIn = true;
@@ -38,6 +39,7 @@ function viewChange() {
             setLoggedInAs(currentUser);
             substituteViewMypage(location.hash);
         }
+        //directions if the user is already logged in 
     } else if (location.hash === "#mypage") {
         substituteViewMypage(hashLink);
         setLoggedInAs(currentUser);
@@ -60,16 +62,18 @@ function viewChange() {
     // Hide all views
     hideAllViews();
 
-    // Display the active one
+    // Display the active hashlink
     if (hashLink) {
         document.querySelector(hashLink).classList.add("active");
     }
 }
 
+// set logged in name as current user
 function setLoggedInAs(currentUser) {
     document.querySelector("#username-logged-in").textContent = `Du er logget ind som ${currentUser.Username}`;
 }
 
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function adminViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-admin").classList.add("active");
@@ -78,6 +82,7 @@ function adminViewMypage(hashLink) {
     loginAsAdmin();
 }
 
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function adminViewShifts(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-admin").classList.add("active");
@@ -86,6 +91,8 @@ function adminViewShifts(hashLink) {
     loginAsAdmin();
     initTabs();
 }
+
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function adminViewSubstitutes(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-admin").classList.add("active");
@@ -94,6 +101,7 @@ function adminViewSubstitutes(hashLink) {
     loginAsAdmin();
 }
 
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function substituteViewMypage(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
@@ -101,6 +109,7 @@ function substituteViewMypage(hashLink) {
     loginAsSubstitute();
 }
 
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function substituteViewShifts(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
@@ -109,6 +118,7 @@ function substituteViewShifts(hashLink) {
     initTabs();
 }
 
+// secure views on refresh, adding/removing active to respective elements classlists and refreshing datalists
 function substituteViewSchema(hashLink) {
     document.querySelector(hashLink).classList.add("active");
     document.querySelector(".view-content-substitute").classList.add("active");
@@ -116,14 +126,13 @@ function substituteViewSchema(hashLink) {
     loginAsSubstitute();
 }
 
+//hiding all views
 function hideAllViews() {
     document.querySelectorAll(".view-content").forEach((link) => link.classList.remove("active"));
-    //document.querySelectorAll(".view-link").forEach((link) => link.classList.add("active"));
 }
 
+//logout, clears local storage and resets to login view
 function logOutView() {
-    console.log("logging out");
-
     let hashLink = "#login-page";
 
     hideAllViews();

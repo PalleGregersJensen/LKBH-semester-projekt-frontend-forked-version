@@ -1,4 +1,3 @@
-// import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
 import { viewChange } from "./view-router.js";
 
 const endpoint = "http://localhost:3333";
@@ -17,19 +16,21 @@ async function getShiftData() {
     return data;
 }
 
+// get Json-data
 async function getShiftInterestData() {
     const response = await fetch(`${endpoint}/shiftInterests`);
     const data = await response.json();
     return data;
 }
 
-//Fetcher "/shifts/requestedshifts" fra endpoint og returnere resultat som js objekt
+//Fetching "/shifts/requestedshifts" from endpoint and returns js object
 async function getRequestedShifts() {
     const response = await fetch(`${endpoint}/shifts/requestedshifts`);
     const data = response.json();
     return data;
 }
 
+// update username and/or password
 async function updateLoginInfo() {
     const form = document.querySelector("#form-editLoginInfo-dialog");
     const employeeID = form.userID.value;
@@ -61,6 +62,7 @@ async function updateLoginInfo() {
     viewChange();
 }
 
+// Create shift request/interest
 async function createShiftRequest(substituteID, shiftID) {
     const employeeID = substituteID;
     const requestedShiftID = shiftID;
@@ -79,11 +81,9 @@ async function createShiftRequest(substituteID, shiftID) {
         console.log("Dit bud blev ikke registreret! (måske har du allerede budt?)");
         document.querySelector("#existing-shiftInterest-entry").showModal();
     }
-
-    // viewChange();
 }
 
-//Opdatere ttildeling af vagt
+//Opdatere tildeling af vagt
 async function assignSubstitute(event) {
     event.preventDefault();
     const form = event.target;
@@ -100,8 +100,6 @@ async function assignSubstitute(event) {
     });
 
     document.querySelector("#dialog-admin-assign-shift").close();
-    // buildRequestedShiftsList(); // opdater liste... virker ikke før logud og login påny
-    // buildShiftsList(); // opdater liste... virker ikke før logud og login påny
     viewChange();
 }
 
@@ -155,7 +153,7 @@ async function createNewSubstitute(event) {
     }
 }
 
-// Slet vikar
+// Delete substitute
 async function deleteSubstitute(event) {
     // forhindre default adfærd der refresher siden
     event.preventDefault();
@@ -181,7 +179,7 @@ async function deleteSubstitute(event) {
     viewChange();
 }
 
-// opdater vikar
+// Update Substitute
 async function updateSubstitute(event) {
     event.preventDefault();
     const form = event.target;
@@ -224,6 +222,7 @@ async function updateSubstitute(event) {
     viewChange();
 }
 
+// Create new shift
 async function createNewShift(event) {
     event.preventDefault();
 
@@ -257,6 +256,7 @@ async function createNewShift(event) {
     }
 }
 
+// corrects date format
 const formatDateTime = (dateTime) => {
     const date = new Date(dateTime);
     const year = date.getFullYear();

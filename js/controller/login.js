@@ -1,6 +1,7 @@
 import { endpoint } from "../main.js";
 import { viewChange } from "./view-router.js";
 
+// Handle login info and if user is confirmed store user in localStorage
 async function login(event) {
     event.preventDefault();
 

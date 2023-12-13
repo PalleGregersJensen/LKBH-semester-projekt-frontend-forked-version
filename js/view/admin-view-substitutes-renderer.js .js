@@ -16,9 +16,9 @@ export class AdminViewSubstitutesRenderer {
         return html;
     }
 
-    //postRenderer til update og delete knapper på admins liste over vikarer
+    //postRenderer for update and delete buttons on list of substitutes
     postRenderer(substitute, button1, button2) {
-        //tilføjer event listener ti "opdater"(button1) knap
+        //adding eventlisteners to "opdater" button (button1)
         button1.addEventListener("click", () => {
             const form = document.querySelector("#form-admin-update-substitute");
 
@@ -38,16 +38,16 @@ export class AdminViewSubstitutesRenderer {
             document.querySelector("#dialog-admin-update-substitute").showModal();
         });
 
-        //tilføjer event listener til "fjern"(button2) knap
+        //adding eventlistener to "fjern" button (button2)
         button2.addEventListener("click", () => {
             const form = document.querySelector("#form-delete-substitute");
 
-            // sætter overskrift i dialog vindue til navnet på den pågældende vikar
+            // header set to name of respective substitute
             form.querySelector("#name-to-delete").textContent = substitute.fullName;
-            // vidergiver den pågældende vikars id til delete form
+            // sets the form id value to the respective substitute
             form.formDeleteEmployeeID.value = substitute.id;
 
-            // lukker dialog vindue
+            // closing dialog
             document.querySelector("#dialog-delete-substitute").showModal();
         });
     }

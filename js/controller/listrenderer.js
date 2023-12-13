@@ -10,9 +10,7 @@ export class ListRenderer {
 
     render() {
         this.container.innerHTML = "";
-        const filteredList = this.items.filter(
-            (item) => this.filterValue === "all" || item[this.filterProperty] == this.filterValue
-        );
+        const filteredList = this.items.filter((item) => this.filterValue === "all" || item[this.filterProperty] == this.filterValue);
         for (const item of filteredList) {
             const html = this.itemRenderer.render(item);
             this.container.insertAdjacentHTML("beforeend", html);
