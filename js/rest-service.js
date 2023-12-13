@@ -74,8 +74,10 @@ async function createShiftRequest(substituteID, shiftID) {
 
     if (response.ok) {
         console.log("Dit bud er registreret!");
+        document.querySelector("#shiftInterest-dialog").showModal();
     } else {
         console.log("Dit bud blev ikke registreret! (måske har du allerede budt?)");
+        document.querySelector("#existing-shiftInterest-entry").showModal();
     }
 
     // viewChange();

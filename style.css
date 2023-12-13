@@ -1,127 +1,127 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(55, 101, 145);
-  margin: 0;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(55, 101, 145);
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0;
 }
 
 header {
-  text-align: center;
-  background-color: white;
-  padding: 5px;
-  width: 100%;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    width: 100%;
 }
 
 #login-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-  margin-left: 28%;
-  margin-top: 10%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin-left: 28%;
+    margin-top: 10%;
 }
 
 #text-login-som {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 #label-login {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #333;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
 }
 
 input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 #logon-btn {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 #logon-btn:hover {
-  background-color: #43597a;
+    background-color: #43597a;
 }
 
 #logout-btn {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  position: absolute;
-  top: 3px;
-  right: 3px;
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 3px;
+    right: 3px;
 }
 #logout-btn:hover {
-  background-color: #43597a;
+    background-color: #43597a;
 }
 
 /* CSS code for navbar */
 .navbar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  background-color: rgb(155, 24, 24);
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  padding-top: 250px;
-  box-sizing: border-box;
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: rgb(155, 24, 24);
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    padding-top: 250px;
+    box-sizing: border-box;
+    z-index: 999;
 }
 
 .navbar-content {
-  overflow: hidden;
-  z-index: 99;
-  font-size: 17px;
-  border: none;
-  outline: none;
-  color: black;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 8px 0;
-  cursor: pointer;
+    overflow: hidden;
+    z-index: 99;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 8px 0;
+    cursor: pointer;
 }
 
 /* CSS code for the active link */
 .active {
-  font-weight: bolder;
-  display: block;
+    font-weight: bolder;
+    display: block;
 }
 
 /* hide */
 .hide {
-  display: none;
+    display: none;
 }
 
 /* .view-content {
@@ -143,227 +143,245 @@ display: none;
 } */
 
 .view-content-admin {
-display: none;
+    display: none;
 }
 
 .view-content-substitute {
-display: none;
+    display: none;
 }
 
 .view-content-admin.active {
-display: block;
+    display: block;
 }
 
 .view-content-substitute.active {
-display: block;
+    display: block;
 }
 
 .view-content {
-  display: none;
-  margin-top: 5%;
-  margin-left: 20%;
+    display: none;
+    margin-top: 5%;
+    margin-left: 20%;
 }
 
 .view-content.active {
-  display: block;
-  margin-top: 5%;
-  margin-left: 20%;
+    display: block;
+    margin-top: 5%;
+    margin-left: 20%;
 }
 
 /* CSS for substitute table */
 .substitute-table {
-  width: 80%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  background-color: white;
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
 }
 
 .substitute-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  position: relative;
+    border: 1px solid #ddd;
+    padding: 8px;
+    position: relative;
 }
 
 .substitute-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: #f2f2f2;
 }
 
 .substitute-table button {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  position: absolute;
-  top: 50%;
-  right: 8px; /* Adjust as needed */
-  transform: translateY(-50%);
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    right: 8px; /* Adjust as needed */
+    transform: translateY(-50%);
 }
 
 .substitute-table button:hover {
-  background-color: #43597a;
+    background-color: #43597a;
 }
 
 #table-headers {
-  text-align: left;
+    text-align: left;
 }
 /* CSS for section headers */
 h1 {
-  color: #333;
-  margin-top: 20px;
+    color: #333;
+    margin-top: 20px;
 }
 
 #tabs-substitute,
 #tabs-admin,
 #substitutes-list-admin {
-  max-width: 60vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+    max-width: 60vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 #tabs-substitute h2,
 #tabs-admin h2 {
-  margin: 0;
-  padding: 0.5em;
-  background-color: #444;
-  cursor: pointer;
+    margin: 0;
+    padding: 0.5em;
+    background-color: #444;
+    cursor: pointer;
 }
 
 #tabs-substitute h2.selected,
 #tabs-admin h2.selected {
-  background-color: #666;
-  border: 1px solid black;
-  border-bottom: none;
+    background-color: #666;
+    border: 1px solid black;
+    border-bottom: none;
 }
 
 #tabs-substitute h2:not(.selected),
 #tabs-admin h2:not(.selected) {
-  border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #tabs-substitute div,
 #tabs-admin div,
 #substitutes-list-admin {
-  padding: 1em;
-  background-color: white;
-  grid-area: 2 / 1 / 2 / 3;
-  border: 1px solid black;
-  border-top: none;
+    padding: 1em;
+    background-color: white;
+    grid-area: 2 / 1 / 2 / 3;
+    border: 1px solid black;
+    border-top: none;
 }
 
 #tabs-substitute div table,
 #tabs-admin div table {
-  width: 100%;
+    width: 100%;
 }
 
 .shift-interest-button,
-#create-substitute-btn, #admin-shifts-filter, #assign-shift-btn, #select-substitute,
-#next-week-btn, #prev-week-btn {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  top: 3px;
-  right: 3px;
+#create-substitute-btn,
+#admin-shifts-filter,
+#assign-shift-btn,
+#select-substitute,
+#next-week-btn,
+#prev-week-btn {
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    top: 3px;
+    right: 3px;
 }
 
-#select-substitute{
-font-size: 12px;
-margin-left: 90px;
+#select-substitute {
+    font-size: 12px;
+    margin-left: 90px;
 }
 
-label{
-margin-left: 5% ;
+label {
+    margin-left: 5%;
 }
 
 #assign-shift-btn {
-margin-top: 15%;
-margin-bottom: 5%;
-margin-left: 20%;
-width: 200px;
+    margin-top: 15%;
+    margin-bottom: 5%;
+    margin-left: 20%;
+    width: 200px;
 }
 
-#admin-shifts-filter, #create-new-shift-btn {
-margin-bottom: 1%;
+#admin-shifts-filter,
+#create-new-shift-btn {
+    margin-bottom: 1%;
 }
 
-.shift-interest-button:hover, #create-substitute-btn:hover, #assign-shift-btn:hover,  #admin-shifts-filter:hover, #select-substitute:hover,
-#next-week-btn:hover, #prev-week-btn:hover {
-background-color: #43597a;
+.shift-interest-button:hover,
+#create-substitute-btn:hover,
+#assign-shift-btn:hover,
+#admin-shifts-filter:hover,
+#select-substitute:hover,
+#next-week-btn:hover,
+#prev-week-btn:hover {
+    background-color: #43597a;
 }
 
 #myShifts-tab,
 #availableShifts {
-  background-color: white;
-  border: 1px solid black;
+    background-color: white;
+    border: 1px solid black;
 }
 
 #substitutes-view-section-admin button {
-  margin: 8px;
+    margin: 8px;
 }
 
 td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 legend {
-font-size: x-large;
-font-weight: bold;
+    font-size: x-large;
+    font-weight: bold;
 }
 
-#form-create-new-shift{
-margin: 3%;
+#form-create-new-shift {
+    margin: 3%;
 }
+
 #shiftInterest-dialog,
 #editLoginInfo-dialog,
-#dialog-admin-assign-shift, #dialog-create-new-shift, #dialog-admin-assign-shift, #dialog-create-new-substitute,
-#dialog-admin-update-substitute, #dialog-delete-substitute {
-  width: 400px; /* Set a width for your dialog */
-  margin: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white; /* Set your desired background color */
-  padding: 20px;
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+#dialog-admin-assign-shift,
+#dialog-create-new-shift,
+#dialog-admin-assign-shift,
+#dialog-create-new-substitute,
+#dialog-admin-update-substitute,
+#dialog-delete-substitute {
+    width: 400px; /* Set a width for your dialog */
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Set your desired background color */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
 }
 
-#dialog-create-new-substitute, #dialog-admin-update-substitute{
-width: 600px;
-bottom: -30%;
+#dialog-create-new-substitute,
+#dialog-admin-update-substitute {
+    width: 600px;
+    bottom: -30%;
 }
 
 #not-matching-passwords,
-#existing-shiftInterest-entry {
-  width: 300px; /* Set a width for your dialog */
-  margin: auto;
-  position: fixed;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  background-color: white; /* Set your desired background color */
-  padding: 20px;
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+#existing-shiftInterest-entry,
+#shiftInterest-dialog {
+    width: 300px; /* Set a width for your dialog */
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Set your desired background color */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
 }
+
 #confirmInterestText {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #editLoginInfo-dialogheader {
-  margin-bottom: 20px;
-  text-decoration: underline;
-  font-weight: bold;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 #confirmInterest-btn,
@@ -371,38 +389,49 @@ bottom: -30%;
 #confirm-new-login-info,
 #reject-new-login-info,
 #close-passwords-dialog,
-#close-shiftInterest-dialog-btn, #create-new-shift-btn, #form-create-new-shift-submit-btn, #form-create-new-shift-cancel-btn,
-#form-create-new-substitute-confirm-btn, #form-create-new-substitute-cancel-btn,
-#form-admin-update-substitute-cancel-btn, #form-admin-update-substitute-confirm-btn,
-#form-cancel-delete-substitute, #form-confirm-delete-substitute {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  top: 3px;
-  right: 3px;
-  width: 175px;
+#close-shiftInterest-dialog-btn,
+#create-new-shift-btn,
+#form-create-new-shift-submit-btn,
+#form-create-new-shift-cancel-btn,
+#form-create-new-substitute-confirm-btn,
+#form-create-new-substitute-cancel-btn,
+#form-admin-update-substitute-cancel-btn,
+#form-admin-update-substitute-confirm-btn,
+#form-cancel-delete-substitute,
+#form-confirm-delete-substitute,
+#request-shift-btn {
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    top: 3px;
+    right: 3px;
+    width: 175px;
 }
 
 #close-passwords-dialog,
 #close-shiftInterest-dialog-btn {
-  width: 255px;
+    width: 255px;
 }
 
-#form-create-new-shift-submit-btn, #form-create-new-shift-cancel-btn{
-width: 160px;
+#form-create-new-shift-submit-btn,
+#form-create-new-shift-cancel-btn {
+    width: 160px;
 }
 
-#form-create-new-substitute-cancel-btn, #form-create-new-substitute-confirm-btn,
-#form-admin-update-substitute-cancel-btn, #form-admin-update-substitute-confirm-btn{
-width: 270px;
+#form-create-new-substitute-cancel-btn,
+#form-create-new-substitute-confirm-btn,
+#form-admin-update-substitute-cancel-btn,
+#form-admin-update-substitute-confirm-btn {
+    width: 270px;
 }
 
-#form-cancel-delete-substitute, #form-confirm-delete-substitute{
-margin-top: 3%;
+#form-cancel-delete-substitute,
+#form-confirm-delete-substitute {
+    margin-top: 3%;
 }
 
 #confirmInterest-btn:hover,
@@ -410,79 +439,111 @@ margin-top: 3%;
 #reject-new-login-info:hover,
 #confirm-new-login-info:hover,
 #close-passwords-dialog:hover,
-#close-shiftInterest-dialog-btn:hover, #create-new-shift-btn:hover, #form-create-new-shift-cancel-btn:hover, #form-create-new-shift-submit-btn:hover, #assign-btn:hover,
-#form-create-new-substitute-confirm-btn:hover, #form-create-new-substitute-cancel-btn:hover,
-#form-admin-update-substitute-cancel-btn:hover, #form-admin-update-substitute-confirm-btn:hover,
-#form-cancel-delete-substitute:hover, #form-confirm-delete-substitute:hover {
-  background-color: #43597a;
+#close-shiftInterest-dialog-btn:hover,
+#create-new-shift-btn:hover,
+#form-create-new-shift-cancel-btn:hover,
+#form-create-new-shift-submit-btn:hover,
+#assign-btn:hover,
+#form-create-new-substitute-confirm-btn:hover,
+#form-create-new-substitute-cancel-btn:hover,
+#form-admin-update-substitute-cancel-btn:hover,
+#form-admin-update-substitute-confirm-btn:hover,
+#form-cancel-delete-substitute:hover,
+#form-confirm-delete-substitute:hover,
+#request-shift-btn:hover {
+    background-color: #43597a;
 }
 
 #not-matching-passwords-text,
 #existing-shiftInterest-entry-text {
-  font-weight: bolder;
-  margin-bottom: 20px;
+    font-weight: bolder;
+    margin-bottom: 20px;
 }
 
 .btnStyling {
-  background-color: rgb(155, 24, 24);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  top: 3px;
-  right: 3px;
+    background-color: rgb(155, 24, 24);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    top: 3px;
+    right: 3px;
 }
 
-.btnStyling:hover{
-background-color: #43597a;
+.btnStyling:hover {
+    background-color: #43597a;
 }
 
-#shift-date:hover, #available-shift-time:hover, #shifts-shift-time:hover, #shift-hours:hover, #substitute-name:hover, #substitute-employeeID:hover,
-#shift-date:hover, #shift-time:hover, #shift-requested-by:hover, #shift-employee:hover {
-cursor: pointer;
+#shift-date:hover,
+#available-shift-time:hover,
+#shifts-shift-time:hover,
+#shift-hours:hover,
+#substitute-name:hover,
+#substitute-employeeID:hover,
+#shift-date:hover,
+#shift-time:hover,
+#shift-requested-by:hover,
+#shift-employee:hover {
+    cursor: pointer;
 }
 
 /* Styling for calendar */
 
 #calendar-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 20px;
-background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
 }
 
-#calendar-th, #calendar-td {
-border: 1px solid #ddd;
-padding: 8px;
-text-align: center;
+#calendar-th,
+#calendar-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
 }
 
 #calendar-th {
-background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .navigation {
-display: flex;
-justify-content: space-between;
-margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.schema-data{
-margin-right: 10%;
+.schema-data {
+    margin-right: 10%;
 }
 
-#calendar-year{
-margin-top: 40px;
-margin-bottom: 60px;
-font-weight: bold;
+#calendar-year {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-weight: bold;
 }
 
 #calendarBody {
-background-color: white;
-width: 100%; /* Make #calendarBody same width as the table */
-height: 300px; /* Set a fixed height for #calendarBody */
-overflow: auto; /* Add overflow: auto to enable scrolling if content exceeds the fixed height */
-text-align: center;
+    background-color: white;
+    width: 100%; /* Make #calendarBody same width as the table */
+    height: 300px; /* Set a fixed height for #calendarBody */
+    overflow: auto; /* Add overflow: auto to enable scrolling if content exceeds the fixed height */
+    text-align: center;
+}
+
+#shiftInterest-dialog {
+    width: 215px; /* Set a width for your dialog */
+    margin: auto;
+    position: fixed;
+    text-align: center;
+    font-weight: bold;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Set your desired background color */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
 }

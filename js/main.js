@@ -19,7 +19,7 @@ import {
 import { Substituterenderer } from "./substituterenderer.js";
 import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
-import { MyShiftsRenderer } from "./myshiftsrenderer.js";
+import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
 // import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
 import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
@@ -108,7 +108,7 @@ function applyEventListeners() {
     // eventlistener for logout
     document.querySelector("#logout-btn").addEventListener("click", logOutView);
 
-    document.querySelector("#denyInterest-btn").addEventListener("click", function () {
+    document.querySelector("#confirmInterest-btn").addEventListener("click", function () {
         document.querySelector("#shiftInterest-dialog").close();
     });
     document.querySelector("#reject-new-login-info").addEventListener("click", function (event) {
