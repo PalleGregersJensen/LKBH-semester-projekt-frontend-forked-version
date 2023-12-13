@@ -1,4 +1,4 @@
-import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
+// import { buildShiftsList, buildRequestedShiftsList } from "./main.js";
 import { viewChange } from "./view-router.js";
 
 const endpoint = "http://localhost:3333";
@@ -105,6 +105,56 @@ async function assignSubstitute(event) {
     viewChange();
 }
 
+// Create new substitute
+async function createNewSubstitute(event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const firstName = form.firstname.value;
+    const lastName = form.lastname.value;
+    const dateOfBirth = form.elements["date-of-birth"].value;
+    const mail = form.mail.value;
+    const number = form.elements["phone-number"].value;
+    let adminStatus = form.elements["admin-status"].value;
+    if (adminStatus === "is-not-admin") {
+        adminStatus = false;
+    } else if (adminStatus === "is-admin") {
+        adminStatus = true;
+    }
+    const userName = form.username.value;
+    const password = form.password.value;
+
+    const user = {
+        FirstName: firstName,
+        LastName: lastName,
+        DateOfBirth: dateOfBirth,
+        Mail: mail,
+        Number: number,
+        IsAdmin: adminStatus,
+        Username: userName,
+        PasswordHash: password,
+    };
+    const userAsJson = JSON.stringify(user);
+    const response = await fetch(`${endpoint}/substitutes/`, {
+        method: "POST",
+        body: userAsJson,
+        headers: {
+            "content-Type": "application/json",
+        },
+    });
+
+    if (response.ok) {
+        // if success, close dialog tag
+        document.querySelector("#dialog-create-new-substitute").close();
+
+        viewChange();
+    } else {
+        document.querySelector("#dialog-error-message-create-substitute").showModal();
+        document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);
+    }
+}
+
 // Slet vikar
 async function deleteSubstitute(event) {
     // forhindre default adfærd der refresher siden
@@ -174,4 +224,4 @@ async function updateSubstitute(event) {
     viewChange();
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, updateLoginInfo, createShiftRequest, assignSubstitute, updateSubstitute, deleteSubstitute };
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, updateLoginInfo, createShiftRequest, assignSubstitute, updateSubstitute, createNewSubstitute, deleteSubstitute };

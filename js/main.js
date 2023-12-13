@@ -14,6 +14,7 @@ import {
     updateLoginInfo,
     assignSubstitute,
     updateSubstitute,
+    createNewSubstitute,
     deleteSubstitute,
 } from "./rest-service.js";
 import { Substituterenderer } from "./substituterenderer.js";
@@ -21,12 +22,11 @@ import { ListRenderer } from "./listrenderer.js";
 import { initTabs } from "./tabs.js";
 import { MyShiftsRenderer } from "./view/myshiftsrenderer.js";
 import { AvailableShiftsRenderer } from "./view/availableshiftsrenderer.js";
-// import { ShiftsAdminRenderer } from "./shiftsadminrenderer.js";
-import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
+// import { createNewSubstituteClicked, createNewSubstitute, closeCreateNewSubstituteDialog } from "./create-new-substitute.js";
 import { AdminShiftRenderer } from "./view/adminshiftrenderer.js";
 import { AdminViewAvaliableShiftRenderer } from "./view/admin-view-avaliable-shift-renderer.js";
 import { AdminViewSubstitutesRenderer } from "./view/admin-view-substitutes-renderer.js .js";
-import {CalendarRenderer} from "./view/substitute-view-calendar.js";
+import { CalendarRenderer } from "./view/substitute-view-calendar.js";
 import * as requestedshift from "./model/requested-shift.js";
 import * as shift from "./model/myshifts.js";
 import * as substitute from "./model/substitute.js";
@@ -69,6 +69,21 @@ async function buildSubstitutesList() {
     substitutes = originalData.map(substitute.construct);
 }
 
+// create substitute show dialog
+function createNewSubstituteClicked() {
+    document.querySelector("#dialog-create-new-substitute").showModal();
+}
+
+// create substitute close dialog
+function closeCreateNewSubstituteDialog() {
+    document.querySelector("#dialog-create-new-substitute").close();
+}
+
+// create substitute error dialog close
+function closeErrorMessageInCreateSubstitute() {
+    document.querySelector("#dialog-error-message-create-substitute").close();
+}
+
 function cancelDeleteSubstitute() {
     document.querySelector("#dialog-delete-substitute").close();
 }
@@ -88,6 +103,7 @@ function applyEventListeners() {
     document.querySelector("#create-substitute-btn").addEventListener("click", createNewSubstituteClicked);
     document.querySelector("#form-create-new-substitute").addEventListener("submit", createNewSubstitute);
     document.querySelector("#form-create-new-substitute-cancel-btn").addEventListener("click", closeCreateNewSubstituteDialog);
+    document.querySelector("#error-message-create-substitute-btn").addEventListener("click", closeErrorMessageInCreateSubstitute);
 
     // eventlisteners for create new shift
     document.querySelector("#create-new-shift-btn").addEventListener("click", createNewShiftClicked);
@@ -225,7 +241,6 @@ async function loginAsSubstitute() {
     const calendar = new ListRenderer(shiftsOfLoggedInEmployee, "#calendarBody", calendarRenderer);
     calendar.render();
 
-
     // add sort eventlisteners mine vagter
     document.querySelector("#shifts-table-headers").addEventListener("click", (event) => {
         const targetId = event.target.id;
@@ -251,114 +266,109 @@ async function loginAsSubstitute() {
     function updateCalendar(currentWeek) {
         const calendarBody = document.getElementById("calendarBody");
         calendarBody.innerHTML = ""; // Clear existing content
-    
+
         // Filter shifts for the current week
-        const shiftsForCurrentWeek = shiftsOfLoggedInEmployee.filter(shift => shift.weekNumber === currentWeek);
-    
+        const shiftsForCurrentWeek = shiftsOfLoggedInEmployee.filter((shift) => shift.weekNumber === currentWeek);
+
         // Render each shift for the current week
-        shiftsForCurrentWeek.forEach(shift => {
+        shiftsForCurrentWeek.forEach((shift) => {
             const html = calendarRenderer.render(shift, currentWeek);
             calendarBody.innerHTML += html;
         });
     }
 
-// Function to navigate to the previous week
-function prevWeek() {
-    // Update the week number and call the updateCalendar function
-    if(currentWeek===1){
-        currentWeek=52;
-        currentYear--;
-     } else{
-            currentWeek--;}
-    updateCalendar(currentWeek);
-    updateWeekHeader(currentWeek);
-}
-
-// Function to navigate to the next week
-function nextWeek() {
-    // Update the week number and call the updateCalendar function
-    if(currentWeek===52){
-        currentWeek=1;
-        currentYear++;
-    }else{
-        currentWeek++;
+    // Function to navigate to the previous week
+    function prevWeek() {
+        // Update the week number and call the updateCalendar function
+        if (currentWeek === 1) {
+            currentWeek = 52;
+            currentYear--;
+        } else {
+            currentWeek--;
+        }
+        updateCalendar(currentWeek);
+        updateWeekHeader(currentWeek);
     }
-    updateCalendar(currentWeek);
-    updateWeekHeader(currentWeek);
-}
 
-// Function to update the week header
-function updateWeekHeader(weekNumber) {
-    document.getElementById("currentWeek").textContent = `Uge ${currentWeek}`;
-    document.getElementById("calendar-year").textContent = `Min Kalender ${currentYear}`;
+    // Function to navigate to the next week
+    function nextWeek() {
+        // Update the week number and call the updateCalendar function
+        if (currentWeek === 52) {
+            currentWeek = 1;
+            currentYear++;
+        } else {
+            currentWeek++;
+        }
+        updateCalendar(currentWeek);
+        updateWeekHeader(currentWeek);
+    }
+
+    // Function to update the week header
+    function updateWeekHeader(weekNumber) {
+        document.getElementById("currentWeek").textContent = `Uge ${currentWeek}`;
+        document.getElementById("calendar-year").textContent = `Min Kalender ${currentYear}`;
 
         // Get the start date of the specified week
         const startDate = getStartDateOfWeek(currentYear, weekNumber);
-    
+
         // Get the table header row
         const headerRow = document.getElementById("calendar-th").querySelector("tr");
-    
+
         // Loop through each day of the week
         for (let i = 0; i < 7; i++) {
-
             const currentDate = new Date(startDate);
             currentDate.setDate(startDate.getDate() + i);
-    
+
             // Update the inner HTML of the corresponding table header cell
             const cell = headerRow.children[i];
             cell.innerHTML = `${getWeekday(currentDate)}<br>${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
             // Inside the loop where you're creating table header cells
-            const row = document.createElement('tr');
+            const row = document.createElement("tr");
             row.dataset.week = currentWeek;
             row.dataset.date = `${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
-
         }
-    };
+    }
 
+    // Get the current date
+    const currentDate = new Date();
+    let currentYear = 2023;
 
-// Get the current date
-const currentDate = new Date();
-let currentYear = 2023;
+    // Calculate the current week number
+    let currentWeek = getWeekNumber(currentDate);
 
-// Calculate the current week number
-let currentWeek = getWeekNumber(currentDate);
+    // Function to calculate the week number
+    function getWeekNumber(date) {
+        const d = new Date(date);
+        d.setHours(0, 0, 0, 0);
+        d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+        const yearStart = new Date(d.getFullYear(), 0, 1);
+        return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+    }
 
-// Function to calculate the week number
-function getWeekNumber(date) {
-    const d = new Date(date);
-    d.setHours(0, 0, 0, 0);
-    d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-    const yearStart = new Date(d.getFullYear(), 0, 1);
-    return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-}
+    function getStartDateOfWeek(year, weekNumber) {
+        const januaryFirst = new Date(year, 0, 1);
+        const daysToFirstMonday = (8 - januaryFirst.getDay()) % 7;
+        const daysToTargetWeek = (weekNumber - 1) * 7;
 
-function getStartDateOfWeek(year, weekNumber) {
-    const januaryFirst = new Date(year, 0, 1);
-    const daysToFirstMonday = (8 - januaryFirst.getDay()) % 7;
-    const daysToTargetWeek = (weekNumber - 1) * 7;
+        const startDate = new Date(januaryFirst);
+        startDate.setDate(januaryFirst.getDate() + daysToFirstMonday + daysToTargetWeek);
 
-    const startDate = new Date(januaryFirst);
-    startDate.setDate(januaryFirst.getDate() + daysToFirstMonday + daysToTargetWeek);
+        return startDate;
+    }
 
-    return startDate;
-}
+    // Function to get the weekday based on a date
+    function getWeekday(date) {
+        const daysOfWeek = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"];
+        const dayIndex = date.getDay();
+        return daysOfWeek[dayIndex];
+    }
 
-// Function to get the weekday based on a date
-function getWeekday(date) {
-    const daysOfWeek = [ 'Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-    const dayIndex = date.getDay();
-    return daysOfWeek[dayIndex];
-}
+    // Initial calendar update
+    updateCalendar(currentWeek);
+    updateWeekHeader(currentWeek);
 
-// Initial calendar update
-updateCalendar(currentWeek);
-updateWeekHeader(currentWeek);
-
-document.querySelector("#prev-week-btn").addEventListener("click", prevWeek);
-document.querySelector("#next-week-btn").addEventListener("click", nextWeek);
-
-
-
+    document.querySelector("#prev-week-btn").addEventListener("click", prevWeek);
+    document.querySelector("#next-week-btn").addEventListener("click", nextWeek);
 }
 
 // function testSomething() {
