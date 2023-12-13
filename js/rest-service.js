@@ -30,6 +30,57 @@ async function getRequestedShifts() {
     return data;
 }
 
+async function updateLoginInfo() {
+    const form = document.querySelector("#form-editLoginInfo-dialog");
+    const employeeID = form.userID.value;
+    const userName = form.editUsername.value;
+    const passwordNew = form.editPassword.value;
+    const passwordNewConfirm = form.confirmNewPassword.value;
+
+    console.log(userName);
+    console.log(passwordNew);
+
+    if (passwordNew !== passwordNewConfirm) {
+        console.log("password ikke ens");
+        document.querySelector("#not-matching-passwords").showModal();
+    } else {
+        const bodyToUpdate = { Username: userName, PasswordHash: passwordNew, EmployeeID: employeeID };
+
+        const response = await fetch(`${endpoint}/substitutes/${employeeID}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyToUpdate),
+        });
+
+        if (response.ok) {
+            console.log("Dit password er nu ændret!");
+        } else {
+            console.log("Noget gik galt, dit password er IKKE ændret!");
+        }
+    }
+    viewChange();
+}
+
+async function createShiftRequest(substituteID, shiftID) {
+    const employeeID = substituteID;
+    const requestedShiftID = shiftID;
+    const bodyToPost = { ShiftID: requestedShiftID, EmployeeID: employeeID };
+
+    const response = await fetch(`${endpoint}/shiftInterests`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToPost),
+    });
+
+    if (response.ok) {
+        console.log("Dit bud er registreret!");
+    } else {
+        console.log("Dit bud blev ikke registreret! (måske har du allerede budt?)");
+    }
+
+    // viewChange();
+}
+
 //Opdatere ttildeling af vagt
 async function assignSubstitute(event) {
     event.preventDefault();
@@ -74,7 +125,7 @@ async function deleteSubstitute(event) {
     }
 
     document.querySelector("#dialog-delete-substitute").close();
-    
+
     viewChange();
 }
 
@@ -91,7 +142,7 @@ async function updateSubstitute(event) {
     // const isAdmin = form.querySelector("#form-admin-update-substitute-is-admin").checked;
     const userName = form.username.value;
     const id = Number(form.formUpdateEmployeeID.value);
- 
+
     const bodyToUpdate = {
         FirstName: firstName,
         LastName: lastName,
@@ -99,21 +150,21 @@ async function updateSubstitute(event) {
         Mail: mail,
         Number: number,
         Username: userName,
-        EmployeeID: id
+        EmployeeID: id,
     };
 
     console.log(bodyToUpdate);
-    
+
     const response = await fetch(`${endpoint}/substitutes/admins/${id}`, {
         method: "PUT",
-        headers: { "content-type": "application/json"},
-        body: JSON.stringify(bodyToUpdate)
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToUpdate),
     });
 
     if (response.ok) {
-        console.log("Brugeren er opdateret med succes!")
+        console.log("Brugeren er opdateret med succes!");
     } else {
-        console.log("Noget gik galt, brugeren blev ikke opdateret!")
+        console.log("Noget gik galt, brugeren blev ikke opdateret!");
     }
 
     document.querySelector("#dialog-admin-update-substitute").close();
@@ -121,4 +172,4 @@ async function updateSubstitute(event) {
     viewChange();
 }
 
-export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, assignSubstitute, updateSubstitute, deleteSubstitute };
+export { getShiftData, getSubstitutesData, getShiftInterestData, getRequestedShifts, updateLoginInfo, createShiftRequest, assignSubstitute, updateSubstitute, deleteSubstitute };
