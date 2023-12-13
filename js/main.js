@@ -203,6 +203,7 @@ async function loginAsSubstitute() {
     const substituteRenderer = new Substituterenderer();
     const MyShiftsrenderer = new MyShiftsRenderer();
     const availableShiftsRenderer = new AvailableShiftsRenderer();
+    const calendarRenderer = new CalendarRenderer();
     await buildSubstitutesList();
 
     // MyInfo
