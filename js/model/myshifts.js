@@ -16,6 +16,18 @@ export function construct(originalData) {
         const monthNumber = date.getMonth() + 1; // Months are 0-indexed, so we add 1
         return monthNumber;
     },
+    get weekNumber() {
+      const d = new Date(originalData.Date);
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      const yearStart = new Date(d.getFullYear(), 0, 1);
+      return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  },
+    get weekday() {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayIndex = new Date(originalData.Date).getDay();
+    return daysOfWeek[dayIndex];
+},
       get shiftStart() {
           const dateTime = new Date(originalData.ShiftStart);
           const hours = dateTime.getHours();
