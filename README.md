@@ -1,8 +1,3 @@
-<div align="center"> 
-    Indsæt billed
-    <!-- <img src="" style="width: 100%;"> -->
-</div>
-
 # LKbh § 107 - Bookning af vikar tider (Frontend)
 
 Dette er repository'et for vores frontend-del af 2.semesters eksamensprojekt.
