@@ -261,6 +261,35 @@ async function createNewShift(event) {
     }
 }
 
+// admin delete shift
+
+async function adminDeleteShift(event) {
+    // forhindre default adfærd der refresher siden
+    event.preventDefault();
+    const form = event.target;
+
+    const shiftID = Number(form.formDeleteShiftID.value);
+    const bodyToDelete = { ShiftID: shiftID };
+
+    const response = await fetch(`${endpoint}/shifts/${shiftID}`, {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToDelete),
+    });
+
+    if (response.ok) {
+        console.log("Vagt slettet!");
+    } else {
+        console.log("Noget gik galt, vagten er IKKE slettet!");
+    }
+
+    document.querySelector("#dialog-delete-shift").close();
+
+    viewChange();
+}
+
+
+
 // corrects date format
 const formatDateTime = (dateTime) => {
     const date = new Date(dateTime);
@@ -286,4 +315,5 @@ export {
     createNewSubstitute,
     deleteSubstitute,
     createNewShift,
+    adminDeleteShift
 };

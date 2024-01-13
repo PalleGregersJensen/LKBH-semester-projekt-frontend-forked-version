@@ -37,12 +37,15 @@ export class AdminShiftRenderer {
 
         //adding eventlistener to "fjern" button (button2)
         button2.addEventListener("click", () => {
+            console.log(shift);
             const form = document.querySelector("#form-delete-shift");
 
             // header set to name of respective substitute
-            form.querySelector("#shift-to-delete").textContent = shift;
+            form.querySelector(
+                "#shift-to-delete"
+            ).textContent = `Vil du slette vagten ${shift.date} fra kl. ${shift.shiftStart}-${shift.shiftEnd}`;
             // sets the form id value to the respective substitute
-            // form.formDeleteEmployeeID.value = shift.id;
+            form.formDeleteShiftID.value = shift.id;
 
             // closing dialog
             document.querySelector("#dialog-delete-shift").showModal();
