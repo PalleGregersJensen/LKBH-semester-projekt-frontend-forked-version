@@ -335,6 +335,16 @@
             </fieldset>
         </dialog>
 
+        <!-- admin confirm delete shift -->
+        <dialog id="dialog-delete-shift">
+            <form action="" id="form-delete-shift" method="dialog">
+                <h3>Vil du slette <span id="shift-to-delete"></span>?</h3>
+                <input type="text" name="formDeleteShiftID" hidden />
+                <button type="submit" id="form-confirm-delete-shift">Bekræft</button>
+                <button id="form-cancel-delete-shift" type="button">Annuller</button>
+            </form>
+        </dialog>
+
         <!-- admin assign substitute to shift -->
         <dialog id="dialog-admin-assign-shift">
             <fieldset>

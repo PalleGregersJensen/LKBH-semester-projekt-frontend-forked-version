@@ -1,7 +1,8 @@
 "use strict";
 
 //Endpoint
-const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
+// const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
+const endpoint = "http://localhost:3333";
 
 // ===== IMPORTS ===== \\
 import { login } from "./controller/login.js";
@@ -185,7 +186,13 @@ async function generateAdminData() {
     substitute.render();
 
     // ADMIN: shifts, new instance of Listrenderer for shifts (admin view)
-    const shiftsAdminList = new ListRenderer(shifts, "#shifts-admin-tbody", adminShiftRenderer);
+    const shiftsAdminList = new ListRenderer(
+        shifts,
+        "#shifts-admin-tbody",
+        adminShiftRenderer,
+        "#update-shift-btn",
+        "#delete-shift-btn"
+    );
     shiftsAdminList.render();
 
     // ADMIN: avaliable shifts
