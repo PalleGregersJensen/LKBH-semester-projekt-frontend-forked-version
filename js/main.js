@@ -108,6 +108,11 @@ function cancelUpdateSubstitute() {
     document.querySelector("#dialog-admin-update-substitute").close();
 }
 
+// close error message in wrong length of phone number in create new substitute 
+function closeErrorMessageOnWrongLenthPhoneNumber() {
+    document.querySelector("#error-message-not-correct-phonenumber-length").close();
+}
+
 function applyEventListeners() {
     // eventlistener for login form
     document.querySelector("#login-form").addEventListener("submit", login);
@@ -130,6 +135,9 @@ function applyEventListeners() {
     document.querySelector("#form-create-new-shift").addEventListener("submit", createNewShift);
     document.querySelector("#form-create-new-shift-cancel-btn").addEventListener("click", closeCreateNewShiftDialog);
     document.querySelector("#error-message-create-shift-btn").addEventListener("click", closeErrorMessageInCreateShift);
+
+    // eventlistener for wrong phonenumber length
+    document.querySelector("#error-message-not-correct-phonenumber-length-ok-button").addEventListener("click", closeErrorMessageOnWrongLenthPhoneNumber);
 
     // eventlisteners for delete shift
     document.querySelector("#form-delete-shift").addEventListener("submit", adminDeleteShift);
@@ -167,6 +175,7 @@ function applyEventListeners() {
     document.querySelector("#close-shiftInterest-dialog-btn").addEventListener("click", function () {
         document.querySelector("#existing-shiftInterest-entry").close();
     });
+
 }
 
 async function generateAdminData() {
