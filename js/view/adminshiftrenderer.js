@@ -17,12 +17,13 @@ export class AdminShiftRenderer {
     postRenderer(shift, button1, button2) {
         //adding eventlisteners to "opdater" button (button1)
         button1.addEventListener("click", () => {
-            // const form = document.querySelector("#form-admin-update-shift");
+            const form = document.querySelector("#form-admin-update-shift");
 
-            // form.formUpdateEmployeeID.value = shift.id; // hidden
-            // form.firstname.value = substitute.firstName;
-            // form.lastname.value = substitute.lastName;
-            // form.dateofbirth.value = substitute.formBirthdate;
+            form.formUpdateShiftID.value = shift.id; // hidden
+            // form.elements["shift-start"].value = shift.shiftStart;
+            // form.elements["shift-end"].value = shift.shiftEnd;
+            // form.elements["shift-date"].value = shift.date;
+            // console.log(shift);
             // form.mail.value = substitute.mail;
             // form.phonennumber.value = substitute.number;
             // if (substitute.isAdmin === 1) {

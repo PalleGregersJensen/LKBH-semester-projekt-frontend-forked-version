@@ -326,9 +326,10 @@
                     <label for="form-admin-update-shift-date">Dato</label>
                     <input type="date" name="shift-date" id="form-admin-update-shift-date" />
                     <label for="form-admin-update-shift-start">Vagt starter</label>
-                    <input type="time" name="shift-start" id="form-admin-update-shift-start" />
+                    <input type="datetime-local" name="shift-start" id="form-admin-update-shift-start" />
                     <label for="form-admin-update-shift-end">Vagt slutter</label>
-                    <input type="time" name="shift-end" id="form-admin-update-shift-end" />
+                    <input type="datetime-local" name="shift-end" id="form-admin-update-shift-end" />
+                    <input type="text" name="formUpdateShiftID" hidden />
                     <button type="submit">Submit</button>
                     <button type="button" value="cancel" id="form-admin-update-shift-cancel-btn">Cancel</button>
                 </form>

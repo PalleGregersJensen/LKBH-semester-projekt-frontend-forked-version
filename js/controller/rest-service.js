@@ -262,7 +262,6 @@ async function createNewShift(event) {
 }
 
 // admin delete shift
-
 async function adminDeleteShift(event) {
     // forhindre default adfærd der refresher siden
     event.preventDefault();
@@ -284,6 +283,42 @@ async function adminDeleteShift(event) {
     }
 
     document.querySelector("#dialog-delete-shift").close();
+
+    viewChange();
+}
+
+// Update shift
+async function adminUpdateShift(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const shiftDate = form.elements["shift-date"].value;
+    const shiftStart = form.elements["shift-start"].value;
+    const shiftEnd = form.elements["shift-end"].value;
+    const id = Number(form.formUpdateShiftID.value);
+
+    const bodyToUpdate = {
+        ShiftStart: shiftStart,
+        ShiftEnd: shiftEnd,
+        Date: shiftDate,
+        ShiftID: id
+    };
+
+    console.log(bodyToUpdate);
+
+    const response = await fetch(`${endpoint}/shifts/${id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(bodyToUpdate),
+    });
+
+    if (response.ok) {
+        console.log("Vagten er opdateret med succes!");
+    } else {
+        console.log("Noget gik galt, vagten blev ikke opdateret!");
+    }
+
+    document.querySelector("#dialog-admin-update-shift").close();
 
     viewChange();
 }
@@ -315,5 +350,6 @@ export {
     createNewSubstitute,
     deleteSubstitute,
     createNewShift,
-    adminDeleteShift
+    adminDeleteShift,
+    adminUpdateShift
 };

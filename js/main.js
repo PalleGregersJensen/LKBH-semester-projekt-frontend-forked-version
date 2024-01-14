@@ -29,7 +29,8 @@ import {
     createNewSubstitute,
     deleteSubstitute,
     createNewShift,
-    adminDeleteShift
+    adminDeleteShift,
+    adminUpdateShift
 } from "./controller/rest-service.js";
 
 window.addEventListener("load", initApp);
@@ -132,7 +133,9 @@ function applyEventListeners() {
 
     // eventlisteners for delete shift
     document.querySelector("#form-delete-shift").addEventListener("submit", adminDeleteShift);
+    
     // eventlisteners for update shift
+    document.querySelector("#form-admin-update-shift").addEventListener("submit", adminUpdateShift);
 
     // eventlisteners for assign substitute
     document.querySelector("#dialog-admin-assign-shift").addEventListener("submit", assignSubstitute);
