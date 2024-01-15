@@ -153,7 +153,11 @@ async function createNewSubstitute(event) {
             document.querySelector("#dialog-create-new-substitute").close();
 
             viewChange();
-        } else {
+        } else if (response.status == 400) {
+            document.querySelector("#dialog-username-already-exitsts-in-database").showModal();
+        }
+        
+        else {
             document.querySelector("#dialog-error-message-create-substitute").showModal();
             document
                 .querySelector("#error-message-create-substitute-btn")
