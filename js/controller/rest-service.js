@@ -1,6 +1,7 @@
 import { viewChange } from "./view-router.js";
+import { endpoint } from "../main.js";
 
-const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
+// const endpoint = "https://lkbh-semester-projekt-backend.azurewebsites.net";
 
 // get Json-data
 async function getSubstitutesData() {
